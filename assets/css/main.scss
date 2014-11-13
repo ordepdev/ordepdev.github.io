@@ -1,0 +1,67 @@
+---
+# custom styles
+---
+
+@import "variables";
+@import "syntax";
+
+header {
+  margin: 60px 0;
+  .site {
+    text-decoration: none;
+  }
+  span.b {
+    font-weight: bold;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    line-height: 16px;
+
+    li { 
+      display: inline-block; 
+      margin-left: 12px;
+    }
+  }
+}
+
+.container {
+  max-width: $width-content;
+  margin: 0 auto;
+  padding: 0 20px;
+  ul.list-posts {
+    padding-left: 0;
+    list-style: none;
+
+    li {
+      margin: 12px 0;
+    }
+    span { 
+      color: $color-grey;
+      float: right; 
+      font-size: 14px;
+      margin-top: 2px; 
+    }
+
+    a {
+      font-size: 16px;
+      text-decoration: none;
+      border-bottom: 1px solid $color-grey;
+      
+      &:hover {
+        border-color: #000;
+      }
+    }
+
+  }
+}
+
+.post-date {
+  border-left: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+h1 {
+  font-size: 32px;
+}

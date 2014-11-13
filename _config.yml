@@ -1,0 +1,15 @@
+name: ordepdev
+description: random programming stuff
+meta_description: "ordepdev - random programming stuff"
+
+markdown: redcarpet
+highlighter: pygments
+logo: false
+baseurl: /
+domain_name: 'http://ordepdev.me'
+permalink: /posts/:title
+twitter: 'https://twitter.com/Gonka29'
+
+# Details for the RSS feed generator
+url:            'ordepdev.me'
+author:         'Pedro Tavares'
