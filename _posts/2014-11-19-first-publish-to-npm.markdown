@@ -33,7 +33,7 @@ When I search for NPM packages they must be very clear and doesn't try to do man
 The other package is `scores-table`. You can install and use it like this.
 
 ```bash
-$ npm install scores-table
+$ npm install -g scores-table
 $ scores-table -l
 ```
 ![scores](/assets/images/livescores.png)
