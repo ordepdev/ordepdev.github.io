@@ -1,25 +1,20 @@
 ---
 layout: page
-title: About
+title: Who am I
 ---
 
-I'm 22.
+I'm a 22 years old software developer currently living in Porto, Portugal. I love building stuff, mostly rich web based applications. I'm a backend dev in a frontend world. JavaScript, Node, C#, ASP.NET MVC, and Ruby are my main skills.
 
-I've a computer science degree.
+#### Interests
 
-I'm a full-stack web developer.
-
-During the day I work with C#/ASP.Net MVC, JavaScript, SASS and Node.
-
-At night ... check the articles.
+Web, Databases, and Sports in general.
 
 #### Contacts
 
-If you want to get in touch, send an [email][email].
+If you want my resume or just to get in touch, send me an email to pedrotavares.dev@gmail.com.
 
 I'm also on [twitter][twitter], [github][github] and [instagram][instagram].
 
 [twitter]:    https://twitter.com/gonka29
 [github]:     https://github.com/ordepdev
 [instagram]:  https://instagram.com/gonka29
-[email]:      mailto:pedrotavares.dev@gmail.com

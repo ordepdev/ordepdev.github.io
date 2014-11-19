@@ -18,27 +18,12 @@ archive: false
             </div>
         </header>
 
+        <footer class="post-footer"></footer>
+
         <section class="post-content">
             {{content}}
         </section>
 
-        {% if page.archive %}
-        <section class="archive">
-            <h5>Archive</h5>
-            <ul>
-                {% for post in site.posts %}
-                    <li><span>{{ post.date | date_to_string }}</span>  <a href="{{ post.url }}">{{ post.title }}</a></li>
-                {% endfor %}    
-            </ul>
-        </section>
-        {% endif %}
-
-        <footer class="post-footer">
-            {% if site.author %}
-                <figure class="author-image">
-                    <a class="img" href="{{ site.twitter }}" style="background-image: url(/assets/images/profile.jpg)"></a>
-                </figure>              
-            {% endif %}
-        </footer>
+        <footer class="post-footer"></footer>
     </article>
 </div>

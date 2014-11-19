@@ -323,7 +323,7 @@ header {
       margin-left: 12px; }
 
 .container {
-  max-width: 650px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 0 20px; }
   .container ul.list-posts {
@@ -350,3 +350,10 @@ header {
 
 h1 {
   font-size: 32px; }
+
+h4 {
+  margin-top: 40px;
+  margin-bottom: 20px; }
+
+p {
+  margin-bottom: 12px; }
