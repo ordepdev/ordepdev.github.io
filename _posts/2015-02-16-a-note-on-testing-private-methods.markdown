@@ -42,7 +42,13 @@ public void IpAddressLocationMustMatchWithGetUserCountry()
         Country = "Portugal"
     };
 
-    var expected = (string)obj.InvokeStatic(method, new object[] { connection.IpAddress });
+    var expected = (string)obj.InvokeStatic(method, 
+        new object[] 
+        { 
+            connection.IpAddress 
+        }
+    );
+    
     Assert.AreEqual(expected, connection.Country);
 }
 ```
