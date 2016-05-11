@@ -2,7 +2,7 @@ name: ordepdev
 description: random programming stuff
 meta_description: "ordepdev - random programming stuff"
 
-highlighter: pygments
+highlighter: rouge
 logo: false
 baseurl: /
 domain_name: 'http://ordepdev.me'
