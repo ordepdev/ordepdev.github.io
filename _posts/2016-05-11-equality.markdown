@@ -12,11 +12,11 @@ Some programing languages gives us implementations for standard types like integ
 
 When we want to test equality on our own types like Person, we need to override equals(). In order to correctly override the equals() method we must follow a few rules; the relation between the objects must be:
 
-* *Reflexive*: a.equals(a) is true.
-* *Symmetric*: a.equals(b) is true if and only if b.equals(a).
-* *Transitive*: if a.equals(b) and b.equals(c) are true, then a.equals(c) is also true.
-* *Consistent*: multiple invocations of a.equals(b) consistently return the same value.
-* *Not null*: a.equals(null) is false.
+* **Reflexive**: a.equals(a) is true.
+* **Symmetric**: a.equals(b) is true if and only if b.equals(a).
+* **Transitive**: if a.equals(b) and b.equals(c) are true, then a.equals(c) is also true.
+* **Consistent**: multiple invocations of a.equals(b) consistently return the same value.
+* **Not null**: a.equals(null) is false.
 
 In order to follow these natural definitions we need to implement them:
 
