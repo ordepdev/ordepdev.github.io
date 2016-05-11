@@ -1,0 +1,43 @@
+---
+layout: post
+title:  "Equality: a == b ?"
+date:   2016-05-11
+---
+
+a == b; what does it means?
+
+a and b are reference variables of the same type and if we test equality between these two variables we are testing whether they have the same reference.
+
+Some programing languages gives us implementations for standard types like integers and strings. In Java we can test the equality of two Strings, a and b, with a.equals(b).
+
+When we want to test equality on our own types like Person, we need to override equals(). In order to correctly override the equals() method we must follow a few rules; the relation between the objects must be:
+
+* Reflexive: a.equals(a) is true.
+* Symmetric: a.equals(b) is true if and only if b.equals(a).
+* Transitive: if a.equals(b) and b.equals(c) are true, then a.equals(c) is also true.
+* Consistent: multiple invocations of a.equals(b) consistently return the same value.
+* Not null: a.equals(null) is false.
+
+In order to follow these natural definitions we need to implement them:
+
+* If the reference to this object is the same as the reference to the argument object, return true.
+* If the argument is null, return false.
+* If the objects are not from the same class, return false.
+* If any instance variables do not match, return false.
+
+```
+public boolean equals(Object b) {
+  if (this == b) return true;
+  if (b == null) return false;
+  if (this.getClass() != b.getClass()) return false;
+
+  Person other = (Person) b;
+  if (this.firstName != other.firstName) return false;
+  if (this.lastName != other.lastName) return false;
+
+  return true;
+}
+```
+
+This implementation can be used for any custom type.
+
