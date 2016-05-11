@@ -42,6 +42,7 @@ public class Person {
     return children;
   }
 }
+```
 
 A client program could create a Person, providing an empty list of children and then populate it after construction.
 
@@ -57,7 +58,8 @@ children.add(child2);
 
 System.out.println(person.getChildren().size()) // => 2.
 ```
-The instance *children* is private and also final, but List<Person> is mutable because the client holds a reference to the data.
+
+The instance *children* is private and also final, but ```List<Person>``` is mutable because the client holds a reference to the data.
 
 How can we fix this? With *defensive copying*.
 
@@ -67,7 +69,6 @@ public Person(String firstName, String lastName, List<Person> children) {
   this.lastName = lastName;
   this.children = new ArrayList<>(children);
 }
-
 
 public Date getChildren) {
   return new ArrayList<>(children);
