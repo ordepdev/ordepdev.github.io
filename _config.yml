@@ -2,7 +2,6 @@ name: ordepdev
 description: random programming stuff
 meta_description: "ordepdev - random programming stuff"
 
-markdown: redcarpet
 highlighter: pygments
 logo: false
 baseurl: /
