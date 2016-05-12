@@ -1,0 +1,67 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'jekyl-cli' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 warn package.json node@0.0.0 No description
+5 warn package.json node@0.0.0 No repository field.
+6 verbose cache add [ 'jekyl-cli', null ]
+7 verbose cache add name=undefined spec="jekyl-cli" args=["jekyl-cli",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'jekyl-cli',
+8 verbose parsed url   path: 'jekyl-cli',
+8 verbose parsed url   href: 'jekyl-cli' }
+9 silly lockFile 70f81a93-jekyl-cli jekyl-cli
+10 verbose lock jekyl-cli /Users/pedrotavares/.npm/70f81a93-jekyl-cli.lock
+11 silly lockFile 70f81a93-jekyl-cli jekyl-cli
+12 silly lockFile 70f81a93-jekyl-cli jekyl-cli
+13 verbose addNamed [ 'jekyl-cli', '' ]
+14 verbose addNamed [ null, '*' ]
+15 silly lockFile 2d7ce546-jekyl-cli jekyl-cli@
+16 verbose lock jekyl-cli@ /Users/pedrotavares/.npm/2d7ce546-jekyl-cli.lock
+17 silly addNameRange { name: 'jekyl-cli', range: '*', hasData: false }
+18 verbose url raw jekyl-cli
+19 verbose url resolving [ 'https://registry.npmjs.org/', './jekyl-cli' ]
+20 verbose url resolved https://registry.npmjs.org/jekyl-cli
+21 info trying registry request attempt 1 at 19:45:24
+22 http GET https://registry.npmjs.org/jekyl-cli
+23 http 404 https://registry.npmjs.org/jekyl-cli
+24 silly registry.get cb [ 404,
+24 silly registry.get   { 'content-type': 'application/json',
+24 silly registry.get     'cache-control': 'max-age=0',
+24 silly registry.get     'content-length': '2',
+24 silly registry.get     'accept-ranges': 'bytes',
+24 silly registry.get     date: 'Wed, 11 May 2016 18:45:16 GMT',
+24 silly registry.get     via: '1.1 varnish',
+24 silly registry.get     age: '0',
+24 silly registry.get     connection: 'keep-alive',
+24 silly registry.get     'x-served-by': 'cache-lcy1135-LCY',
+24 silly registry.get     'x-cache': 'MISS',
+24 silly registry.get     'x-cache-hits': '0',
+24 silly registry.get     'x-timer': 'S1462992316.381410,VS0,VE176',
+24 silly registry.get     vary: 'Accept-Encoding' } ]
+25 silly addNameRange number 2 { name: 'jekyl-cli', range: '*', hasData: true }
+26 silly addNameRange versions [ undefined, [] ]
+27 error TypeError: Cannot read property 'latest' of undefined
+27 error     at next (/usr/local/lib/node_modules/npm/lib/cache.js:744:35)
+27 error     at /usr/local/lib/node_modules/npm/lib/cache.js:732:5
+27 error     at saved (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/get.js:148:7)
+27 error     at /usr/local/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js:133:7
+27 error     at Object.oncomplete (fs.js:107:15)
+28 error If you need help, you may report this *entire* log,
+28 error including the npm and node versions, at:
+28 error     <http://github.com/npm/npm/issues>
+29 error System Darwin 15.4.0
+30 error command "node" "/usr/local/bin/npm" "install" "jekyl-cli"
+31 error cwd /Users/pedrotavares/Repos/ordepdev.github.io
+32 error node -v v0.10.26
+33 error npm -v 1.4.3
+34 error type non_object_property_load
+35 verbose exit [ 1, true ]

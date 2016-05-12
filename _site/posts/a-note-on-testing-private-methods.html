@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>ordepdev - A note on testing private methods</title>
+    <meta name="description" content="ordepdev - random programming stuff" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+
+</head>
+<body class="home-template">
+    <div class="container">
+      
+      <header>
+  <a href="/" class="site">ordep<span class="b">dev</span></a>
+
+  <ul>
+    <li>
+      <a href="/about.html">about</a>
+    </li>
+  </ul>
+</header>
+
+
+      <div class="content">
+    <article>
+        <header class="post-header">
+            <div class="post-title">
+                <h1>A note on testing private methods</h1>
+                <section class="post-meta">                
+                    <time class="post-date" datetime="February 16, 2015">February 16, 2015</time>
+                    
+                </section>
+            </div>
+        </header>
+
+        <footer class="post-footer"></footer>
+
+        <section class="post-content">
+            <p>In a normal situation your public methods consume the private ones and when you’re testing, 
+if you’re testing, you only test the public methods.</p>
+
+<p>In Unit Testing, this assumption is totally right. You’re testing a Unit, and if you think Unit as a class
+then you will only test the public methods.</p>
+
+<p>The question is: how can we break a public method and test only the tiny bits?</p>
+
+<p>In this case we have a <code class="highlighter-rouge">User</code> class with a private method that gives a Location based on an IpAddress.</p>
+
+<div class="language-csharp highlighter-rouge"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">User</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">GetUserCountry</span><span class="p">(</span><span class="kt">string</span> <span class="n">ipAddress</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">LookupService</span><span class="p">.</span><span class="nf">GetLocation</span><span class="p">(</span><span class="n">ipAddress</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>We can test this <code class="highlighter-rouge">GetUserCountry</code> using Reflection.</p>
+
+<p>As <code class="highlighter-rouge">GetUserCountry</code> is a static method we’ll be using <code class="highlighter-rouge">PrivateType</code>
+instead of <code class="highlighter-rouge">PrivateObject</code> to instantiate the <code class="highlighter-rouge">User</code> class.</p>
+
+<p>To invoke the <code class="highlighter-rouge">GetUserCountry</code> we can use <code class="highlighter-rouge">PrivateType.InvokeStatic</code> instead of <code class="highlighter-rouge">PrivateObject.Invoke</code>.</p>
+
+<div class="language-csharp highlighter-rouge"><pre class="highlight"><code><span class="na">[TestMethod]</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">IpAddressLocationMustMatchWithGetUserCountry</span><span class="p">()</span>
+<span class="p">{</span>    
+    <span class="n">var</span> <span class="n">obj</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">PrivateType</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">User</span><span class="p">));</span>
+    <span class="n">var</span> <span class="n">method</span> <span class="p">=</span> <span class="s">"GetUserCountry"</span><span class="p">;</span>
+    <span class="n">var</span> <span class="n">connection</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">MockConnection</span><span class="p">()</span> <span class="p">{</span> 
+        <span class="n">IpAddress</span> <span class="p">=</span> <span class="s">"92.250.0.0"</span><span class="p">,</span> 
+        <span class="n">Country</span> <span class="p">=</span> <span class="s">"Portugal"</span>
+    <span class="p">};</span>
+
+    <span class="n">var</span> <span class="n">expected</span> <span class="p">=</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">obj</span><span class="p">.</span><span class="nf">InvokeStatic</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> 
+        <span class="k">new</span> <span class="kt">object</span><span class="p">[]</span> 
+        <span class="p">{</span> 
+            <span class="n">connection</span><span class="p">.</span><span class="n">IpAddress</span> 
+        <span class="p">}</span>
+    <span class="p">);</span>
+    
+    <span class="n">Assert</span><span class="p">.</span><span class="nf">AreEqual</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">connection</span><span class="p">.</span><span class="n">Country</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Now that we can test private methods but this solution makes sense?</p>
+
+<p>Is there anything wrong about testing private methods? I don’t think so.</p>
+
+<p>Should you break the things up and create another class with testable public methods? Yes, you should.</p>
+
+        </section>
+
+        <footer class="post-footer"></footer>
+    </article>
+</div>
+
+    </div>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-55713436-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>
