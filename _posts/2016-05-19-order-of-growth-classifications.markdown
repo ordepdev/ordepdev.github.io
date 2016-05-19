@@ -12,12 +12,18 @@ date:   2016-05-19
 
 **Linearithmic**: Programs whose running time for a problem of size *N* has order of growth *N log N*.
 
-**Quadratic**: Programs whose running time has order of growth $${N^2} has two nested *for* loops, used for some calculation involving all pairs of N elements.
+**Quadratic**: Programs whose running time has order of growth N^2 has two nested *for* loops, used for some calculation involving all pairs of N elements.
 
-**Cubic**: Programs whose running time has order of growth $${N^3} has three nested *for* loops, used for some calculation involving all triples of N elements.
+**Cubic**: Programs whose running time has order of growth N^3 has three nested *for* loops, used for some calculation involving all triples of N elements.
 
-**Exponencial**: Exponencial algorithms are extremely slow and its order of growth is $${b^N} for any constant *b > 1*.
+**Exponencial**: Exponencial algorithms are extremely slow and its order of growth is b^N for any constant *b > 1*.
 
 ||order of growth|description|example|
 |---|---|---|---|
 |constant|1|statement|add two numbers|
+|logarithmic|log N|divide in half|binary search|
+|linear|N|loop|find the maximum|
+|linearithmic|N log N|divide and conquer|mergesort|
+|quadratic|N^2|double loop|check all pairs|
+|cubic|N^3|triple loop|check all triples|
+|exponential|2^N|exhaustive search|check all subsets|
