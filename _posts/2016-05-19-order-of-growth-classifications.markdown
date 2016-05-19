@@ -28,4 +28,4 @@ date:   2016-05-19
 |cubic|*N^3*|triple loop|check all triples|
 |exponential|*2^N*|exhaustive search|check all subsets|
 
-*Note*: this is not a complete set, only the most common classfications.
+*Note*: this is not a complete set, it only contains the most common classfications.
