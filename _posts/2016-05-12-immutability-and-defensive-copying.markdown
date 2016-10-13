@@ -38,7 +38,7 @@ public class Person {
     this.children = children
   }
 
-  public List<Person> getChildren) {
+  public List<Person> getChildren() {
     return children;
   }
 }
