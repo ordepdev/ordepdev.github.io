@@ -38,7 +38,7 @@ public class Person {
     this.children = children
   }
 
-  public Date getChildren) {
+  public List<Person> getChildren) {
     return children;
   }
 }
@@ -70,7 +70,7 @@ public Person(String firstName, String lastName, List<Person> children) {
   this.children = new ArrayList<>(children);
 }
 
-public Date getChildren) {
+public List<Person> getChildren() {
   return new ArrayList<>(children);
 }
 
