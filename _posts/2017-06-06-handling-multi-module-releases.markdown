@@ -5,7 +5,7 @@ date:   2017-06-06
 ---
 
 I'll start with an example of a `pom.xml` at the root of a multi module project.
-Somewhere at our file we'll have to define our modules and it should like this:
+Somewhere at our file we'll have to define our modules and it should look like this:
 
 ```xml
 <artifactId>sample</artifactId>
