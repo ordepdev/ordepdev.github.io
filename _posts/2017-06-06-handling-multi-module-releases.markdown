@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Handling multi module releases"
+title:  "Handling multi-module releases"
 date:   2017-06-06
 ---
 
