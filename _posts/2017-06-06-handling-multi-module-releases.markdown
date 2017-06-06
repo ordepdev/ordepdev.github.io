@@ -174,5 +174,3 @@ Again, try to do this with 5 projects with 5 modules each, measure the time and 
 ## TL;DR;
 
 Always aim to automation, always.
-
-http://maven.apache.org/maven-release/maven-release-plugin
