@@ -24,21 +24,21 @@ public interface Collector<T, A, R> {
 
 At this point it's obvious that a collector like `toList()` implements the interface as `Collector<T, List<T>, List<T>>`
 
-## Supplier
+### Supplier
 
 The supplier method has to return a `Supplier` of an empty accumulator used during the collection process.
 This empty accumulator will also represent the result of the collection process when performed against an empty stream.
 
-## Accumulator
+### Accumulator
 
 The accumulator method returns the function that performs the reduction operation. It's internal state is changed in order
 to reflect the effect of the traversed element.
 
-## Finisher
+### Finisher
 
 The finisher method returns a function in order to transform the accumulator object into the final result of the whole operation.
 
-## Combiner
+### Combiner
 
 The combiner method defines how the accumulators resulting from the reduction of different subparts of the stream are combined when the subparts are processed in parallel.
 
@@ -60,13 +60,13 @@ class Result {
 
 At first we need to create a new collector class `ResultCollector` that receives a `Result`, combine two `Result` instances into a new `Result` and returns the final result which is also a new `Result`.
 
-```
+```java
 class ResultCollector<T> implements Collector<Result, Result, Result>
 ```
 
 The supplier method returns an empty result.
 
-```
+```java
 @Override
 public Supplier<Result> supplier() {
     return Result::new;
@@ -75,7 +75,7 @@ public Supplier<Result> supplier() {
 
 The accumulator method calls the `Result.combine(result)` method in order to sum both result values.
 
-```
+```java
 @Override
 public BiConsumer<Result, Result> accumulator() {
     return Result::combine;
@@ -83,7 +83,8 @@ public BiConsumer<Result, Result> accumulator() {
 ```
 
 The combiner method does the same as the accumulator by receiving two partial results and sum both values.
-```
+
+```java
 @Override
 public BinaryOperator<Result> combiner() {
     return Result::combine;
@@ -91,7 +92,8 @@ public BinaryOperator<Result> combiner() {
 ```
 
 The finisher method just returns the accumulator object.
-```
+
+```java
 @Override
 public Function<Result, Result> finisher() {
     return Function.identity();
@@ -99,16 +101,17 @@ public Function<Result, Result> finisher() {
 ```
 
 The characteristics method indicates that the accumulator object is directly used as the final result of the reduction process.
-```
+
+```java
 @Override
 public Set<Characteristics> characteristics() {
     return EnumSet.of(IDENTITY_FINISH);
 }
 ```
 
-## All together
+### All together
 
-```
+```java
 public class ResultCollector<T> implements Collector<Result, Result, Result> {
 
     @Override
@@ -138,9 +141,9 @@ public class ResultCollector<T> implements Collector<Result, Result, Result> {
 }
 ```
 
-## Using the custom collector
+### Using the custom collector
 
-```
+```java
 Result result = IntStream.range(0, 1_000_000)
     .mapToObj(i -> new Result(1, 2, 3))
     .collect(new ResultCollector<>());
@@ -148,9 +151,9 @@ Result result = IntStream.range(0, 1_000_000)
 
 With our custom collector we can reduce millions of results into a single combined result: `Result{a:1,000,000,b:2,000,000,c:3,000,000}`.
 
-## Why not using reduce instead?
+### Why not using reduce instead?
 
-```
+```java
 IntStream.range(0, 1_000_000)
     .mapToObj(i -> new Result(1, 2, 3))
     .reduce(Result::combine);
