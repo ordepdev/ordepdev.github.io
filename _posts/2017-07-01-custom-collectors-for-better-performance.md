@@ -19,7 +19,9 @@ public interface Collector<T, A, R> {
 ```
 
 `<T>` is the type of input elements to the reduction operation.
+
 `<A>` is the mutable accumulation type of the reduction operation.
+
 `<R>` is the result type of the reduction operation.
 
 At this point it's obvious that a collector like `toList()` implements the interface as `Collector<T, List<T>, List<T>>`
@@ -112,7 +114,7 @@ public Set<Characteristics> characteristics() {
 ### All together
 
 ```java
-public class ResultCollector<T> implements Collector<Result, Result, Result> {
+class ResultCollector<T> implements Collector<Result, Result, Result> {
 
     @Override
     public Supplier<Result> supplier() {
@@ -149,7 +151,7 @@ Result result = IntStream.range(0, 1_000_000)
     .collect(new ResultCollector<>());
 ```
 
-With our custom collector we can reduce millions of results into a single combined result: `Result{a:1,000,000,b:2,000,000,c:3,000,000}`.
+With our custom collector we can reduce millions of results into a single combined result: `Result{a:1000000,b:2000000,c:3000000}`.
 
 ### Why not using reduce instead?
 
