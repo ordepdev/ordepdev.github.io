@@ -26,6 +26,8 @@ It took place from in the ICE Conference Center, which is located directly by th
 
 * Event Sourcing and CQRS with Spring Stream *by Jakub Pilimon*
 
+* 360° Monitoring of Your Microservices *by Philipp Krenn*
+
 * Migrating to Microservice Databases: From Relational Monolith to Distributed Data *by Edson Yanaga*
 
 
