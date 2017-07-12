@@ -14,19 +14,19 @@ It took place from in the ICE Conference Center, which is located directly by th
 
 # My favorite talks
 
-#### Speed without Discipline: a Recipe for Disaster *by Venkat Subramaniam*
+##### Speed without Discipline: a Recipe for Disaster *by Venkat Subramaniam*
 
-#### Consumer Driven Contracts and Your Microservice Architecture *by Marcin Grzejszczak and Josh Long*
+##### Consumer Driven Contracts and Your Microservice Architecture *by Marcin Grzejszczak and Josh Long*
 
-#### Rethinking Microservices with Stateful Streams *by Ben Stopford*
+##### Rethinking Microservices with Stateful Streams *by Ben Stopford*
 
-#### Streams in JDK 8: The Good, The Bad and The Ugly *by Simon Ritter*
+##### Streams in JDK 8: The Good, The Bad and The Ugly *by Simon Ritter*
 
-#### Pragmatist’s Guide to Functional Geekery *by Michał Płachta*
+##### Pragmatist’s Guide to Functional Geekery *by Michał Płachta*
 
-#### Event Sourcing and CQRS with Spring Stream *by Jakub Pilimon*
+##### Event Sourcing and CQRS with Spring Stream *by Jakub Pilimon*
 
-#### Migrating to Microservice Databases: From Relational Monolith to Distributed Data *by Edson Yanaga*
+##### Migrating to Microservice Databases: From Relational Monolith to Distributed Data *by Edson Yanaga*
 
 
 # Things I learned 
