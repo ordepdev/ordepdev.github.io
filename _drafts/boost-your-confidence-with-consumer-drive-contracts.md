@@ -15,11 +15,11 @@ When performing unit tests on services that depends on other external services w
 These tests are designed to test the full application from top to bottom by simulating a real scenario. Despite being very useful in order to verify that a given scenario is working as expected across multiple applications, they tend to be very hard to write, very slow due to the need of a pre-production environment and by being the last tests to be written, they also provide very late feedback.
 
 ## Common Contract Breaking Scenarios
-* Renamed endpoint
-* New mandatory parameter
-* Removed existing parameter
-* Changed validation of an existing parameter
-* Changed response types or status code
+* Renaming endpoints
+* Adding new mandatory parameters
+* Removing existing parameters
+* Changing validations of existing parameters
+* Changing the response types or status code
 
 ## Contracts Testing
 
@@ -64,36 +64,42 @@ Contract.make {
         ])
         headers {
             header("Content-Type", value(consumer("application/json"),
-            	producer(regex("application/json.*"))))
+              producer(regex("application/json.*"))))
         }
     }
 }
 ```
 
-### Test Generation
+### Producer Test Generation
+
+As a producer, the goal is to implement a feature that matches with the defined contract. In order to ensure that the application behaves in the same way as we defined above, an acceptance test is generated. The test calls the `/validate` endpoint with body `{"size":"SMALL"}` and run the assertions from the `request` section of our contract.
 
 ```java
 @Test
 public void validate_validSizeShouldReturnHttpOk() throws Exception {
-	// given:
-		MockMvcRequestSpecification request = given()
-			.header("Content-Type", "application/json")
-			.body("{\"size\":\"SMALL\"}");
+  // given:
+    MockMvcRequestSpecification request = given()
+      .header("Content-Type", "application/json")
+      .body("{\"size\":\"SMALL\"}");
 
-	// when:
-		ResponseOptions response = given().spec(request)
-			.post("/validate");
+  // when:
+    ResponseOptions response = given().spec(request)
+      .post("/validate");
 
-	// then:
-		assertThat(response.statusCode()).isEqualTo(200);
-		assertThat(response.header("Content-Type")).matches("application/json.*");
-	// and:
-		DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
-		assertThatJson(parsedJson).field("['message']").isEqualTo("Size is valid.");
+  // then:
+    assertThat(response.statusCode()).isEqualTo(200);
+    assertThat(response.header("Content-Type")).matches("application/json.*");
+  // and:
+    DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
+    assertThatJson(parsedJson).field("['message']").isEqualTo("Size is valid.");
 }
 ```
 
-### Stub Generation
+If we changed the endpoint from `/validate` to something like `/item/{uuid}/validate` or changed the response code from `200` to `400`, the test will fail. These kind of testing prevents us from, silently, breaking changes on the consumer side.
+
+### Stub Generation and Consumer Testing
+
+As a consumer, the goal is to perform tests against the defined contract. In order to be able to perform those tests, a WireMock stub will be generated. The WireMock instance that is simulating the producer, will expose this stub every time that we trigger the `/validate` endpoint.
 
 ```javascript
 {
@@ -121,3 +127,37 @@ public void validate_validSizeShouldReturnHttpOk() throws Exception {
   "uuid" : "4ae4d36d-3c8a-4f06-b9d2-215f73cc9f10"
 }
 ```
+
+Our testing class should look like this:
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@AutoConfigureMockMvc
+@AutoConfigureStubRunner(workOffline = true, ids = "me.ordepdev.contracts:+:stubs:8080")
+public class ConsumerTest {
+
+  @Test
+  public void validate_withValidSize_shouldReturnHttpOk() throws Exception {
+    HttpHeaders headers = new HttpHeaders();
+    headers.add("Content-Type", "application/json");
+
+    ResponseEntity<Response> response = restTemplate.exchange(
+            "http://localhost:8080/validate", HttpMethod.POST,
+            new HttpEntity<>("{\"size\":\"SMALL\"}", headers),
+            Response.class
+    );
+
+    assertThat(response.getStatusCode())
+            .isEqualByComparingTo(HttpStatus.OK);
+    assertThat(response.getBody().toString())
+            .isEqualTo("{\"message\":\"Size is valid.\"}");
+  }
+}
+```
+
+This test is responsible for making an HTTP request to our producer endpoint `http://localhost:8080/validate` and assert that the response is valid. Notice that we don't need to start up our producer server thanks to `@AutoConfigureStubRunner`. This annotation is responsible to start up a WireMock server at port `8080` with the stubs from the latest version of `me.ordepdev.contracts` package. If the contract is changed, our consumer side test that rely on it, will fail. That's the beauty of gluing these pieces together: all contract changes leads to failed builds during development.
+
+## Conclusions
+
+Why contract testing matters, you may ask. This approach gives you the ability to always test against a *synced* and *shared* contract between producer and consumer, instead of testing against *exclusively* consumer stubs, that ~~may~~ always differ from the producer ones. With a *failing fast* approach, you will be always able to forecast breaking changes during development phase.
