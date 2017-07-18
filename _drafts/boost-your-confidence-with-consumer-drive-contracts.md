@@ -4,21 +4,21 @@
 
 In a monolithic application we don't need to worry about breaking contracts between different services because the compiler will do that job for us. If a given method signature changes, the contract between shared services is broken, and the build will automatically fail.
 
-In a microservices application, we have a whole new scenario where different services are deployed in different runtimes and don't know anything about each others. We don't have the compiler to detect those breaking changes and they became hard to detect. Usually, they're found during end-to-end testing in a pre-production environment.
+In a microservices approach, different services are deployed in different runtimes and don't know anything about each other. We don't have the compiler to detect those breaking changes and they became hard to detect and manage. Usually, they're found during end-to-end testing in a pre-production environment.
 
 ### Unit testing
 
-When performing unit tests on services that depends on other external services we tend to build our own mock servers to provide the answers that we need, not the answers that the producer service might developed. By running unit tests against predefined answers, it can lead to a passing test within the service boundary and a failing test in a pre-production environment because those mocked stubs can be different from the reality. 
+When performing unit tests on a service we tend to build our own mock stubs to assert the answers that we need, not the answers that the consumer/product services expect. By running unit tests against predefined answers, it can lead to a passing test within the service boundary and a failing test in a pre-production environment because those mocked stubs can be different from the reality. 
 
 ### End-to-end testing
 
-These tests are designed to test the full application from top to bottom by simulating a real scenario. Despite being very useful in order to verify that a given scenario is working as expected across multiple applications, they tend to be very hard to write, very slow due to the need of a pre-production environment and by being the last tests to be written, they also provide very late feedback.
+These tests are designed to test the full application from top to bottom by simulating a real scenario. Despite being very useful in order to verify that a given scenario is working as expected across multiple applications, they tend to be very hard to write and maintain, slow to execute, and usually demanding of a dedicated pre-production environment. They also provide very late feedback, usually being the last tests being implemented.
 
 ## Common Contract Breaking Scenarios
 * Renamed endpoint
-* New mandatory parameter
-* Removed existing parameter
-* Changed validation of an existing parameter
+* New mandatory parameter or field
+* Removed existing parameter or field
+* Changed validation of an existing parameter or field
 * Changed response types or status code
 
 ## Contracts Testing
