@@ -11,4 +11,4 @@ automated workflows, microservices, test driven development, design patterns and
 
 #### Contacts
 
-If you want my resume or just to get in touch, send me an email to pedrotavares [dot] dev [at] gmail [dot] com
+If you want to get in touch, just ping me at [@ordepdev](https://twitter.com/ordepdev) or send me an email to pedrotavares [dot] dev [at] gmail [dot] com
