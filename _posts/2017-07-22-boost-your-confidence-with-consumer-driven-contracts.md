@@ -4,7 +4,7 @@ title: "Boost your confidence with Consumer-Driven Contracts"
 date:   2017-07-22
 ---
 
-## Monoliths vs Microservices
+### Monoliths vs Microservices
 
 In a monolithic application we don't need to worry about breaking contracts between different services because the compiler will do that job for us. If a given method signature changes, the contract between shared services is broken, and the build will automatically fail.
 
@@ -18,14 +18,14 @@ When performing unit tests on services that depends on other external services, 
 
 These tests are designed to test the full application from top to bottom by simulating a real scenario. Despite being very useful in order to verify that a given scenario is working as expected across multiple applications, they tend to be very hard to write and maintain, slow to execute, and usually demanding of a dedicated pre-production environment. They also provide very late feedback, usually being the last tests being implemented.
 
-## Common Contract Breaking Scenarios
+### Common Contract Breaking Scenarios
 * Renaming endpoints
 * Adding new mandatory parameters
 * Removing existing parameters
 * Changing validations of existing parameters
 * Changing the response types or status code
 
-## Contracts Testing
+### Contracts Testing
 
 > “An integration contract test is a test at the
 boundary of an external service verifying that it 
@@ -35,15 +35,15 @@ meets the contract expected by a consuming service”
 
 A contract is a set of expectations shared between a service that acts as a consumer and another service that acts like a producer. They focus the specification and delivery of service functionality around key business value drivers. The compatibility of a contract remains stable and immutable for a particular set of consumer contracts and expectations.
 
-## Consumer-Driven Contracts Flow
-
-![consumer-driven-contracts-flow](https://media.giphy.com/media/l0Iy8AwsJ6aINaPHa/giphy.gif "consumer-driven-contracts-flow")
-
-## Spring Cloud Contract
+### Spring Cloud Contract
 
 > Provides support for Consumer Driven Contracts and service schemas in Spring applications, covering a range of options for writing tests, publishing them as assets, asserting that a contract is kept by producers and consumers, for HTTP and message-based interactions.
 >
 > &mdash; <cite>Spring Cloud Contract Team</cite>
+
+### Consumer-Driven Contracts Git Flow
+
+![consumer-driven-contracts-flow](https://media.giphy.com/media/l0Iy8AwsJ6aINaPHa/giphy.gif "consumer-driven-contracts-flow")
 
 ### Defining the Contract
 
@@ -81,7 +81,9 @@ As a producer, the goal is to implement a feature that matches with the defined 
 
 ```java
 @Test
-public void validate_validSizeShouldReturnHttpOk() throws Exception {
+public void validate_validSizeShouldReturnHttpOk()
+    throws Exception {
+  
   // given:
     MockMvcRequestSpecification request = given()
       .header("Content-Type", "application/json")
@@ -93,10 +95,13 @@ public void validate_validSizeShouldReturnHttpOk() throws Exception {
 
   // then:
     assertThat(response.statusCode()).isEqualTo(200);
-    assertThat(response.header("Content-Type")).matches("application/json.*");
+    assertThat(response.header("Content-Type"))
+        .matches("application/json.*");
   // and:
-    DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
-    assertThatJson(parsedJson).field("['message']").isEqualTo("Size is valid.");
+    DocumentContext parsedJson = JsonPath
+        .parse(response.getBody().asString());
+    assertThatJson(parsedJson).field("['message']")
+        .isEqualTo("Size is valid.");
 }
 ```
 
@@ -137,41 +142,43 @@ Our testing class should look like this:
 
 ```java
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(webEnvironment = MOCK)
 @AutoConfigureMockMvc
-@AutoConfigureStubRunner(workOffline = true, ids = "me.ordepdev.contracts:+:stubs:8080")
+@AutoConfigureStubRunner(workOffline = true,
+    ids = "me.ordepdev.contracts:+:stubs:8080")
 public class ConsumerTest {
 
   @Test
-  public void validate_withValidSize_shouldReturnHttpOk() throws Exception {
+  public void validate_withValidSize_shouldReturnHttpOk()
+      throws Exception {
+    
     HttpHeaders headers = new HttpHeaders();
     headers.add("Content-Type", "application/json");
 
     ResponseEntity<Response> response = restTemplate.exchange(
-            "http://localhost:8080/validate", HttpMethod.POST,
-            new HttpEntity<>("{\"size\":\"SMALL\"}", headers),
-            Response.class
+        "http://localhost:8080/validate", HttpMethod.POST,
+        new HttpEntity<>("{\"size\":\"SMALL\"}", headers),
+        Response.class
     );
 
-    assertThat(response.getStatusCode()).isEqualByComparingTo(HttpStatus.OK);
-    assertThat(response.getBody().toString()).isEqualTo("{\"message\":\"Size is valid.\"}");
+    assertThat(response.getStatusCode())
+        .isEqualByComparingTo(HttpStatus.OK);
+    assertThat(response.getBody().toString())
+        .isEqualTo("{\"message\":\"Size is valid.\"}");
   }
 }
 ```
 
 This test is responsible for making a request to our producer endpoint `http://localhost:8080/validate` and assert that the response is valid. Notice that we don't need to start up our producer service thanks to `@AutoConfigureStubRunner`. This annotation is responsible to start up a WireMock server at port `8080` with the stubs from the latest version of `me.ordepdev.contracts` package. If the contract is changed, our consumer side test that rely on it, will fail. That's the beauty of gluing these pieces together: all contract changes leads to failed builds during development.
 
-## Why contract testing matters?
-
-
-
+### Why contract testing matters?
 
 This approach gives you the ability to always test against a *synced* and *shared* contract between producer and consumer, instead of testing against *exclusively* consumer stubs, that ~~may~~ always differ from the producer ones. With a *failing fast* approach, you'll be always able to catch breaking changes during development phase.
 
 #### Resources
 
-[1] https://cloud.spring.io/spring-cloud-contract
+[1] [https://cloud.spring.io/spring-cloud-contract](https://cloud.spring.io/spring-cloud-contract)
 
-[2] https://github.com/spring-cloud/spring-cloud-contract
+[2] [https://github.com/spring-cloud/spring-cloud-contract](https://github.com/spring-cloud/spring-cloud-contract)
 
-[3] https://martinfowler.com/articles/consumerDrivenContracts.html
+[3] [https://martinfowler.com/articles/consumerDrivenContracts.html](https://martinfowler.com/articles/consumerDrivenContracts.html)
