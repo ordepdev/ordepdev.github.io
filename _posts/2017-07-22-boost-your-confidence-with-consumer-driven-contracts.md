@@ -82,7 +82,7 @@ public void validate_validSizeShouldReturnHttpOk()
   
   // given:
     MockMvcRequestSpecification request = given()
-      .header("Content-Type", "application/json.*")
+      .header("Content-Type", "application/json")
       .body("{\"size\":\"SMALL\"}");
 
   // when:
@@ -92,7 +92,7 @@ public void validate_validSizeShouldReturnHttpOk()
   // then:
     assertThat(response.statusCode()).isEqualTo(200);
     assertThat(response.header("Content-Type"))
-        .matches("application/json");
+        .matches("application/json.*");
   // and:
     DocumentContext parsedJson = JsonPath
         .parse(response.getBody().asString());
@@ -119,7 +119,7 @@ The WireMock instance that is simulating the producer, will expose this stub eve
     "method" : "POST",
     "headers" : {
       "Content-Type" : {
-        "equalTo" : "application/json.*"
+        "matches" : "application/json.*"
       }
     },
     "bodyPatterns" : [ {
