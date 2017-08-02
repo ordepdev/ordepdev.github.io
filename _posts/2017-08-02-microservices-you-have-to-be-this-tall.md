@@ -9,7 +9,7 @@ date:   2017-08-02
 > local changes > testing > code review > build system > deployment
 
 The majority of micro services failures are caused by bugs introduced during the development phase.
-In order to reduce these bugs, we need to stablish a proper development cycle that begins when the developer commits a change:
+In order to reduce these bugs, we need to establish a proper development cycle that begins when the developer commits a change:
 
 * unit tests should be run;
 * the code review must be performed by two or more developers;
@@ -22,9 +22,9 @@ In order to reduce these bugs, we need to stablish a proper development cycle th
 
 > staging, canary and production rollouts
 
-We don’t won’t bad deployments. There’s no reason to still ear the famous sentence: “works on my machine”.
+We don’t want bad deployments. There’s no reason to still ear the famous sentence: “works on my machine”.
 
-The most reliable deployments are those that passes several steps before reaching the production servers. That's why we should deploy on several environments in order to ensure that our changes don't break anything.
+The most reliable deployments are those that pass several steps before reaching the production servers. That's why we should deploy on several environments in order to ensure that our changes don't break anything.
 
 We should keep in mind that deploying changes to a microservice multiple times per day will compromise the stability and reliability of our microservice.
 
@@ -74,13 +74,13 @@ Unit tests and contract tests should be at the bottom of the pyramid. They are s
 
 E2E tests take more time to setup and run. That’s why they should be on top of the pyramid!
 
-An heavy test suite will be more difficult to maintain, slow to run, and will not pinpoint the reported errors. We will end up to debug our own tests.
+An heavy test suite will be more difficult to maintain, slow to run, and will not pinpoint the reported errors. We will end up debugging our own tests.
 
 ---
 
 ## Faster Feedback
 
-> faster tests leads to faster feedback
+> faster tests lead to faster feedback
 
 In order for CI and CD to be practical, the full test suite should run every time a developer commits a change and the developer should have the feedback in a matter of minutes.
 
