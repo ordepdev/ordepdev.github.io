@@ -26,23 +26,33 @@ public interface Collector<T, A, R> {
 
 At this point it's obvious that a collector like `toList()` implements the interface as `Collector<T, List<T>, List<T>>`
 
+---
+
 ### Supplier
 
 The supplier method has to return a `Supplier` of an empty accumulator used during the collection process.
 This empty accumulator will also represent the result of the collection process when performed against an empty stream.
+
+---
 
 ### Accumulator
 
 The accumulator method returns the function that performs the reduction operation. It's internal state is changed in order
 to reflect the effect of the traversed element.
 
+---
+
 ### Finisher
 
 The finisher method returns a function in order to transform the accumulator object into the final result of the whole operation.
 
+---
+
 ### Combiner
 
 The combiner method defines how the accumulators resulting from the reduction of different subparts of the stream are combined when the subparts are processed in parallel.
+
+---
 
 # Implementing the custom collector
 
@@ -55,7 +65,11 @@ class Result {
     private long c;
 
     Result combine(Result result) {
-        return new Result(this.a += result.a, this.b += result.b, this.c += result.c);
+        return new Result(
+            this.a += result.a,
+            this.b += result.b,
+            this.c += result.c
+        );
     }
 }
 ```
@@ -111,6 +125,8 @@ public Set<Characteristics> characteristics() {
 }
 ```
 
+---
+
 ### All together
 
 ```java
@@ -143,6 +159,8 @@ class ResultCollector<T> implements Collector<Result, Result, Result> {
 }
 ```
 
+---
+
 ### Using the custom collector
 
 ```java
@@ -152,6 +170,8 @@ Result result = IntStream.range(0, 1_000_000)
 ```
 
 With our custom collector we can reduce millions of results into a single combined result: `Result{a:1000000,b:2000000,c:3000000}`.
+
+---
 
 ### Why not using reduce instead?
 
