@@ -10,15 +10,13 @@ archive: false
             <div class="post-title">
                 <h1>{{ page.title }}</h1>
                 <section class="post-meta">                
-                    <time class="post-date" datetime="{{ page.date | date:"%B %d, %Y" }}">{{ page.date | date:"%B %d, %Y" }}</time>
+                    <time class="post-date" datetime="{{ page.date | date: "%-d %B %Y" }}">{{ page.date | date: "%-d %B %Y" }}</time>
                     {% if page.categories.size > 0 %} 
                         {{ page.categories | array_to_sentence_string | prepend: 'on ' }} 
                     {% endif %}
                 </section>
             </div>
         </header>
-
-        <footer class="post-footer"></footer>
 
         <section class="post-content">
             {{content}}

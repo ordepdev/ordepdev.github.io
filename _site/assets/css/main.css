@@ -314,6 +314,8 @@ header {
     text-decoration: none; }
     header #ordepdev h1 {
       font-size: 24px; }
+      header #ordepdev h1 a {
+        text-decoration: none; }
     header #ordepdev span.b {
       font-weight: bold; }
     header #ordepdev p {
@@ -327,7 +329,7 @@ header {
       margin-left: 12px; }
 
 .container {
-  max-width: 720px;
+  max-width: 576px;
   margin: 0 auto;
   padding: 0 20px; }
   .container ul.list-posts {

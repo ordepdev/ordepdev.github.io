@@ -173,7 +173,7 @@ h4, h5, h6 {
     -moz-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
     -o-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
     color: #2E2E2E;
-    line-height: 1.15em;
+    line-height: 1;
     margin: 0 0 0.4em 0;
     font-family: "Crimson Text", sans-serif;
 }
@@ -726,10 +726,8 @@ body:not(.post-template) .post-title {
 .post-meta {
     display: block;
     margin: 1.75rem 0 0 0;
-    font-family: "Open Sans", sans-serif;
     font-size: 1.5rem;
     line-height: 2.2rem;
-    color: #9EABB3;
 }
 
 .author-thumb {
@@ -760,8 +758,6 @@ body:not(.post-template) .post-title {
     margin-left: 8px;
     padding-left: 12px;
     border-left: #d5dbde 1px solid;
-    text-transform: uppercase;
-    font-size: 1.3rem;
     white-space: nowrap;
 }
 
