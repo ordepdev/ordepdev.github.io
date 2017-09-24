@@ -2,6 +2,7 @@
 layout: post
 title: "Microservices? You have to be this tall!"
 date:   2017-08-02
+categories: microservices
 ---
 
 ## Standardized Development Cycle
@@ -16,8 +17,6 @@ In order to reduce these bugs, we need to establish a proper development cycle t
 * the build system should run the integration tests and ensure that everything is ok;
 * if the build is green, the change can be merged and deployed to a staging environment.
 
----
-
 ## Stable and Reliable Deployment Pipeline
 
 > staging, canary and production rollouts
@@ -27,8 +26,6 @@ We don’t want bad deployments. There’s no reason to still ear the famous sen
 The most reliable deployments are those that pass several steps before reaching the production servers. That's why we should deploy on several environments in order to ensure that our changes don't break anything.
 
 We should keep in mind that deploying changes to a microservice multiple times per day will compromise the stability and reliability of our microservice.
-
----
 
 ## Monitoring
 
@@ -40,8 +37,6 @@ If the key metrics of our microservice aren’t tracked, we can’t predict any 
 
 We should capture the metrics emitted by our microservice, log them, graph them and alert them on special situations. 
 
----
-
 ## Distributed Logging and Tracing
 
 > SSH in Prod? You’re doing it wrong.
@@ -51,8 +46,6 @@ A production-ready microservice must trace every request through the entire stac
 The log itself must be as rich as possible in order to determine what went wrong and where things fell apart. But we need to remember that logging is expensive. Make sure you don’t deploy debug logs into production!
 
 Logging also needs to be available, scalable, easily accessible and searchable. Please, no more SSH in Prod.
-
----
 
 ## Dashboards
 
@@ -64,8 +57,6 @@ Anyone should be able to look at it and know immediately whether or not the micr
 
 Although, we should never be watching the dashboard in order to detect any kind of incident. That will be a sign that our alerting system is wrongly designed.
 
----
-
 ## Invert the Inverted Pyramid
 
 > more unit and contract tests, less end-to-end tests
@@ -75,8 +66,6 @@ Unit tests and contract tests should be at the bottom of the pyramid. They are s
 E2E tests take more time to setup and run. That’s why they should be on top of the pyramid!
 
 An heavy test suite will be more difficult to maintain, slow to run, and will not pinpoint the reported errors. We will end up debugging our own tests.
-
----
 
 ## Faster Feedback
 
@@ -88,8 +77,6 @@ If we have a slow test suite, the team will probably skip this procedure and run
 
 If running tests on every commit is too slow, the solution is not to run the tests less often but instead to fix the situation so the test suite runs more quickly. The most obvious solutions is to ensure that our microservice is properly covered by unit tests, that are way faster than the others, and reduce the amount of slower tests.
 
----
-
 ## No More Silos
 
 > between development and operations
@@ -100,8 +87,6 @@ Currently, the developers work ends to soon and the operations work starts too s
 
 Instead of “works on dev, now it’s ops problem” we should move to “you build it, you run it!”
 
----
-
 ## Self-Sufficient Software Engineers
 
 > fewer rockstars, more orchestras
@@ -109,9 +94,7 @@ Instead of “works on dev, now it’s ops problem” we should move to “you b
 The developers need to be responsible for not just writing code but also for managing the entire life-cycle of applications, ensuring its health, maintainability and observability.
 
 This includes being responsible for deployments, rollbacks, monitoring and debugging, in addition to bug fixes and new feature development.
-
----
-
+git 
 ## Embrace Change
 
 ![microservices-buzzword](http://i.imgur.com/wcMTioE.png "microservices-buzzword")

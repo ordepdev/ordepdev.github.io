@@ -4,28 +4,28 @@ title: "Boost your confidence with Consumer-Driven Contracts"
 date:   2017-07-22
 ---
 
-### Monoliths vs Microservices
+## Monoliths vs Microservices
 
 In a monolithic application we don't need to worry about breaking contracts between different services because the compiler will do that job for us. If a given method signature changes, the contract between shared services is broken, and the build will automatically fail.
 
 In a microservices approach, different services are deployed in different runtimes and don't know anything about each other. We don't have the compiler to detect those breaking changes and they became hard to detect and manage. Usually, they're found during end-to-end testing in a pre-production environment.
 
-### Integration testing
+## Integration testing
 
 When performing integration tests on services that depends on other external services, we tend to build our own stubs to assert the answers that we need in order to successfully run the test suite, not the answers that the producer service might deliver. By running integration tests against these predefined answers, it can lead to passing tests within the consumer service boundary and failing tests in a pre-production environment.
 
-### End-to-end testing
+## End-to-end testing
 
 These tests are designed to test the full application from top to bottom by simulating a real scenario. Despite being very useful in order to verify that a given scenario is working as expected across multiple applications, they tend to be very hard to write and maintain, slow to execute, and usually demanding of a dedicated pre-production environment. They also provide very late feedback, usually being the last tests being implemented.
 
-### Common Contract Breaking Scenarios
+## Common Contract Breaking Scenarios
 * Renaming endpoints
 * Adding new mandatory parameters
 * Removing existing parameters
 * Changing validations of existing parameters
 * Changing the response types or status code
 
-### Contracts Testing
+## Contracts Testing
 
 > “An integration contract test is a test at the
 boundary of an external service verifying that it 
@@ -35,7 +35,7 @@ meets the contract expected by a consuming service”
 
 A contract is a set of expectations shared between a service that acts as a consumer and another service that acts like a producer. They focus the specification and delivery of service functionality around key business value drivers. The compatibility of a contract remains stable and immutable for a particular set of consumer contracts and expectations.
 
-### Spring Cloud Contract
+## Spring Cloud Contract
 
 > Provides support for Consumer Driven Contracts and service schemas in Spring applications, covering a range of options for writing tests, publishing them as assets, asserting that a contract is kept by producers and consumers, for HTTP and message-based interactions.
 
@@ -43,11 +43,11 @@ A contract is a set of expectations shared between a service that acts as a cons
 
 ![consumer-driven-contracts-flow](https://goo.gl/WjaemJ "consumer-driven-contracts-flow")
 
-### Defining the Contract
+## Defining the Contract
 
 As a consumer we need to exactly define our expectations. In this case, when sending a request from the consumer to the producer, we want a successful response that matches with our request. Remember that the purpose of contract testing is not to start writing business features in the contracts. Stay focused and limit yourself to testing contracts between applications and avoid full behaviour simulation.
 
-```javascript
+```groovy
 Contract.make {
     request {
         method "POST"
@@ -71,7 +71,7 @@ Contract.make {
 }
 ```
 
-### Producer Test Generation
+## Producer Test Generation
 
 As a producer, the goal is to implement a feature that matches with the defined contract. In order to ensure that the application behaves in the same way as we defined above, an acceptance test is generated and it will run on every build, providing the feedback that we're chasing. The test calls the `/validate` endpoint with body `{"size":"SMALL"}` and run the assertions from the `request` section of our contract.
 
@@ -103,7 +103,7 @@ public void validate_validSizeShouldReturnHttpOk()
 
 If we change the endpoint from `/validate` to something like `/item/{uuid}/validate` or change the response code from `200` to `400`, the test will fail. These kind of testing prevents us from, silently, breaking changes on the consumer side.
 
-### Stub Generation and Consumer Testing
+## Stub Generation and Consumer Testing
 
 As a consumer, the goal is to perform tests against the defined contract. In order to be able to perform those tests, a WireMock stub is also generated.
 
@@ -111,7 +111,7 @@ As a consumer, the goal is to perform tests against the defined contract. In ord
 
 The WireMock instance that is simulating the producer, will expose this stub every time that we trigger the `/validate` endpoint.
 
-```javascript
+```json
 {
   "id" : "4ae4d36d-3c8a-4f06-b9d2-215f73cc9f10",
   "request" : {
@@ -171,15 +171,15 @@ public class ConsumerTest {
 
 This test is responsible for making a request to our producer endpoint `http://localhost:8080/validate` and assert that the response is valid. Notice that we don't need to start up our producer service thanks to `@AutoConfigureStubRunner`. This annotation is responsible to start up a WireMock server at port `8080` with the stubs from the latest version of `me.ordepdev.contracts` package. If the contract is changed, our consumer side test that rely on it, will fail. That's the beauty of gluing these pieces together: all contract changes leads to failed builds during development.
 
-#### Working online
+### Working online
 
 Note that when the flag `workOffline` is set to `true`, it assumes that you have the contract stubs installed on your local maven repository. Since we're working based on a consumer-driven git flow, when the proposed contracts get merged, this flag must be set to `false` in order to download the contracts from the remote maven repository.
 
-### Why contract testing matters?
+## Why contract testing matters?
 
 This approach gives you the ability to always test against a *synced* and *shared* contract between producer and consumer, instead of testing against *exclusively* consumer stubs, that ~~may~~ always differ from the producer ones. With a *failing fast* approach, you'll be always able to catch breaking changes during development phase.
 
-#### Resources
+## Resources
 
 [1] [https://cloud.spring.io/spring-cloud-contract](https://cloud.spring.io/spring-cloud-contract)
 
