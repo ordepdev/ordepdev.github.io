@@ -7,16 +7,25 @@
 
 header {
   margin: 60px 0;
-  .site {
+  text-align: center;
+
+  #ordepdev {
     text-decoration: none;
+    h1 {    
+      font-size: 24px;
+    }
+    span.b {
+      font-weight: bold;
+    }
+    p {
+      color: $color-grey;
+    }
   }
-  span.b {
-    font-weight: bold;
-  }
+  
   ul {
-    float: right;
     list-style: none;
     line-height: 16px;
+    padding: 0;
 
     li { 
       display: inline-block; 
@@ -29,6 +38,7 @@ header {
   max-width: $width-content;
   margin: 0 auto;
   padding: 0 20px;
+
   ul.list-posts {
     padding-left: 0;
     list-style: none;
@@ -47,30 +57,45 @@ header {
       font-size: 16px;
       text-decoration: none;
       border-bottom: 1px solid $color-grey;
-      
       &:hover {
         border-color: #000;
       }
     }
-
   }
 }
 
-.post-date {
-  border-left: none;
-  margin-left: 0;
-  padding-left: 0;
+article {
+  h2 {
+    font: 600 30px/24px "Crimson", Georgia, serif;
+    margin: 69px 0 0 0;
+  }
+
+  h3 {
+    font: italic 24px/24px "Crimson", Georgia, serif;
+    margin: 71px 0 0 0;
+  }
 }
 
-h1 {
-  font-size: 32px;
-}
+// .post-date {
+//   border-left: none;
+//   margin-left: 0;
+//   padding-left: 0;
+// }
 
-h4 {
-  margin-top: 40px;
-  margin-bottom: 20px;
-}
+// h1 {
+//   font-size: 32px;
+// }
 
-p {
-  margin-bottom: 12px;
+// h4 {
+//   margin-top: 40px;
+//   margin-bottom: 20px;
+// }
+
+// p {
+//   margin-bottom: 12px;
+// }
+
+pre, code {
+  font: normal 13px/20px "Source Code Pro", Menlo, Consolas, Monaco, monospace;
+  background: #faf8f5;
 }

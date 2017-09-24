@@ -149,7 +149,7 @@ html {
 
 body {
     max-height: 100%;
-    font-family: "Merriweather", serif;
+    font-family: "Crimson Text", serif;
     letter-spacing: 0.01rem;
     font-size: 1.8rem;
     line-height: 1.75em;
@@ -175,18 +175,15 @@ h4, h5, h6 {
     color: #2E2E2E;
     line-height: 1.15em;
     margin: 0 0 0.4em 0;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Crimson Text", sans-serif;
 }
 
 h1 {
     font-size: 5rem;
-    letter-spacing: -2px;
-    text-indent: -3px;
 }
 
 h2 {
     font-size: 3.6rem;
-    letter-spacing: -1px;
 }
 
 h3 {
@@ -212,13 +209,6 @@ a {
 
 a:hover {
     color: #111;
-}
-
-p, ul, ol, dl {
-    -webkit-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
-    -moz-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
-    -o-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
-    margin: 0 0 1.75em 0;
 }
 
 ol, ul {
@@ -645,7 +635,7 @@ margin on the iframe, cause it breaks stuff. */
     font-size: 2rem;
     line-height: 1.5em;
     font-weight: 400;
-    font-family: "Merriweather", serif;
+    font-family: "Crimson Text", serif;
     letter-spacing: 0.01rem;
     color: rgba(255,255,255,0.8);
 }
@@ -1136,7 +1126,7 @@ body:not(.post-template) .post-title {
 /* Location, website, and link */
 .author-profile .author-meta {
     margin: 2rem 0;
-    font-family: "Merriweather", serif;
+    font-family: "Crimson Text", serif;
     letter-spacing: 0.01rem;
     font-size: 1.7rem;
 }
