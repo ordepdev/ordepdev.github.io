@@ -2,6 +2,7 @@
 layout: post
 title:  "A note on testing private methods"
 date:   2015-02-16
+categories: programming,csharp
 ---
 
 In a normal situation your public methods consume the private ones and when you're testing, 

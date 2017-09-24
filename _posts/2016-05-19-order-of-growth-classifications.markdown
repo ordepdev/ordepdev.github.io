@@ -2,6 +2,7 @@
 layout: post
 title:  "Order-of-growth classifications"
 date:   2016-05-19
+categories: [programming,java]
 ---
 
 **Constant**: A program whose running time's order of growth is constant executes a fixed number of operations and its running time does not depend on *N*.

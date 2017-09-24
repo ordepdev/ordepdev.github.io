@@ -2,6 +2,7 @@
 layout: post
 title:  "Immutability and defensive copying"
 date:   2016-05-12
+categories: programming,java
 ---
 
 immutable data type; has the property that the value of an object never changes once constructed.

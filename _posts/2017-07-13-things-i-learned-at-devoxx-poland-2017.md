@@ -2,6 +2,7 @@
 layout: post
 title:  "Things I learned at Devoxx Poland 2017"
 date:   2017-07-13
+categories: conferences
 ---
 
 On 20-24 June I attended Devoxx Poland in Krakow. It was my first time on a big conference and it was totally worth it.
@@ -12,7 +13,7 @@ It took place from in the ICE Conference Center, which is located directly by th
 
 ![devoxx-view](https://goo.gl/4pHKQE "devoxx-view")
 
-# My favorite talks
+## My favorite talks
 
 * Speed without Discipline: a Recipe for Disaster *by Venkat Subramaniam*
 
@@ -31,7 +32,7 @@ It took place from in the ICE Conference Center, which is located directly by th
 * Migrating to Microservice Databases: From Relational Monolith to Distributed Data *by Edson Yanaga*
 
 
-# Things I learned 
+## Things I learned 
 
 * JDD: Jesus Driven Development - "Please lord, let my code compile."
 
@@ -69,10 +70,10 @@ It took place from in the ICE Conference Center, which is located directly by th
 
 * We develop json-to-json mapper waiting services on out day-to-day basis :)
 
-# Things I didn't enjoy
+## Things I didn't enjoy
 
 DECIDE WHICH TALK TO GO NEXT!
 
-# Conclusion
+## Conclusion
 
 This whole experience was awesome. The organization, venue, and speakers were amazing and Devoxx is already my favorite conference. Really looking forward to comeback to Poland next year!

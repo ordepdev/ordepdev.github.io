@@ -2,7 +2,7 @@
 layout: post
 title: "Microservices? You have to be this tall!"
 date:   2017-08-02
-categories: microservices
+categories: [microservices,culture]
 ---
 
 ## Standardized Development Cycle
@@ -94,7 +94,7 @@ Instead of “works on dev, now it’s ops problem” we should move to “you b
 The developers need to be responsible for not just writing code but also for managing the entire life-cycle of applications, ensuring its health, maintainability and observability.
 
 This includes being responsible for deployments, rollbacks, monitoring and debugging, in addition to bug fixes and new feature development.
-git 
+
 ## Embrace Change
 
 ![microservices-buzzword](http://i.imgur.com/wcMTioE.png "microservices-buzzword")

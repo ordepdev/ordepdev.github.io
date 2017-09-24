@@ -2,6 +2,7 @@
 layout: post
 title:  "Size of an Object in Java"
 date:   2016-05-19
+categories: [programming,java]
 ---
 
 One of Java's most significant features is its memory allocation system, which is supposed to relieve us from having to worry about memory. We are well-advised to take advantage of this feature, still, it is our responsibility to know, at least approximately, the size of an Object and if the memory requirements will prevent us from solving a given problem.

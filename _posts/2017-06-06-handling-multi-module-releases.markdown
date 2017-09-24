@@ -2,6 +2,7 @@
 layout: post
 title:  "Handling multi-module releases"
 date:   2017-06-06
+categories: workflows
 ---
 
 I'll start with an example of a `pom.xml` at the root of a multi module project.
@@ -119,7 +120,8 @@ Include the `maven-release-plugin` in your project `pom.xml` and it should be li
 ```
 
 Make sure you have a clean working directory and create a release branch:
-```
+
+```bash
 $ git checkout -b release/v1.0.0
 ```
 
@@ -152,6 +154,7 @@ $ git merge --no-ff -m "v1.0.1-SNAPSHOT" release/v1.0.0
 ```
 
 And only the tagged commit into `master`:
+
 ```bash
 $ git checkout master
 $ git merge --no-ff -m "v1.0.0" release/v1.0.0~1

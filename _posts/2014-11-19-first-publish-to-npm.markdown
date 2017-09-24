@@ -2,6 +2,7 @@
 layout: post
 title:  "First publish to NPM"
 date:   2014-11-19
+categories: [programming,javascript]
 ---
 
 I love open source. I really do. I use tons of stuff published in Github but until now I haven't done anything useful to others.

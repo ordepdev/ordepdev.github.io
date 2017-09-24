@@ -2,6 +2,7 @@
 layout: post
 title: "Boost your confidence with Consumer-Driven Contracts"
 date:   2017-07-22
+categories: [programming,microservices,testing]
 ---
 
 ## Monoliths vs Microservices

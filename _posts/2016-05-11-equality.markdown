@@ -2,6 +2,7 @@
 layout: post
 title:  "Equality: a == b ?"
 date:   2016-05-11
+categories: [programming,java]
 ---
 
 a == b; what does it means?
