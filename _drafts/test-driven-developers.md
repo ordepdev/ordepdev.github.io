@@ -85,4 +85,10 @@ We should start with a broader test scenario. The test is green? Start narrowing
 the scenario until the bug is found. With this approach, we make sure that every change
 that we make to the source code is covered by a test that was failing. If we can't
 reproduce the bug, at least at the end of the day, the codebase is covered with more
-real life scenarios. 
+real life scenarios.
+
+## So, what's the point?
+
+I hope that, after reading another post on software testing, you're writing
+meaningful and valuable tests for every single change in your codebase.
+Be a software craftsman, and evangelize your best practices!
