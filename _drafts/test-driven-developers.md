@@ -13,7 +13,7 @@ just... coding.
 
 Before jumping into testing culture and best practices, let's reflect on the
 types of software projects that most of us end up working on during our career
-and the types of testing that I found really useful.
+and the types of testing that I found really useful for each one.
 
 ## Types of Software Projects
 
@@ -21,22 +21,22 @@ and the types of testing that I found really useful.
 
 A team without testing culture, that deliver completed features without any
 kind of tests to support the development phase, neither to guarantee code 
-quality. Although, in order to consider a feature completed someone has to 
+quality. So, in the end, in order to consider a feature completed someone has to 
 test it manually. Let's suppose that our feature is a new endpoint on the 
 brand new web API. The feature will be completed, if an HTTP request using 
 Postman succeeds. Seems good enough, right?
 
 ### 2. Projects with wrongly designed tests.
 
-Again, a team without testing culture. Although, they're testing but they're
+Again, a team without proper testing culture. They're testing but they're
 doing it the wrong way. Eventually, the Product Owner asked if the product was
 covered by tests, and after that, tweaked the definition of done of new features.
 The tests, are slooooooooow. Too. Damn. Slow. Most of the times, developers don't
-treat testing code with respect and they become a mix of spaghetti and lasagna; a mess. 
+treat testing code with the respect it deserves and it become a mix of spaghetti and lasagna; a total mess. 
 I can't decide if having wrongly designed test suites is actually better than
 having no tests at all.
 
-### 3. Projects with tests that nobody run!
+### 3. Projects with tests that nobody runs!
 
 A team with a testing culture of 50%. Some of them are TDD practitioners and they're
 proud of their 90%+ code coverage. Their main job, aside from shipping greatness, is
@@ -51,24 +51,24 @@ I don't like this approach, but lets face it. It contributes to high code covera
 project quality, and it can be used as living documentation, if well designed.
 The problem with this approach is that we tend to design the test cases to succeed,
 since we're writing them after we implement the feature. Also, most of the time,
-these tests, just test to many things at a time and they tend to get too big and complex.
+these tests, just test to many things at a time and they tend to get too big and complex and harder to maintain.
 
 ### 2. Tests that support development (TDD)
 
 Actually, I don't know how to code without writing a test first. It makes us reasoning
 about our design choices, it enforces us to change implementation code only to make a test
-pass, it contributes to a high code coverage, and it make sure that our code compile all
-the time. We can write these kind of tests when we're implementing a brand new feature,
+pass, it contributes to a high code coverage, and it ensures that our code compiles all
+the time. We can write these types of tests when we're implementing a brand new feature,
 or if we're refactoring some existing code.
 
 Refactoring doesn't change the current behaviour. So, if we're missing a test that
-cover the piece of code that we're refactoring, writing one should be the first thing
+covers the piece of code that we're refactoring, writing one should be the first thing
 to do. Once the test is green, we should start refactoring. After we change the
 implementation and the test is failing, we're not refactoring. We're rewriting the
 existing code to something different.
 
 Test-Driven Development brings lots of advantages to the team and to the project.
-Unfortunately, most of the people can't understand that.
+Unfortunately, most people can't understand that.
 
 ### 3. Tests that reproduce reported bugs
 
@@ -93,12 +93,12 @@ One of the rules for succeeding with a testing culture is to have everyone on bo
 on accepting that testing is part of our job. If someone can write new features, it's
 their responsibility to write tests that cover those changes. If we can't have everyone
 on board with this simple responsibility, I'll have to admit that it will be almost impossible
-to change those poor minds.
+to change anyone's mind.
 
 ### 1. Every change must have tests.
 
 Changes that will end up into production must have been covered with tests.
-It's just simple as that. We can't afford to have critical bugs on testing
+It's as simple as that. We can't afford to have critical bugs on testing
 or production environments beeing reported by Quality Assurance Analists,
 Product Owners, or even Customers. We just can't. It's an embarassing and
 costly situation.
@@ -119,7 +119,7 @@ We should treat testing code as production code. Why? We like to show our
 problem-solving and software design skills to our peers, right? So, why should
 we write not-so-beautiful testing code? I will not extend to much on code reviews
 (that's a topic for another article), but it is really important to be critic with
-testing code. We need to make sure that we're asserting the critical stuff, and most
+the test's code quality. All of this while making sure that we're asserting the critical points, and most
 of all, we need to contribute to a blazing fast test suite. A well designed test
 case/suite is much more easier to read, understand and evolve.
 
