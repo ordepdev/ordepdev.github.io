@@ -4,7 +4,7 @@ title: "Test-Driven Developers: Building a testing culture."
 categories: [testing, culture]
 ---
 
-First of all, why testing?
+## First of all, why testing?
 
 I like to say that software engineering is much more than coding. It is
 "an engineering discipline that is concerned with all aspects of software
@@ -58,7 +58,16 @@ these tests, just test to many things at a time and they tend to get too big and
 Actually, I don't know how to code without writing a test first. It makes us reasoning
 about our design choices, it enforces us to change implementation code only to make a test
 pass, it contributes to a high code coverage, and it make sure that our code compile all
-the time. Test-Driven Development brings lots of advantages to the team and to the project.
+the time. We can write these kind of tests when we're implementing a brand new feature,
+or if we're refactoring some existing code.
+
+Refactoring doesn't change the current behaviour. So, if we're missing a test that
+cover the piece of code that we're refactoring, writing one should be the first thing
+to do. Once the test is green, we should start refactoring. After we change the
+implementation and the test is failing, we're not refactoring. We're rewriting the
+existing code to something different.
+
+Test-Driven Development brings lots of advantages to the team and to the project.
 Unfortunately, most of the people can't understand that.
 
 ### 3. Tests that reproduce reported bugs
