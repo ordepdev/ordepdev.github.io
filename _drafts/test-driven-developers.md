@@ -125,7 +125,20 @@ case/suite is much more easier to read, understand and evolve.
 
 ### 4. Test suites must be consistent.
 
---
+If we want to build a solid testing culture on our team, we must share the same
+values, the same practices, and the same tools. I'm not talking about code
+formatting. That topic should be covered by a proper style checker accross
+all team projects.
+
+Every software engineer has its own habits of writing and designing code,
+and also has their favorite tooling. Writing testing code is no exception.
+Some people like too use fluent assertions, others not so much. The key point
+here is to, as a team, reach a consense and choose the best tools for the
+job and guarantee that everyone is happy to use them. Regarding coding practices,
+we should use the same ones from the production code.
+
+All of this choices must be consistent, and we really must enforce them through
+code reviews.
 
 ## So, what's the point?
 
