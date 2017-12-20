@@ -129,18 +129,18 @@ case/suite is much more easier to read, understand and evolve.
 
 If we want to build a solid testing culture on our team, we must share the same
 values, the same practices, and the same tools. I'm not talking about code
-formatting. That topic should be covered by a proper style checker accross
-all team projects.
+formatting. That topic should be covered by a static analysis and style 
+checking policy shared accross all team projects.
 
 Every software engineer has its own habits of writing and designing code,
 and also has their favorite tooling. Writing testing code is no exception.
 Some people like too use fluent assertions, others not so much. The key point
-here is to, as a team, reach a consense and choose the best tools for the
-job and guarantee that everyone is happy to use them. Regarding coding practices,
-we should use the same ones from the production code.
+here is to, as a team, reach a consensus and choose the appropriate tools for the
+job and guarantee that everyone is onboard and happy to use them. 
+Regarding coding practices, we should use the same ones we use for production-level code.
 
-All of this choices must be consistent, and we really must enforce them through
-code reviews.
+All of these choices must be consistent, and we can enforce them through
+code reviews, and proper automated static analysis ans style checking.
 
 ## So, what's the point?
 
