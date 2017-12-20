@@ -8,7 +8,7 @@ categories: [testing, culture]
 
 I like to say that software engineering is much more than coding. It is
 "an engineering discipline that is concerned with all aspects of software
-production". So, we can't describe ourselves as a Software Engineers by
+production". So, we can't describe ourselves as Software Engineers by
 just... coding.
 
 Before jumping into testing culture and best practices, let's reflect on the
@@ -142,6 +142,8 @@ code reviews.
 
 ## So, what's the point?
 
-I hope that, after reading another post on software testing, you're writing
-meaningful and valuable tests for every single change in your codebase.
-Be a software craftsman, and evangelize your best practices!
+I hope that, after reading another post on software testing, you'll be
+able enforce that everyone is writting meaningful and
+valuable tests for every single change in your codebase.
+
+Be a software craftsman, evangelize your best practices!
