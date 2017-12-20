@@ -19,14 +19,14 @@ and the types of testing that I found really useful for each one.
 
 ### 1. Projects without tests.
 
-How can we build projects without any kind of automated test? Are we talking
-about lack of professionalism, lack of skills, or are we talking about a work
-culture based on pressure where there is not time to test software? It can be
+How can we build projects without any kind of automated tests? Are we talking
+about lack of professionalism, lack of skills or knowledge, or are we talking about a work
+culture based on pressure where there is no time to test software? It can be
 just one of them, or can be all of them. It's a really hard question to answer.
 
 The point here is that we're talking about a team without testing culture,
-that are able to deliver features without any kind of tests to support the
-development phase, neither to guarantee the software quality.
+that are able to deliver (poorly) features without any kind of test effort to support the
+development phase, or to assure the feature quality and spot bugs early on.
 
 ### 2. Projects with wrongly designed tests. [TODO]
 
