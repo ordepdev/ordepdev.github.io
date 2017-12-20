@@ -19,14 +19,16 @@ and the types of testing that I found really useful for each one.
 
 ### 1. Projects without tests.
 
-A team without testing culture, that deliver completed features without any
-kind of tests to support the development phase, neither to guarantee code 
-quality. So, in the end, in order to consider a feature completed someone has to 
-test it manually. Let's suppose that our feature is a new endpoint on the 
-brand new web API. The feature will be completed, if an HTTP request using 
-Postman succeeds. Seems good enough, right?
+How can we build projects without any kind of automated test? Are we talking
+about lack of professionalism, lack of skills, or are we talking about a work
+culture based on pressure where there is not time to test software? It can be
+just one of them, or can be all of them. It's a really hard question to answer.
 
-### 2. Projects with wrongly designed tests.
+The point here is that we're talking about a team without testing culture,
+that are able to deliver features without any kind of tests to support the
+development phase, neither to guarantee the software quality.
+
+### 2. Projects with wrongly designed tests. [TODO]
 
 Again, a team without proper testing culture. They're testing but they're
 doing it the wrong way. Eventually, the Product Owner asked if the product was
@@ -36,7 +38,7 @@ treat testing code with the respect it deserves and it become a mix of spaghetti
 I can't decide if having wrongly designed test suites is actually better than
 having no tests at all.
 
-### 3. Projects with tests that nobody runs!
+### 3. Projects with tests that nobody runs! [TODO]
 
 A team with a testing culture of 50%. Some of them are TDD practitioners and they're
 proud of their 90%+ code coverage. Their main job, aside from shipping greatness, is
