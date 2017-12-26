@@ -127,7 +127,6 @@ header {
       font-size: 14px;
       margin-top: 2px; }
     .container ul.list-posts a {
-      font-size: 16px;
       text-decoration: none;
       border-bottom: 1px solid #9EABB3; }
       .container ul.list-posts a:hover {
@@ -139,6 +138,8 @@ article h2 {
 article h3 {
   font: italic 24px/24px "Crimson", Georgia, serif;
   margin: 71px 0 0 0; }
+article p {
+  text-align: justify; }
 
 pre, code {
   font: normal 13px/20px "Source Code Pro", Menlo, Consolas, Monaco, monospace;
