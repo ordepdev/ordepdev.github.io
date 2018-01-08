@@ -1,0 +1,71 @@
+---
+layout: post
+title: "Don't be fooled by 100% code coverage."
+categories: [testing, quality, culture]
+---
+
+> Let's make it clear, then: don't set goals for code coverage. You may think that
+it could make your code base better, but asking developers to reach a certain code
+coverage goal will only make your code worse.
+
+## Code Coverage
+
+--
+
+### Function coverage
+
+> Has each function (or subroutine) in the program been called?
+
+### Statement coverage
+
+> Has each statement in the program been executed?
+
+### Branch coverage
+
+> Has each branch of each control structure been executed?
+
+### Condition coverage
+
+> Has each Boolean sub-expression evaluated both to true and false?
+
+## Aiming for 100% code coverage with Unit Testing
+
+-- example of a simple class implementation without defensive programming.
+-- example of a unit test that covers 100% of the code
+
+Humans always take shortcuts. When we have two possible choices, we always
+choose the easier one. If the coverage value is part of the merging process,
+developers will adapt the code to meet those requirements.
+
+-- example of a simple class implementation with defensive programming.
+-- example of the same unit test that used to covers 100% of the code; not anymore!
+
+Coverage drops and there's no time to write another test. Having a good code
+coverage is good, but if we're using it as a mandatory target, the codebase will suffer.
+
+## Parameterized Unit Testing
+
+> Parameterized tests contribute to a much more solid codebase, since we're
+testing edge cases, although it doesn't increase code coverage.
+
+-- example of a simple class implementation.
+-- example of a unit test that covers 100% of the code without input range.
+
+--
+
+-- example of a unit test that covers 100% of the code with input range.
+
+## Unit Testing + Mutation Testing
+
+100% code coverage means no bugs found in our code, right? Mutation testing says no.
+
+--
+
+## Covering all States with odel-Based Testing
+
+--
+
+## Summary
+
+--
+
