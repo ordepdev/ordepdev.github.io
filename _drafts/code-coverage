@@ -30,18 +30,64 @@ coverage goal will only make your code worse.
 
 ## Aiming for 100% code coverage with Unit Testing
 
--- example of a simple class implementation without defensive programming.
--- example of a unit test that covers 100% of the code
+I'll use a simple example to demonstrate how we try to achieve 100% in our
+codebase. In the snippet below we have a function `divide` that accepts
+two `int` arguments, `x` and `y` and performs a division between them.
+Note that we don't have any kind of guards on out code.
+
+```java
+float divide(int x, int y) {
+  return x / (float) y;
+}
+```
+
+With the `divide` function we also provide a simple unit test that is making
+sure that our function does the job. With this test, we have 100% code coverage.
+It means that our code is bullet proof, right? 
+
+```java
+@Test
+public void divide_with_valid_arguments_success() {
+  assertThat(new Calculator().divide(10, 2)).isEqualTo(5);
+}
+```
+
+Nope. We have 100% coverage, that's a fact. But the code itself is not correct.
+Also, we're testing one scenario, a positive and limited scenario. We should,
+always, test for failing. In this particular case, we should check if the `y`
+is equal to zero and throw a proper exception. What's the problem with adding
+decision branches? Coverage drops and there's no time to write another test.
+Having a good code coverage is good, but if we're using it as a mandatory target,
+the codebase will eventually suffer.
+
+```java
+float divide(int x, int y) {
+  if (y == 0) {
+    throw new ArithmeticException("Can't divide by zero.");
+  }
+  return x / (float) y;
+}
+```
 
 Humans always take shortcuts. When we have two possible choices, we always
 choose the easier one. If the coverage value is part of the merging process,
-developers will adapt the code to meet those requirements.
+developers will adapt the code to meet those requirements. Although, a stronger,
+and still meeting the 100% code coverage criteria, test suite, would like the
+snippet below.
 
--- example of a simple class implementation with defensive programming.
--- example of the same unit test that used to covers 100% of the code; not anymore!
+```java
+@Test
+public void divide_with_valid_arguments_success() {
+  assertThat(new Calculator().divide(10, 2)).isEqualTo(5);
+}
 
-Coverage drops and there's no time to write another test. Having a good code
-coverage is good, but if we're using it as a mandatory target, the codebase will suffer.
+@Test
+public void divide_with_invalid_arguments_should_throw_exception() {
+  assertThatThrownBy(() -> new Calculator().divide(10, 0))
+      .isInstanceOf(ArithmeticException.class)
+      .hasMessageContaining("Can't divide by zero.");
+}
+```
 
 ## Parameterized Unit Testing
 
@@ -61,7 +107,7 @@ testing edge cases, although it doesn't increase code coverage.
 
 --
 
-## Covering all States with odel-Based Testing
+## Covering all States with Model-Based Testing
 
 --
 
