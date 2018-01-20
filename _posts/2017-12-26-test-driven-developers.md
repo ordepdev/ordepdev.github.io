@@ -16,7 +16,7 @@ Software engineering is much more than coding. It is "an engineering discipline
 that is concerned with all aspects of software production". As professional
 Software Engineers, we're responsible for the code we write. We should not
 release untested code, and, what I think even more important, we should not ask
-our peers to perform code reviews without deliver any test, that support the
+our peers to perform code reviews without delivering any test, that support the
 produced code. It's our job to reduce the bugs that are found after the
 development phase. No one is perfect, neither our code, but what matters most is
 our software craftsmanship attitude of making sure that our code works properly.
@@ -31,7 +31,7 @@ types of software projects that most of us end up working on during our career.
 How can we build projects without any kind of automated tests? Are we talking
 about lack of professionalism, lack of skills or knowledge, or are we talking
 about a work culture based on pressure where there is no time to test software? 
-It can be just one of them, or can be all of them. It's a really hard question 
+It can be just one of them or can be all of them. It's a really hard question 
 to answer.
 
 The point here is that we're talking about a team without testing culture, that
@@ -56,7 +56,7 @@ Another pitfall in testing, that is caused by having a bad design, is when we
 don't run the test suite because of the length of time they may take. If we are 
 working against a deadline, naturally, people will start cutting corners. And
 by cutting corners, it means releasing without running the test suite. One
-viable solution is to split the test suite in two or more profiles. I tend to
+viable solution is to split the test suite into two or more profiles. I tend to
 write both unit (fast) and integration (slow) tests. I want to run the unit
 tests when I'm writing code, and if the feedback is immediate, I'll start to
 develop a reliable relationship with my test suite.
@@ -69,11 +69,11 @@ just wasting our time.
 
 ### 1. Testing after the implementation
 
-I don't like this approach, but lets face it. It contributes to high code
+I don't like this approach, but let's face it. It contributes to high code
 coverage, project quality, and it can be used as living documentation, if well
 designed. The problem with this approach is that we tend to design the test
-cases to succeed, since we're writing them after we implement the feature.
-Also, most of the time, these tests, just test to many things at a time and
+cases to succeed since we're writing them after we implement the feature.
+Also, most of the time, these tests, just test many things at a time and
 they tend to get too big and complex and harder to maintain.
 
 ### 2. Tests that support development (TDD)
@@ -105,10 +105,10 @@ After hours of debugging, the bug is fixed. Sometimes, the bug is fixed without
 changing any line of code. In these situations what was the contribution to the codebase? None. No changes. No tests.
 
 The optimal workflow is to write a test that can reproduce the reported bug.
-We should start with a broader test scenario. The test is green? Start
+We should start with a broader test scenario. Is the test green? Start
 narrowing the scenario until the bug is found. With this approach, we make sure
 that every change that we make to the source code is covered by a test that was failing. If we can't reproduce the bug, at least at the end of the day, the
-codebase is covered with more real life scenarios.
+codebase is covered with more real-life scenarios.
 
 ## It's our job to build a testing culture. But how?
 
@@ -120,8 +120,8 @@ to admit that it will be almost impossible to change anyone's mind.
 
 ### 1. Every change must have tests
 
-Changes that will end up into production must have been covered with tests.
-It's as simple as that. We can't afford to have critical bugs on testing
+Changes that will end up in production must have been covered with tests.
+It's as simple as that. We can't afford to have critical bugs in testing
 or production environments being reported by Quality Assurance Analysts,
 Product Owners, or even Customers. We just can't. It's an embarrassing and
 costly situation.
@@ -142,9 +142,9 @@ We should treat testing code as production code. Why? We like to show our
 problem-solving and software design skills to our peers, right? So, why should
 we write not-so-beautiful testing code? I will not extend to much on code
 reviews (that's a topic for another article), but it is really important to be
-critic with the test's code quality. All of this while making sure that we're
+a critic with the test's code quality. All of this while making sure that we're
 asserting the critical points, and most of all, we need to contribute to a
-blazing fast test suite. A well designed test case/suite is much more easier to
+blazing fast test suite. A well-designed test case/suite is much easier to
 read, understand and evolve.
 
 ### 4. Test suites must be consistent.
