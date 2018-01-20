@@ -29,7 +29,7 @@ float divide(float x, float y) {
 
 With the `divide` function we also provide a simple unit test that is making
 sure that our function does the job. With this test, we have 100% code coverage.
-It means that our code is bullet proof, right?
+It means that our code is bulletproof, right?
 
 ```java
 @Test
@@ -85,7 +85,7 @@ code? When testing, the hardest question is when to stop. For some, a shiny
 100% code coverage is the answer to that question. It is important to look
 for other quality factors than code coverage. Check if the test case is useful,
 and is intended to find failures in the system. If you're looking only to code
-coverage as a quality criteria, the test bellow would do the job. 
+coverage as a quality criterion, the test below would do the job. 
 
 ```java
 @Test
@@ -116,7 +116,7 @@ they're set, we may assume that:
 * one test with a representative value from a class is sufficient;
 * if the representative detects a defect, then other class members would detect the same defect.
 
-For `x` and `y` we can divide the inputs in four partitions: `{1, 20}`,
+For `x` and `y`, we can divide the inputs into four partitions: `{1, 20}`,
 `{1.0, 20.0}`, `{-20, -1}`, and `{-20.0, -1.0}`. By combining
 *equivalence class partitioning* and *parameterized tests* we can write
 a single test with multiple scenarios like the snippet below.
@@ -135,7 +135,7 @@ public void divide_with_valid_fields(float x, float y, float z) {
 ```
 
 What is the coverage of this *parameterized test*? 100%. The same coverage
-as the test bellow. A test that is not looking for failures in the system.
+as the test below. A test that is not looking for failures in the system.
 
 ```java
 @Test
@@ -144,7 +144,7 @@ public void divide_with_valid_arguments() {
 }
 ```
 
-Parameterized tests contribute to a much more solid test suite, since we're
+Parameterized tests contribute to a much more solid test suite since we're
 testing multiple scenarios with some edge cases, although it doesn't increase
 code coverage.
 
@@ -156,7 +156,7 @@ faults of omission."
 >
 > &mdash; <cite>Brian Marick</cite>
 
-High code coverage is not directly related with code quality and cannot be used
+High code coverage is not directly related to code quality and can be used
 neither as a key metric or a goal. Try to look for other metrics, expand the test
 scenarios, and don't stop when you reach that shiny 100% mark.
 
