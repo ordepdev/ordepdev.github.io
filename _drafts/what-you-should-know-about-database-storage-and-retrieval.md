@@ -148,7 +148,69 @@ is a probabilistic function, it can result in false positives.
 
 # B-Trees
 
+In 1970, a paper on Organization and Maintenance of Large Ordered Indices,
+introduced the concept of B-Trees that less than 10 years have become, de 
+facto, a standard for file organization. They still remain the standard
+index implementation in almost all relational databases, and many non 
+relational databases use them too as well.
 
+{b-trees-papers}
+
+> The index is organized in pages of fixed size capable of holding up to 
+2k keys, but pages need only be partially filled. 
+
+Basically, B-trees break the database down into fixed-size pages, and 
+read or write one page at a time!
+
+{b-trees-visualization-image}
+
+Each page can be identified using an address that allows one page to refer 
+another page. One of those pages is designated as the root of the B-tree and 
+whenever we  want to look up a key in the index, we start from there.
+
+{b-trees-visualization-gif}
+
+In order to add a new key, we need to find the page within the key range
+and split into two pages if there’s no space to accommodate it. This is 
+the only way in which the height of the tree can increase.
+
+# What about resilience?
+
+If we need to split a page because an insertion caused it to be overfull, 
+we need to write the two pages that were split, and also overwrite their 
+parent page to update the references to the two child pages. Overwritten 
+several pages at once it's a dangerous operation that can result with a 
+corrupted index if the database crashes.
+
+The solution to tackle this problem is to introduce an addictional structure -
+the Write-Ahead Log (WAL); where all modifications will be written before it
+can be applied to the tree itself. If the database crahes, the WAL it will be
+used to restore the tree back to a consistent state.
+
+But writting all modifications to the WAL introduces other problem - the write
+amplification; when one write to the database results in multiple writes to disk 
+which has a direct performance cost.
+
+# Wrapping Up
+
+With this brief introduction on several types of data storage engines we can take
+some conclusions:
+
+* Writes are slower on B-Trees since they must write every piece of data at 
+least twice;
+* Reads are slower on LSM-Trees since they have to check the _memtable_, 
+_bloom filter_, and possibly multiple _SSTables_  with different sizes;
+* LSM-Trees are able to sustain higher write throughput due to lower write
+amplification and sequential writes, but they can consume lots of resources
+on merging and compaction processes, specially if the thoughput is very high
+and it's size is getting bigger.
+
+# What's next?
+
+> There is no quick and easy rule for determining which type of storage engine 
+is better for your use case, so it is worth testing empirically.
+
+You should read papers.
 
 # Comparisons
 
