@@ -210,6 +210,8 @@ to disk which has a direct performance cost.
 With this brief introduction on several types of data storage engines, we can take
 some conclusions:
 
+* _B-Trees_ are _mutable_ and allow in-place updates;
+* _LSM-Trees_ are _immutable_ and require complete file rewrites;
 * Writes are slower on _B-Trees_ since they must write every piece of data at 
 least twice;
 * Reads are slower on _LSM-Trees_ since they have to check the _memtable_, 
