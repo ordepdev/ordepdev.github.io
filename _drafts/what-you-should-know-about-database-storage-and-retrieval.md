@@ -26,21 +26,21 @@ single large I/0.
 ![log-structured-file-compactation](/assets/images/log-structured-file-compactation.png)
 
 The log-structured system solution is to break the log into several immutable
-segments of certain size by closing a segment file when it reaches a certain size,
+segments of a certain size by closing a segment file when it reaches a certain size,
 and making subsequent writes to a new segment file.
 
 ![log-structured-file-merging-and-compactation](/assets/images/log-structured-file-merging-and-compactation.png)
 
 Since compactation makes segments much smaller, we can also merge several
 segments together at the same time as performing the compactation. This process
-can be done in background thread while we can still serve read and write
+can be done in a background thread while we can still serve read and write
 requests using the old segment files.
 
 ## Why using an append-only log?
 
 The immutable append-only design turns out to be good for several reasons!
 
-1. Sequential write operations are much more faster than random writes;
+1. Sequential write operations are much faster than random writes;
 2. Concurrency and crash recovery are much simpler;
 3. Merging old segments avoids fragmentation over time.
 
@@ -62,11 +62,11 @@ find the offset in the data file, seek to that location, and read the value.
 Note that the hash map is always updated when a new key-value pair is appended
 to the file in order to reflect the current data offset.
 
-This solution may sound too simplistic, right? Actually it is a viable approach.
+This solution may sound too simplistic, right? Actually, it is a viable approach.
 In 2010, Basho Technologies, a distributed systems company that developed a
 key-value NoSQL database technology, Riak, wrote a paper that introduced Bitcask,
-the default storage engine of Riak. Bitcask uses this concept of in-memory hash map
-and offers high-performance reads and writes. The trade off is that all keys must fit
+the default storage engine of Riak. Bitcask uses this concept of an in-memory hash map
+and offers high-performance reads and writes. The tradeoff is that all keys must fit
 in memory.
 
 ![bitcask-paper](/assets/images/bitcask-paper.png)
@@ -99,7 +99,7 @@ from disk.
 
 ![sparse-in-memory-index](/assets/images/sparse-in-memory-index.png)
 
-The recently committed records  are stored in memory in a sorted buffer called
+The recently committed records are stored in memory in a sorted buffer called
 a _memtable_. The _memtable_ maintains the updates on a row-by-row basis, where each
 row is copy-on-write to maintain row-level consistency. Older updates are
 stored in a sequence of immutable _SSTables_.
@@ -130,7 +130,7 @@ in the mergesort algorithm:
 Storage engines that are based on this principle of merging and compacting sorted
 files are often called LSM storage engines. This concept was introduced in 2006
 in The Log-Structured Merge-Tree paper; a disk-based data structure designed to
-provide low-cost indexing for file experiencing a high rate of record inserts
+provide low-cost indexing experiencing a high rate of record inserts
 over an extended period.
 
 ![lsm-tree-paper](/assets/images/lsm-tree-paper.png)
@@ -155,7 +155,7 @@ filters also avoids disk accesses formost lookups of non-existent rows
 or columns.
 
 Basically, the _Bloom Filter_ can tell us if a key does not exist in the 
-database, saving many unnecessary disk reads for nonexistent keys. However, 
+database, saving many unnecessary disk reads for non-existent keys. However, 
 because the _Bloom Filter_ is a probabilistic function, it can result in 
 false positives.
 
@@ -169,7 +169,7 @@ relational databases use them too as well.
 
 ![b-trees-papers](/assets/images/b-trees-papers.png)
 
-> The index is organized in pages of fixed size capable of holding up to 
+> The index is organized in pages of a fixed size capable of holding up to 
 2k keys, but pages need only be partially filled. 
 
 Basically, _B-trees_ break the database down into fixed-size pages, and 
@@ -179,7 +179,7 @@ read or write one page at a time!
 
 Each page can be identified using an address that allows one page to refer 
 another page. One of those pages is designated as the _root_ of the _B-tree_ and 
-whenever we  want to look up a key in the index, we start from there.
+whenever we want to look up a key in the index, we start from there.
 
 ![b-trees-animation](/assets/images/b-trees-animation.gif)
 
@@ -192,21 +192,21 @@ the only way in which the height of the tree can increase.
 If we need to split a page because an insertion caused it to be overfull, 
 we need to write the two pages that were split, and also overwrite their 
 parent page to update the references to the two child pages. Overwritten 
-several pages at once it's a dangerous operation that can result with a 
+several pages at once it's a dangerous operation that can result in a 
 corrupted _index_ if the database crashes.
 
-The solution to tackle this problem is to introduce an addictional structure -
+The solution to tackle this problem is to introduce an additional structure -
 the _Write-Ahead Log_ (WAL); where all modifications will be written before it
 can be applied to the tree itself. If the database crashes, the WAL  will be
 used to restore the _tree_ back to a consistent state.
 
-But writting all modifications to the WAL introduces other problem - _write
+But writing all modifications to the WAL introduces other problem - _write
 amplification_; when one write to the database results in multiple writes 
 to disk which has a direct performance cost.
 
 ## Wrapping Up
 
-With this brief introduction on several types of data storage engines we can take
+With this brief introduction on several types of data storage engines, we can take
 some conclusions:
 
 * Writes are slower on _B-Trees_ since they must write every piece of data at 
@@ -215,7 +215,7 @@ least twice;
 _bloom filter_, and possibly multiple _SSTables_  with different sizes;
 * _LSM-Trees_ are able to sustain higher write throughput due to lower _write
 amplification_ and sequential writes, but they can consume lots of resources
-on merging and compaction processes, specially if the throughput is very high
+on merging and compaction processes, especially if the throughput is very high
 and it's size is getting bigger.
 
 ## What's next?
