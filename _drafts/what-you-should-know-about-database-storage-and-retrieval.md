@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "What you should know about database storage and retrieval."
+date: 2018-05-07
 categories: [databases, data structures, papers]
 ---
 
