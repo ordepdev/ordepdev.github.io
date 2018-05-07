@@ -5,6 +5,8 @@ date: 2018-05-07
 categories: [databases, data structures, papers]
 ---
 
+This post is a transcript of the talk I gave at [Papers We Love @ Porto](https://www.meetup.com/Papers-We-Love-Porto/events/248728411/).
+
 ## Log-Structured File
 
 In 1991, Mendel Rosenblum and John K. Ousterhout  introduced a new technique 
