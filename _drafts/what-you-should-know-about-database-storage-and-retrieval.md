@@ -5,8 +5,6 @@ date: 2018-05-07
 categories: [databases, data structures, papers]
 ---
 
-## Why should you care?
-
 ## Log-Structured File
 
 In 1991, Mendel Rosenblum and John K. Ousterhout  introduced a new technique 
@@ -180,7 +178,11 @@ read or write one page at a time!
 
 Each page can be identified using an address that allows one page to refer 
 another page. One of those pages is designated as the _root_ of the _B-tree_ and 
-whenever we want to look up a key in the index, we start from there.
+whenever we  want to look up a key in the index, we start from there and traverse
+the tree recursively down to the leaves.
+
+> The retrieval algorithm is simple logically, but to program it for a computer 
+one would use an efficient technique, e.g., a binary search, to scan a page.
 
 ![b-trees-animation](/assets/images/b-trees-animation.gif)
 
@@ -205,7 +207,7 @@ But writing all modifications to the WAL introduces other problem - _write
 amplification_; when one write to the database results in multiple writes 
 to disk which has a direct performance cost.
 
-## Wrapping Up
+## Wrapping up!
 
 With this brief introduction on several types of data storage engines, we can take
 some conclusions:
