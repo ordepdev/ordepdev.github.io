@@ -71,7 +71,11 @@ button::-moz-focus-inner,
 input::-moz-focus-inner { border: 0; padding: 0; }
 textarea { overflow: auto; vertical-align: top; }
 table { border-collapse: collapse; border-spacing: 0; }
-
+.twitter-tweet {
+  max-width: 576px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
 /* ==========================================================================
    1. Icons - Sets up the icon font and respective classes
@@ -151,7 +155,7 @@ body {
     max-height: 100%;
     font-family: "Crimson Text", serif;
     letter-spacing: 0.01rem;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     line-height: 1.75em;
     color: #3A4145;
     -webkit-font-feature-settings: 'kern' 1;
@@ -724,7 +728,7 @@ body:not(.post-template) .post-title {
 .post-meta {
     display: block;
     margin: 1.75rem 0 0 0;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     line-height: 2.2rem;
 }
 
