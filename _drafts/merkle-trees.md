@@ -15,7 +15,7 @@ find the slides [here](https://speakerdeck.com/ordepdev/diving-into-merkle-trees
 Introduced in 1987 by Ralph C. Merkle, the merkle tree,
 also known as a binary hash tree, is a data structure 
 used for efficiently _summarizing and verifying the
-integrity of large sets of data_. Initialy, it was
+integrity of large sets of data_. Initially, it was
 used for the purpose of one-time signatures and
 authenticated public key distribution, namely providing
 authenticated responses as to the validity of a certificate.
@@ -37,7 +37,7 @@ _cryptographic hashes_:
 ## One-Way Hashing Functions
 
 > A one-way function _F_ is a function that is
-easy to comput, but diffucult to invert. Given
+easy to compute, but difficult to invert. Given
 _x_, computing _y=F(x)_ is easy. Given _y_,
 determining any _x_ such that _F(x)=y_ is hard.
 
@@ -68,7 +68,7 @@ Merkle trees are especially useful in distributed,
 peer-to-peer systems where the same data should exist
 in multiple places. By using Merkle Trees we can
 detect inconsistencies between replicas, reduce
-the amount of transfered data enabling peer-to-peer
+the amount of transferred data enabling peer-to-peer
 file sharing, and maintaining several versions of the
 same tree, also called _persistent_ data-structures.
 
@@ -80,7 +80,7 @@ between replicas of that same tree**. Take for
 example two replicas of the same Merkle Tree
 -- just comparing the root nodes we can make
 sure that those trees are not the same, or in
-this case, there's inconsistencies between them.
+this case, there are inconsistencies between them.
 
 ![merkle-tree-paper](/assets/images/mt07.png)
 ![merkle-tree-paper](/assets/images/mt08.png)
@@ -103,13 +103,13 @@ by fetching the root of the tree from a
 ![merkle-tree-paper](/assets/images/mt09.png)
 
 Since we can fetch single parts of a tree,
-**reducing the amout of transfered data**, we
+**reducing the amount of transferred data**, we
 then fetch chunks of data from untrusted
 sources. 
 
 ![merkle-tree-paper](/assets/images/mt10.png)
 
-We start by fetching `L3` and deriving it's
+We start by fetching `L3` and deriving its
 _hash_, `b2d0`. To allow us to get to the root,
 we must fetch the _hash_ value from the right
 leaf, `8f14`. With these two nodes, we can
