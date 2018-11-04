@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Diving into Merkle Trees"
-date: 2018-11-03
+date: 2018-11-04
 categories: [papers, computer-science, data-structures]
 ---
 
