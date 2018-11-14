@@ -64,12 +64,12 @@ _hash_ was calculated by simply taking both
 
 ## Building a Merkle-Tree
 
-In order to build a Merkle-Tree we ned to define
+In order to build a Merkle tree, we need to define
 three new types: `Leaf`, `Node`, and `MerkleTree`.
 
 Let's start by defining `Leaf` -- it should contain
 the _hash_ value of a given data block. In this
-implementation I'll ignore the link between a `Leaf`
+implementation, I'll ignore the link between a `Leaf`
 and a _data block_, let's just assume that a `Leaf`
 type is representing the _hashing_ value of a
 _data block_.
@@ -84,7 +84,7 @@ defstruct [:hash]
 ```
 
 The next type is `Node` -- it should contain the `left`
-and `right` _child_ nodes _or_ leafs, and the _hash_
+and `right` _child_ nodes _or_ leaves, and the _hash_
 value of the concatenation of both child _hashes_.
 
 ```elixir
@@ -100,9 +100,9 @@ defstruct [:hash, :left, :right]
 }
 ```
 
-And, finally, the Merkle Tree it self. For simplicity,
-it should contain its _merkle root_ and the actual tree
-representation, starting with the _root_ until the _leafs_.
+And, finally, the Merkle Tree itself. For simplicity,
+it should contain its _Merkle root_ and the actual tree
+representation, starting with the _root_ until the _leaves_.
 
 ```elixir
 defstruct [:root, :tree]
@@ -118,15 +118,23 @@ defstruct [:root, :tree]
 ### Hashing the blocks
 
 The first step to build a Merkle Tree is to _hash_ the
-data blocks and converting them to _leafs_. Having
+data blocks and converting them to _leaves_. Having
 `blocks = [1,2,3,4]`, the expected output would be:
 
 ```elixir
 [
-  %Leaf{hash: "6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B"},
-  %Leaf{hash: "D4735E3A265E16EEE03F59718B9B5D03019C07D8B6C51F90DA3A666EEC13AB35"},
-  %Leaf{hash: "4E07408562BEDB8B60CE05C1DECFE3AD16B72230967DE01F640B7E4729B49FCE"},
-  %Leaf{hash: "4B227777D4DD1FC61C6F884F48641D02B4D121D3FD328CB08B5531FCACDABF8A"}
+  %MerkleTree.Leaf{
+    hash: "6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B"
+  },
+  %MerkleTree.Leaf{
+    hash: "D4735E3A265E16EEE03F59718B9B5D03019C07D8B6C51F90DA3A666EEC13AB35"
+  },
+  %MerkleTree.Leaf{
+    hash: "4E07408562BEDB8B60CE05C1DECFE3AD16B72230967DE01F640B7E4729B49FCE"
+  },
+  %MerkleTree.Leaf{
+    hash: "4B227777D4DD1FC61C6F884F48641D02B4D121D3FD328CB08B5531FCACDABF8A"
+  }
 ]
 ```
 
@@ -146,16 +154,11 @@ end
 
 Calling the function above `MerkleTree.new [1,2,3,4]` should yield
 the expected output. Although, we're not done yet. The next step is
-to take two _leafs_ and convert them to a `Node`. Remember that for
-creating a `Node` we need to join both child _hashes_ and apply the
-_hashing function_ once again. That's basically what `new` is doing
-before calling `build(nodes)`. Once we have the `Node` _hash_ value,
-we're ready to create a new `Node` with `hash`, `left`, and `right`.
-
+to take two _leaves_ and convert them to a `Node`. 
 ```elixir
 defmodule MerkleTree.Node do
-  @spec new([MerkleTree.Leaf.t, MerkleTree.Leaf.t]) :: MerkleTree.Node.t
-  @spec new([MerkleTree.Node.t, MerkleTree.Node.t]) :: MerkleTree.Node.t
+  @spec new([MerkleTree.Leaf.t, ...]) :: MerkleTree.Node.t
+  @spec new([MerkleTree.Node.t, ...]) :: MerkleTree.Node.t
   def new(nodes) do
     nodes
     |> Enum.map_join(&(&1.hash))
@@ -163,19 +166,114 @@ defmodule MerkleTree.Node do
     |> build(nodes)
   end
 
-  @spec build(String.t, [MerkleTree.Leaf.t, MerkleTree.Leaf.t]) :: MerkleTree.Node.t
-  @spec build(String.t, [MerkleTree.Node.t, MerkleTree.Node.t]) :: MerkleTree.Node.t
+  @spec build(String.t, [MerkleTree.Leaf.t, ...]) :: MerkleTree.Node.t
+  @spec build(String.t, [MerkleTree.Node.t, ...]) :: MerkleTree.Node.t
   defp build(hash, [left, right]) do
     %MerkleTree.Node{hash: hash, left: left, right: right}
   end
 end
 ```
+Remember that for creating a `Node` we need to join both child
+_hashes_ and apply the _hashing function_ once again. That's basically
+what `new` is doing before calling `build(nodes)`. Once we have the
+`Node` _hash_ value, we're ready to create a new `Node` with `hash`,
+`left`, and `right`. As an example, by calling the function above
+with these two _leaves_:
 
-Calling the function above `MerkleTree.Node.new [
-  %Leaf{hash: "6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B"},
-  %Leaf{hash: "D4735E3A265E16EEE03F59718B9B5D03019C07D8B6C51F90DA3A666EEC13AB35"}
-]`
-would yield ...
+```elixir
+MerkleTree.Node.new([
+  %MerkleTree.Leaf{
+    hash: "6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B"
+  },
+  %MerkleTree.Leaf{
+    hash: "D4735E3A265E16EEE03F59718B9B5D03019C07D8B6C51F90DA3A666EEC13AB35"
+  }
+])
+```
+
+Would yield the following `Node`:
+
+```elixir
+%MerkleTree.Node{
+  hash: "F5FC2A0E6D4568040ED7B8D2C59A16B73B8C9EC9BB69B4F9FE7C3ADD5C9F2C4E",
+  left: %MerkleTree.Leaf{
+    hash: "6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B"
+  },
+  right: %MerkleTree.Leaf{
+    hash: "D4735E3A265E16EEE03F59718B9B5D03019C07D8B6C51F90DA3A666EEC13AB35"
+  }
+}
+```
+
+### All the way up
+
+Having a way to build a `Node` from a pair of `Node`/`Leaf`,
+we can now make use of recursion to calculate the nodes up
+to the _Merkle root_. Let's complete the `new` function:
+
+```elixir
+defmodule MerkleTree do
+  def new(blocks) do
+    blocks
+    |> Enum.map(&Crypto.hash(&1))
+    |> Enum.map(&%MerkleTree.Leaf{hash: &1})
+  end
+end
+```
+
+Currently, this `new` function its yielding a list of
+_leaves_. Having that list of _leafs_, the next step is
+to convert it into another list that contains _several_
+lists of `Node`/`Leaf`. Confusing? Let us define a `build`
+function that accepts that list of `Node`/`Leaf`.
+
+```elixir
+defp build(nodes) do
+  nodes
+  |> Enum.chunk_every(2)
+  |> Enum.map(&MerkleTree.Node.new(&1))
+  |> build
+end
+```
+
+The goal is to group the list of _nodes_ into sublists
+of _nodes_ in order to have `left` and `right` _nodes_.
+Having both `left` and `right`, we're able to build a
+proper `Node` by concatenating both _child_ _hashes_.
+
+Note that we're making use of _tail recursion_ to build
+our Merkle Tree from the ground up to the _root_. Still,
+we need to stop that recursive processing.
+
+```elixir
+defp build([root]) do
+  %MerkleTree{root: root.hash, tree: root}
+end
+defp build(nodes) do
+  nodes
+  |> Enum.chunk_every(2)
+  |> Enum.map(&MerkleTree.Node.new(&1))
+  |> build
+end
+```
+
+By adding another `build` signature that pattern matches
+the argument to a single element list `root`, we're now
+able to stop the processing and return both the `root.hash`
+and the `root` itself.
+
+The final `new` function would look like this:
+
+```elixir
+defmodule MerkleTree do
+  def new(blocks) do
+    blocks
+    |> Enum.map(&Crypto.hash(&1))
+    |> Enum.map(&%MerkleTree.Leaf{hash: &1})
+    |> build
+  end
+end
+```
 
 # How they are useful?
 
