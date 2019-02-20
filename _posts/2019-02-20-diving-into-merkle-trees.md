@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Diving into Merkle Trees"
-date: 2019-02-08
+date: 2019-02-20
 categories: [papers, computer-science, data-structures]
 ---
 
@@ -50,6 +50,13 @@ easy to compute, but difficult to invert. Given _x_ and _F_, it is easy to
 compute _y=F(x)_, but given _y_ and _F_, it is effectively impossible to compute
 _x_.
 
+One-way hashing functions are especially useful within Merkle Trees for two
+obvious reasons; _storage_ and _privacy_.
+
+With systems that contain massive amounts of data, the benefits of being
+able to store and identify data with a fixed length output can create vast
+storage savings and help to increase efficiency.
+
 The person who computes _y=F(x)_ is the only person who knows _x_. If _y_ is
 publicly revealed, only the originator of _y_ knows _x_, and can choose to
 reveal or conceal _x_ at his whim!
@@ -82,8 +89,7 @@ signed messages by almost a _factor of 2_.
 
 This improved method was easy to implement and cutted the size of the signed
 message almost in half, although this was still too large for most applications;
-instead of storing `2.5 gigabytes` of data, B only had to store `1.25
-gigabytes`.
+instead of storing `2.5 gigabytes` of data, B only had to store `1.25 gigabytes`.
 
 ![tree-authentication](/assets/images/tree-authentication.png)
 
@@ -402,7 +408,7 @@ In this example, we need to provide a _proof_ that the data block `L1` exists in
 the tree. Since we already know the _hash value_ of `L1`, we’ll need the hash
 value of `L2` in order to compute `P1`.  Now that we are able to compute `P1` we
 finally need to get `P2` to compute `R`. In this specific case the Merkle _audit
-proof_ is `{H2, P2}`.
+proof_ is a list of nodes `[H2, P2]`.
 
 > The use of tree authentication is now fairly clear. A given user
 A transmits R to another user B. A then transmits the authentication path for
@@ -466,8 +472,8 @@ which is indeed `9cee`.
 ![peer-to-peer-03](/assets/images/peer-to-peer-03.png)
 
 We were building a _partial tree_ having just the _root hash_ and a given data
-block. After deriving the _hashes_ from the nodes below the _root_ -- if the
-root matches, then our file is legit.
+block. If the root computed from the audit path matches the true root, then the
+audit path is _proof_ that the data block exists in the tree.
 
 ### Copy-On-Write
 
@@ -484,14 +490,18 @@ _root_, although, the other branches stay intact.
 ![copy-on-write-02](/assets/images/copy-on-write-02.png)
 ![copy-on-write-03](/assets/images/copy-on-write-03.png)
 
+If we take a closer look we can see that we’re adding only a new data block
+and three new hashes for the new version of the data structure. All the other
+data blocks, eventually, gigabytes of data are being shared between both versions!
+
 ## Wrapping up
 
 ![wrapping-up](/assets/images/wrapping-up.png)
 
 Merkle trees are _just_ binary trees containing an infinite number of
-_cryptographic hashes_ where _leaves_ contain hashes of data blocks, _nodes_
-contain hashes of their children, produce a _Merkle Root_ that summarizes the
-entire data set that's publicly distributed across the network and can easily
+_cryptographic hashes_ where _leaves_ contain hashes of data blocks and _nodes_
+contain hashes of their children. They also produce a _Merkle Root_ that summarizes
+the entire data set and that's publicly distributed across the network and can easily
 prove that a given data block exists in the tree.
 
 You can find them in Cassandra, IPFS, Riak, Ethereum, Bitcoin, Open ZFS, and
