@@ -5,7 +5,6 @@ date: 2019-09-19
 categories: [papers, communities]
 ---
 
-## Papers, Love, and Meetup.com
 
 This should be titled _"Why I didn't renewed Papers We Love @ Porto subscription on Meetup.com"_ but you get the idea. Last August I didn't pay for another half year subscription to have a placeholder for this scientific community; you might wonder why.
 
@@ -45,7 +44,7 @@ I may sound a bit extreme but without sponsorships (I don't want them, seriously
 
 It would be cool if they provide free plans for communities that don't rely on any kind of sponsorship and don't use the platform to expose the brand behind it but it seems that's not an option.
 
-## Some stats from the community so far
+## Some stats so far...
 
 * 10 successful events
 * 15 amazing talks
