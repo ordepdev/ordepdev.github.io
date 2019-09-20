@@ -42,15 +42,12 @@ The truth is that we're able to do all of this for free and without getting upse
 
 I may sound a bit extreme but without sponsorships (I don't want them, seriously.) and as a solo organizer I'm really not interested in paying a fee for a slot in a website that enables people to interact via _false_ RSVPs.
 
-It would be cool if they provide free plans for communities that don't rely on any kind of sponsorship and don't use the platform to expose the brand behind it but it seems that's not an option.
+It would be cool if they provide free plans for communities that don't rely on any kind of sponsorship and don't use the platform to expose the brand behind it but it seems that's not an option, maybe because it would lead to a vast number of zombie meetups (the ones that are removed after the first 30 _free_ days).
 
 ## Some stats so far...
 
-* 10 successful events
-* 15 amazing talks
-* 194 followers on twitter
-* 438 members on meetup
+The meetup is going great, not as regular as I wanted though, but still great. So far I've hosted **10** successful events and **15** amazing talks. I had to step up as a speaker for two times in order to keep the _momentum_ going - I don't mind, really, but it's not supposed to :) _Community-wise_, we're **194** on twitter and **438** on meetup - great numbers for such a _specific_ community.
 
 ## Plans for the future
 
-I'll rely solo on [@pwlporto](https://twitter.com/pwlporto) twitter account to announce future events and cool papers that we should all read. It might be a daunting task to reach all the interested ones because not everyone has a twitter account but it's free after all!
+I'll rely solo on [@pwlporto](https://twitter.com/pwlporto) twitter account to announce future events and cool papers that we should all read. It might be a daunting task to reach all the interested ones because not everyone has a twitter account but it's free after all! Maybe adding a companion website together with a simple newsletter does the trick.
