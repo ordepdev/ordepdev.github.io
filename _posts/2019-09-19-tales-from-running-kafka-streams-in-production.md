@@ -146,6 +146,44 @@ Consuming from large source topics and performing processing that requires stori
 records in RocksDB for each message, will lead to a fairly large amount of data stored
 in disk. Without the proper monitoring, it is very easy to run out of space.
 
+## It's ok to do external lookups
+
+Well, most people will say to load all the needed data into a `Stream` or `Store` and
+perform the `joins` or _local lookups_ while processing our messages. Sometimes it's easier
+to perform external lookups, ideally to a _fast_ database. And I must say that's fine. Obviously,
+it depends on your load, how many external lookups are performed per message, and how fast your
+database can handle those lookups. Making this type of external calls inside a stream 
+may introduce extra latency which could have an impact on the consumer lag of downstream systems,
+so please, use it carefully.
+
+The cool thing about having to lookup for data from an _external state store_ is that we can
+abstract our _external state store_ as a simple _StateStore_ and use it like the others, without
+changing any existing code.
+
+```scala
+import org.apache.kafka.streams.processor.{ProcessorContext, StateRestoreCallback, StateStore}
+      
+class LookupStore[T](storeName: String, pool: Pool[T]) extends StateStore {
+  override def init(context: ProcessorContext, root: StateStore): Unit = {
+    context.register(root, new StateRestoreCallback() {
+      override def restore(key: Array[Byte], value: Array[Byte]): Unit = {}  
+    })      
+  }
+  
+  override def name(): String = this.storeName
+  override def flush(): Unit = ()
+  override def close(): Unit = pool().close()
+  override def persistent(): Boolean = true
+  override def isOpen: Boolean = !pool().isClosed
+  def pool(): Pool[T] = pool    
+}
+```
+
+Note to self: every partition from a processor that's using this _custom store_
+starts a new connection to the database, which is not sustainable for the amount
+of processors and partitions that may exist. It's advised to use a shared connection
+pool to reduce and control the available connections.
+
 ## Timeouts and rebalances
 
 From time to time, applications get stuck in a rebalancing state leading to several
