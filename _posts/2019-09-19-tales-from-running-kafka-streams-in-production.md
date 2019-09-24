@@ -184,6 +184,27 @@ starts a new connection to the database, which is not sustainable for the amount
 of processors and partitions that may exist. It's advised to use a shared connection
 pool to reduce and control the available connections.
 
+## Streams may die, a lot
+
+Within a Kafka cluster, there are _leader elections_ amoung the available nodes. The
+bad thing about them is that _sometimes_ it can have a negative impact on the current
+processing streams.
+
+```
+2019-07-08 14:27:54 [my-stream-d98754ff-6690-4040-ae3c-fbe51f9cf39f-StreamThread-2] WARN  o.apache.kafka.clients.NetworkClient - [Consumer clientId=my-stream-d98754ff-6690-4040-ae3c-fbe51f9cf39f-StreamThread-2-consumer, groupId=my-stream] 266 partitions have leader brokers without a matching listener, including [my-topic-15, my-topic-9, my-topic-3, my-topic-10, my-topic-16, my-topic-4, __transaction_state-0, __transaction_state-30, __transaction_state-18,
+__transaction_state-6]
+```
+
+```
+2019-07-08 14:29:51 [my-stream-d98754ff-6690-4040-ae3c-fbe51f9cf39f-StreamThread-2] WARN  o.apache.kafka.streams.KafkaStreams - stream-client [my-stream-d98754ff-6690-4040-ae3c-fbe51f9cf39f] All stream threads have died. The instance will be in error state and should be closed.
+```
+
+The logs above show that `266` partitions lost their _leader_ and eventually the corresponding
+stream just stopped. Without proper monitoring and alerts configured, mainly consumer lag and number
+of available streams, we can stay without processing messages for a long time. Having some kind of
+retry mechanism may help as well. Just don't trust that your stream will be up and running all the time,
+bad things happen.
+
 ## Timeouts and rebalances
 
 From time to time, applications get stuck in a rebalancing state leading to several
