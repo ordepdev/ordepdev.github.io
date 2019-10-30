@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tales from running Kafka Streams in Production"
-date: 2019-09-20
+date: 2019-10-30
 categories: [real-time, streaming, kafka]
 ---
 
