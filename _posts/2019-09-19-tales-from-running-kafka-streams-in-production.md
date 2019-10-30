@@ -56,7 +56,13 @@ crashes and the state store is rebuilt using a now, shorter version of the chang
 > operational maintenance. Let's dive into these use cases in more detail and then
 > describe how compaction works.
 
-(PLACEHOLDER) There is an ongoing effort to add TTL to state stores!
+[Edit 1] According to [KIP-258](https://cwiki.apache.org/confluence/display/KAFKA/KIP-258%3A+Allow+to+Store+Record+Timestamps+in+RocksDB) there is an ongoing effort to add TTL
+to state stores. Record timestamps were [added](https://issues.apache.org/jira/browse/KAFKA-6521)
+to `Ktable` allowing to move forward with this initiative. If you're asking yourself
+why `TTL State Stores` are _not yet_ supported in Kafka Streams is mainly because it
+relies on _changelogs_ as the source of truth, not the state stores. The two must be in
+sync, otherwise, if we delete old state store records, it might happen that we restore all of them
+from the changelog during a rebalance for example.
 
 ## The restore process
 
@@ -140,6 +146,11 @@ Having configured `ROCKSDB_BLOCK_CACHE_SIZE_MB`, `ROCKSDB_BLOCK_SIZE_KB`, `ROCKS
 to estime the cost of a single store. Obviously, if we have lots of streams with lots
 of stores, it will require lots of memory.
 
+[Edit 2] [KAFKA-8323: Memory leak of BloomFilter Rocks object](https://issues.apache.org/jira/browse/KAFKA-8323)
+and [KAFKA-8215: Limit memory usage of RocksDB](https://issues.apache.org/jira/browse/KAFKA-8215)
+from [Kafka 2.3.0](https://www.apache.org/dist/kafka/2.3.0/RELEASE_NOTES.html) might help/solve some
+memory issues.
+
 ## Don't forget the disk space
 
 Consuming from large source topics and performing processing that requires storing `n`
@@ -155,6 +166,14 @@ it depends on your load, how many external lookups are performed per message, an
 database can handle those lookups. Making this type of external calls inside a stream 
 may introduce extra latency which could have an impact on the consumer lag of downstream systems,
 so please, use it carefully.
+
+> Data locality is critical for performance. Although key lookups are typically very fast,
+the latency introduced by using remote storage becomes a bottleneck when you’re working at scale.
+
+> The key point here isn’t the degree of latency per record retrieval, which may be minimal.
+The important factor is that you’ll potentially process millions or billions of records through
+a streaming application. When multiplied by a factor that large, even a small degree of network
+latency can have a huge impact.
 
 The cool thing about having to lookup for data from an _external state store_ is that we can
 abstract our _external state store_ as a simple _StateStore_ and use it like the others, without
