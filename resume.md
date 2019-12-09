@@ -4,8 +4,6 @@ title: Resume
 permalink: /resume/
 ---
 
-## Resume
-
 ### Takdesk (2018-2019)
 
 * Teamed up with 2 highly skilled developers to ramp up a brand new data platform.
@@ -78,4 +76,4 @@ the knowledge amoung the whole team.
 [ScaleConf Colombia](https://www.youtube.com/watch?v=MWLcRZUo9Mc),
 [Tech in Porto](https://www.youtube.com/watch?v=SMhA2sEMtYQ),
 [Pixels Camp](https://www.youtube.com/watch?v=czyUG2Tp-3s) and local meetups.
-* Organized Hacktoberfest in Porto! 2017 \& 2018 Editions
+* Organized Hacktoberfest in Porto! 2017 & 2018 Editions
