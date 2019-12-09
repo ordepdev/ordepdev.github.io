@@ -1,4 +1,10 @@
-## Timeline
+---
+layout: page
+title: Resume
+permalink: /resume/
+---
+
+## Resume
 
 ### Takdesk (2018-2019)
 
