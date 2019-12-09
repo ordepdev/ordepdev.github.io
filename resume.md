@@ -4,7 +4,7 @@ title: Resume
 permalink: /resume/
 ---
 
-### Takdesk (2018-2019)
+### Talkdesk (2018-2019)
 
 * Teamed up with 2 highly skilled developers to ramp up a brand new data platform.
 * Designed and developed a high throughput bridge from our core messaging system, RabbitMQ,
