@@ -52,7 +52,7 @@ Make sure you behave the same way during out of working hours incidents. It may 
 
 If you belong to an on-call rotation, you must be able to solve incidents. If you have few incidents per rotation, how do you stay up-to-date with the system? Will you be able to solve a given incident two months from now without practicing? Google calls this “Operational Underload”.
 
-Being on-call for a quiet system is blissful, but what happens if the system is too quiet or when SREs are not on-call often enough? An operational underload is undesirable for an SRE team. Being out of touch with production for long periods can lead to confidence issues, both in terms of overconfidence and underconfidence, while knowledge gaps are discovered only when an incident occurs.
+> Being on-call for a quiet system is blissful, but what happens if the system is too quiet or when SREs are not on-call often enough? An operational underload is undesirable for an SRE team. Being out of touch with production for long periods can lead to confidence issues, both in terms of overconfidence and underconfidence, while knowledge gaps are discovered only when an incident occurs.
 
 You build confidence in your system and on your on-call rotation if you practice a lot beforehand. A great solution to build confidence in your rotation is to take part in *fire-drills*. It shouldn’t be difficult to set them in place every week to match each rotation. This way, everyone on-call can solve at least one incident per rotation.
 
