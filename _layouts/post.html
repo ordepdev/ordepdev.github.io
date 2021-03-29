@@ -9,10 +9,10 @@ archive: false
         <div class="post-header">
             <div class="post-title">
                 <h1>{{ page.title }}</h1>
-                <section class="post-meta">                
+                <section class="post-meta">
                     <time class="post-date" datetime="{{ page.date | date:"%B %d, %Y" }}">{{ page.date | date:"%B %d, %Y" }}</time>
-                    {% if page.categories.size > 0 %} 
-                        {{ page.categories | array_to_sentence_string | prepend: 'on ' }} 
+                    {% if page.categories.size > 0 %}
+                        {{ page.categories | array_to_sentence_string | prepend: 'on ' }}
                     {% endif %}
                 </section>
             </div>
@@ -28,13 +28,11 @@ archive: false
 
         <header>
             <ul>
-              <li><a href="https://twitter.com/ordepdev"><i class="fa fa-twitter" aria-hidden="true"></i></a></li> 
-              <li><a href="https://github.com/ordepdev"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-              <li><a href="https://stackoverflow.com/users/1942642/pedro-tavares"><i class="fa fa-stack-overflow" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.linkedin.com/in/ordepdev"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+              <li><a href="https://twitter.com/ordepdev"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+              <li><a href="https://github.com/ordepdev"><i class="fa fa-github" aria-hidden="true"></i></a></li>
               <li><a href="mailto:pedrotavares.dev@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
               <li><a href="/feed.xml"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
             </ul>
-          </header> 
+          </header>
     </article>
 </div>
