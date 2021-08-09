@@ -30,7 +30,7 @@ I know you want to do some functional programming.
 
 I know you want to focus on infrastructure and performance problems.
 
-Still, it's **not going to happen there**.
+Yet it's **not going to happen there**.
 
 Have a deep breath, **stop fighting and embrace it**.
 
