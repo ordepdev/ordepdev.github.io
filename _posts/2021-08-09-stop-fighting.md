@@ -24,12 +24,14 @@ Not because the organization won't benefit from them.
 
 You'll lose because **you're against someone** else's _beliefs_.
 
-I know you want to (continue to) work remotely, **yet not going to happen there**.
+I know you want to (continue to) work remotely.
 
-I know you want to do some functional programming, **yet not going to happen there**.
+I know you want to do some functional programming.
 
-I know you want to focus on infrastructure and performance problems, **yet not going to happen there**.
+I know you want to focus on infrastructure and performance problems.
+
+Still, it's **not going to happen there**.
 
 Have a deep breath, **stop fighting and embrace it**.
 
-It's still your choice to leave and move on!
+You still have the choice to leave and move on!
