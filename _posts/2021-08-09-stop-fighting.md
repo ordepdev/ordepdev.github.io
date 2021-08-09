@@ -14,7 +14,7 @@ Some of them were set up during your tenure.
 
 You don't agree with all of them, and that's fine since we can't please everyone.
 
-Still, if you're like me, you'll fight for your **beliefs**, either it's a technical, cultural, or behavioral matter.
+And you'll fight for your **beliefs**, either it's a technical, cultural, or behavioral matter.
 
 Sadly, **you'll lose** most of the _battles_.
 
