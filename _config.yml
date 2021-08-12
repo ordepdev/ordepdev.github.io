@@ -7,7 +7,7 @@ description: >
   If you can’t find me building software, I bet you’ll find me playing videogames or
   surfing waves in Portugal’s Northern Coast.
 baseurl: "/"
-url: "ordepdev.me"
+url: "ordep.dev"
 permalink: /posts/:title
 twitter_username: ordepdev
 github_username:  ordepdev
