@@ -2,6 +2,7 @@
 layout: post
 title: "My favorite papers"
 date: 2021-08-17
+meta_description: "You'll find a curated list of great computer science papers that I've enjoyed reading and re-reading over the past years."
 ---
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Sometimes people ask me which computer science papers they should read and I can&#39;t really answer that question, but I can list the papers I&#39;ve enjoyed reading over the past years.</p>&mdash; Pedro Tavareλ (@ordepdev) <a href="https://twitter.com/ordepdev/status/1426499455218450435?ref_src=twsrc%5Etfw">August 14, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -114,7 +115,7 @@ These are my favorites.
 
 I might be missing a few papers, for sure.
 
-You can still find a lot of curated papers for you to read at 
+You can still find a lot of curated papers for you to read at
 [@papers_we_love](https://twitter.com/papers_we_love),
 [@intensivedata](https://twitter.com/intensivedata),
 and [@therealdatabass](https://twitter.com/therealdatabass).
