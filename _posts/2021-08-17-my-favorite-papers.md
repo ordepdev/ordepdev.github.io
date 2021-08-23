@@ -4,7 +4,7 @@ title: "My favorite papers"
 date: 2021-08-17
 description: "You'll find a curated list of great computer science papers that I've enjoyed reading and re-reading over the past years."
 meta_description: "You'll find a curated list of great computer science papers that I've enjoyed reading and re-reading over the past years."
-image: https://pbs.twimg.com/media/E8vxs24VIAUh-a4?format=png
+image: https://pbs.twimg.com/media/E8vxs24VIAUh-a4.png
 ---
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Sometimes people ask me which computer science papers they should read and I can&#39;t really answer that question, but I can list the papers I&#39;ve enjoyed reading over the past years.</p>&mdash; Pedro Tavareλ (@ordepdev) <a href="https://twitter.com/ordepdev/status/1426499455218450435?ref_src=twsrc%5Etfw">August 14, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
