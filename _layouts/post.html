@@ -4,35 +4,70 @@ disqus: false
 archive: false
 ---
 
-<div class="content">
-    <article>
-        <div class="post-header">
-            <div class="post-title">
-                <h1>{{ page.title }}</h1>
-                <section class="post-meta">
-                    <time class="post-date" datetime="{{ page.date | date:"%B %d, %Y" }}">{{ page.date | date:"%B %d, %Y" }}</time>
-                    {% if page.categories.size > 0 %}
-                        {{ page.categories | array_to_sentence_string | prepend: 'on ' }}
-                    {% endif %}
-                </section>
+<div class="mb-12 mt-0 px-4 md:mb-24 md:mt-16">
+    <div class="container max-w-[800px] mx-auto">
+        <h1 class="font-normal font-serif leading-tight my-8 text-center text-5xl text-proseLinks tracking-tighter dark:text-proseInvertLinks">
+            {{ page.title }}
+        </h1>
+    </div>
+</div>
+
+<div class="container max-w-[750px] mx-auto mt-8 px-8">
+    <div class="md:flex">
+        <div class="basis-[115px] flex-grow-0 flex-shrink-0 hidden md:block"> <!-- needed for sticky -->
+            <div class="my-1 leading-normal text-proseBody text-xs tracking-tighter sticky text-right top-5 dark:text-proseInvertBody">
+                <div class="border-b px-4 pb-4 dark:border-rosePine-highlightMed">
+                    <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Post</div>
+                    <div>
+                        <a href="{{ page.url }}">
+                            <span class="mx-0.5 opacity-60">🔗</span> {{ page.title }}
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-b px-4 py-4 dark:border-rosePine-highlightMed">
+                    <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Published</div>
+                    <div class="font-normal">{{ page.date | date:"%B %d, %Y" }}</div>
+                </div>
+
+                {% if page.categories.size > 0 %}
+                <div class="border-b px-4 py-4 dark:border-rosePine-highlightMed">
+                    <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Tags</div>
+                    <div class="font-normal">{{ page.categories | array_to_sentence_string }}</div>
+                </div>
+                {% endif %}
+
+                <div class="italic px-4 py-4 dark:border-rosePine-highlightMed">
+                    <p class="mb-2">I'm on X at <a href="https://twitter.com/ordepdev"
+                                                   class="font-bold text-proseLinks dark:text-proseInvertLinks">@ordepdev</a>.
+                    </p>
+                </div>
             </div>
-        </header>
+        </div>
 
-        <section class="post-content">
-            {{content}}
-        </section>
-
-        <footer class="post-footer">
-            Please, feel free to ping me at <b><a href="https://twitter.com/ordepdev">@ordepdev</a></b> to comment and discuss the topic.
-        </footer>
-
-        <header>
-            <ul>
-              <li><a href="https://twitter.com/ordepdev"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-              <li><a href="https://github.com/ordepdev"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-              <li><a href="mailto:pedrotavares.dev@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
-              <li><a href="/feed.xml"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-            </ul>
-          </header>
-    </article>
+        <div class="pb-8 dark:border-rosePine-highlightMed md:border-l md:flex-grow md:min-w-0 md:pl-8">
+            <div class="hyphens-auto
+                max-w-none
+                prose prose-md dark:prose-invert
+                prose-a:border-b prose-a:border-slate-500 prose-a:font-sans prose-a:no-underline
+                prose-blockquote:font-normal prose-blockquote:text-rosePineDawn-subtle dark:prose-blockquote:text-rosePine-subtle
+                hover:prose-a:border-b-slate-200
+                prose-code:prose-a:text-sm prose-code:prose-p:text-sm
+                prose-img:w-full
+                prose-h1:font-bold prose-h1:text-base
+                prose-h2:text-base prose-h2:mb-1 prose-a:prose-h2:border-b-0 prose-a:prose-h2:font-bold
+                prose-h3:text-sm prose-h3:mb-1 prose-a:prose-h3:border-b-0 prose-a:prose-h3:font-bold
+                prose-h4:text-sm prose-h4:mb-1 prose-a:prose-h4:border-b-0 prose-a:prose-h4:font-bold
+                prose-hr:my-10 prose-hr:md:-mx-[2rem] prose-hr:md:w-[calc(100%+4rem)] dark:prose-hr:border-rosePine-highlightMed
+                prose-p:font-serif
+                prose-p:prose-blockquote:font-sans
+                prose-pre:leading-[1.15rem] prose-pre:text-[0.9rem]
+                prose-strong:font-sans dark:prose-strong:text-slate-100
+                prose-ol:font-serif
+                prose-ul:font-serif
+                ">
+                {{ content }}
+            </div>
+        </div>
+    </div>
 </div>

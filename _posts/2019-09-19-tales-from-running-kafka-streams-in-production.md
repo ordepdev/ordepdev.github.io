@@ -1,8 +1,10 @@
 ---
-layout: post
+layout: article
 title: "Tales from running Kafka Streams in Production"
+description: "After a full year of using Kafka Streams in Production on top of Kubernetes, I've documented the incidents we had over the year."
 date: 2019-10-30
-categories: [real-time, streaming, kafka]
+categories: [ real-time, streaming, kafka ]
+toc: true
 ---
 
 ## Why using Kafka Streams in the first place?
@@ -11,6 +13,8 @@ If you're running a Kafka cluster, Kafka Streams gets handy mainly for three
 reasons: (1) it's an high level wrapping of consumers/producers on top of Kafka,
 (2) it supports statefull streams using RocksDB, and (3) supports partition
 assignments across your processing nodes.
+
+---
 
 ## Plan the # of partitions in advance
 
@@ -21,6 +25,8 @@ one consumer - that's why the number of partitions is important - if the number
 of partitions is low, maybe a consumer can't handle your throughput. Make sure you
 plan the number of partitions in advance or your consumer lag will grow.
 
+---
+
 ## Be careful with your persisted schemas
 
 When processing and storing specific events in a state store you must be very
@@ -29,6 +35,8 @@ breaking changes to the event schema means that the processing layer will fail
 to parse the JSON when reading from the state store, and it will probably lead
 to lost data if you ignore the event or into a crash loop if you retry the
 processing.
+
+---
 
 ## Don't rely on internal changelogs for downstream processing
 
@@ -39,6 +47,8 @@ our application will rebuild the state store from the corresponding changelog
 topic. If we want to apply another processing layer, either in the current application
 or another one downstream, we should always use `context.forward(k, v)` (using the
 `Processor API`) to forward our processor output to a given _sink_ topic.
+
+---
 
 ## State Stores don't have TTL
 
@@ -56,13 +66,17 @@ crashes and the state store is rebuilt using a now, shorter version of the chang
 > operational maintenance. Let's dive into these use cases in more detail and then
 > describe how compaction works.
 
-[Edit 1] According to [KIP-258](https://cwiki.apache.org/confluence/display/KAFKA/KIP-258%3A+Allow+to+Store+Record+Timestamps+in+RocksDB) there is an ongoing effort to add TTL
+[Edit 1] According
+to [KIP-258](https://cwiki.apache.org/confluence/display/KAFKA/KIP-258%3A+Allow+to+Store+Record+Timestamps+in+RocksDB)
+there is an ongoing effort to add TTL
 to state stores. Record timestamps were [added](https://issues.apache.org/jira/browse/KAFKA-6521)
 to `Ktable` allowing to move forward with this initiative. If you're asking yourself
 why `TTL State Stores` are _not yet_ supported in Kafka Streams is mainly because it
 relies on _changelogs_ as the source of truth, not the state stores. The two must be in
 sync, otherwise, if we delete old state store records, it might happen that we restore all of them
 from the changelog during a rebalance for example.
+
+---
 
 ## The restore process
 
@@ -113,6 +127,8 @@ In a disaster scenario, when a particular instance crashes, configuring
 `num.standby.replicas` may minimize the restore process by introducing shadow copies
 of the local state stores.
 
+---
+
 ## Oh, the memory overhead
 
 Assigning large heaps to the JVM sounds reasonable at first, although Kafka Streams
@@ -134,15 +150,22 @@ On the other hand, if you don't tune it, the memory usage of our application
 will grow, and grow, and grow. So, we need to make sure we know the number of source
 topics our application is consuming from, as the number of partitions and state stores.
 
-> If you have many stores in your topology, there is a fixed per-store memory cost. E.g., if RocksDB is your default store, it uses some off-heap memory per store. Either consider spreading your app instances on multiple machines or consider lowering RocksDb’s memory usage using the RocksDBConfigSetter class.
+> If you have many stores in your topology, there is a fixed per-store memory cost. E.g., if RocksDB is your default
+> store, it uses some off-heap memory per store. Either consider spreading your app instances on multiple machines or
+> consider lowering RocksDb’s memory usage using the RocksDBConfigSetter class.
 
-> If you take the latter approach, note that RocksDB exposes several important memory configurations. In particular, these settings include block_cache_size (16 MB by default), write_buffer_size (32 MB by default) write_buffer_count (3 by default). With those defaults, the estimate per RocksDB store (let’s call it estimate per store) is (write_buffer_size_mb * write_buffer_count) + block_cache_size_mb (112 MB by default).
+> If you take the latter approach, note that RocksDB exposes several important memory configurations. In particular,
+> these settings include block_cache_size (16 MB by default), write_buffer_size (32 MB by default) write_buffer_count (3
+> by default). With those defaults, the estimate per RocksDB store (let’s call it estimate per store) is (
+> write_buffer_size_mb * write_buffer_count) + block_cache_size_mb (112 MB by default).
 
-> Then if you have 40 partitions and using a windowed store (with a default of 3 segments per partition), the total memory consumption is 40 * 3 * estimate per store (in this example that would be 13440 MB).
+> Then if you have 40 partitions and using a windowed store (with a default of 3 segments per partition), the total
+> memory consumption is 40 * 3 * estimate per store (in this example that would be 13440 MB).
 
 ([https://docs.confluent.io/current/streams/sizing.html](https://docs.confluent.io/current/streams/sizing.html))
 
-Having configured `ROCKSDB_BLOCK_CACHE_SIZE_MB`, `ROCKSDB_BLOCK_SIZE_KB`, `ROCKSDB_WRITE_BUFFER_SIZE_MB`, and `ROCKSDB_WRITE_BUFFER_COUNT` to the best possible values, we're able
+Having configured `ROCKSDB_BLOCK_CACHE_SIZE_MB`, `ROCKSDB_BLOCK_SIZE_KB`, `ROCKSDB_WRITE_BUFFER_SIZE_MB`, and
+`ROCKSDB_WRITE_BUFFER_COUNT` to the best possible values, we're able
 to estime the cost of a single store. Obviously, if we have lots of streams with lots
 of stores, it will require lots of memory.
 
@@ -151,11 +174,15 @@ and [KAFKA-8215: Limit memory usage of RocksDB](https://issues.apache.org/jira/b
 from [Kafka 2.3.0](https://www.apache.org/dist/kafka/2.3.0/RELEASE_NOTES.html) might help/solve some
 memory issues.
 
+---
+
 ## Don't forget the disk space
 
 Consuming from large source topics and performing processing that requires storing `n`
 records in RocksDB for each message, will lead to a fairly large amount of data stored
 in disk. Without the proper monitoring, it is very easy to run out of space.
+
+---
 
 ## It's ok to do external lookups
 
@@ -163,17 +190,17 @@ Well, most people will say to load all the needed data into a `Stream` or `Store
 perform the `joins` or _local lookups_ while processing our messages. Sometimes it's easier
 to perform external lookups, ideally to a _fast_ database. And I must say that's fine. Obviously,
 it depends on your load, how many external lookups are performed per message, and how fast your
-database can handle those lookups. Making this type of external calls inside a stream 
+database can handle those lookups. Making this type of external calls inside a stream
 may introduce extra latency which could have an impact on the consumer lag of downstream systems,
 so please, use it carefully.
 
 > Data locality is critical for performance. Although key lookups are typically very fast,
-the latency introduced by using remote storage becomes a bottleneck when you’re working at scale.
+> the latency introduced by using remote storage becomes a bottleneck when you’re working at scale.
 
 > The key point here isn’t the degree of latency per record retrieval, which may be minimal.
-The important factor is that you’ll potentially process millions or billions of records through
-a streaming application. When multiplied by a factor that large, even a small degree of network
-latency can have a huge impact.
+> The important factor is that you’ll potentially process millions or billions of records through
+> a streaming application. When multiplied by a factor that large, even a small degree of network
+> latency can have a huge impact.
 
 The cool thing about having to lookup for data from an _external state store_ is that we can
 abstract our _external state store_ as a simple _StateStore_ and use it like the others, without
@@ -203,6 +230,8 @@ starts a new connection to the database, which is not sustainable for the amount
 of processors and partitions that may exist. It's advised to use a shared connection
 pool to reduce and control the available connections.
 
+---
+
 ## Streams may die, a lot
 
 Within a Kafka cluster, there are _leader elections_ amoung the available nodes. The
@@ -224,6 +253,8 @@ of available streams, we can stay without processing messages for a long time. H
 retry mechanism may help as well. Just don't trust that your stream will be up and running all the time,
 bad things happen.
 
+---
+
 ## Timeouts and rebalances
 
 From time to time, applications get stuck in a rebalancing state leading to several
@@ -236,6 +267,8 @@ message is fetched once again from Kafka and the same error would occur.
 
 Reducing the `max.poll.records` value, often to `1` would sometimes _alleviate_ this
 specific issue ¯\_(ツ)_/¯.
+
+---
 
 ## Still, ...
 

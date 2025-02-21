@@ -1,0 +1,99 @@
+<div class="mb-12 mt-0 md:mb-24 md:mt-16 px-4">
+    <h1 class="font-normal font-serif my-8 text-center text-8xl text-proseLinks tracking-tighter dark:text-proseInvertLinks">
+        Reading
+    </h1>
+
+    <div class="container max-w-[625px] mx-auto
+            prose prose-lg dark:prose-invert
+            prose-a:border-b-[1px] prose-a:border-slate-500 prose-a:font-sans prose-a:no-underline
+            hover:prose-a:border-slate-200
+            prose-p:text-center prose-p:italic
+            ">
+        <p>
+            Books I've read. This is not Uber — three stars is normal. Consider
+            four stars very good, and five stars exceptionally so. 1-2 paragraph
+            reviews.
+        </p>
+    </div>
+</div>
+
+<div class="container max-w-[1150px] mx-auto mt-8 px-8">
+    <div class="md:flex">
+        <div> <!-- needed for sticky -->
+            <div class="font-mono my-1 leading-normal text-md text-proseLinks tracking-tighter dark:text-proseInvertLinks md:sticky md:text-right md:top-5">
+                <div class="hidden md:block md:pr-6">
+                    <ul>
+                        {{range .ReadingsByYear}}
+                        <li class="pb-1">
+                            <a href="#year_{{.Year}}">{{.Year}}</a>
+                        </li>
+                        {{- end -}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="pb-8 dark:border-slate-700 md:border-l-[1px] md:flex-grow md:min-w-0">
+            {{range .ReadingsByYear}}
+            <div class="border-b-[1px] py-6 dark:border-slate-700 md:pl-6" id="year_{{.Year}}">
+                <h2 class="font-bold text-md text-proseLinks tracking-tighter dark:text-proseInvertLinks">{{.Year}}</h2>
+            </div>
+
+            <ul>
+                {{- range .Readings -}}
+                <div class="border-b-[1px] flex flex-col dark:border-slate-700 md:pl-6">
+                    <div class="flex gap-6 py-6">
+                        <div class="flex-grow {{if ne .Review "
+                        "}} lg:basis-[250px] lg:flex-grow-0 lg:flex-shrink-0 {{end}}">
+                        <div class="flex flex-col gap-1">
+                            <div class="font-semibold text-proseLinks text-sm dark:text-proseInvertLinks">{{.Title}}
+                            </div>
+                            <div class="italic text-proseBody text-xs dark:text-proseInvertBody">{{.AuthorsDisplay}}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- needs at least 80px to support five star reviews -->
+                    <div class="basis-[80px] flex-grow-0 flex-shrink-0 text-proseBody text-xs dark:text-proseInvertBody">
+                        {{if ne .Rating 0}}
+                        {{ToStars .Rating}}
+                        {{end}}
+                    </div>
+                    <div class="basis-[40px] flex-grow-0 flex-shrink-0 hidden text-proseBody text-xs dark:text-proseInvertBody sm:block">
+                        {{if eq .NumPages 0}}
+                        <span class="text-slate-400">—</span>
+                        {{else}}
+                        {{.NumPages}}p.
+                        {{end}}
+                    </div>
+                    <div class="basis-[40px] flex-grow-0 flex-shrink-0 hidden text-proseBody text-xs dark:text-proseInvertBody sm:block">
+                        <span>{{FormatTime .ReadAt "Jan 2"}}</span>
+                    </div>
+                    {{if .ReviewHTML}}
+                    <div class="hidden
+                                                hyphens-auto
+                                                mt-[-3px]
+                                                prose dark:prose-invert
+                                                prose-p:font-serif prose-p:leading-5 prose-p:text-sm
+                                                lg:block
+                                                ">
+                        {{.ReviewHTML}}
+                    </div>
+                    {{end}}
+                </div>
+                {{if .ReviewHTML}}
+                <div class="hyphens-auto
+                                            max-w-none
+                                            pb-6
+                                            prose dark:prose-invert
+                                            prose-p:font-serif prose-p:leading-5 prose-p:text-sm
+                                            lg:hidden
+                                            ">
+                    {{.ReviewHTML}}
+                </div>
+                {{end}}
+        </div>
+        {{- end -}}
+        </ul>
+        {{- end -}}
+    </div>
+</div>
+</div>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html class="light light_override">
 <head>
     <meta charset="utf-8">
-    <title>Blog about software</title>
+    <title>Home - ordep.dev</title>
     <meta name="keywords" content="blog,developer,elixir,papers,ordepdev">
     <meta name="description" content="">
     <meta name="Description" content="">
-    <meta name="og:title" property="og:title" content="Blog about software">
+    <meta name="og:title" property="og:title" content="Home - ordep.dev">
     <meta name="og:description" property="og:description" content="">
     <meta name="og:image" property="og:image" content="">
     <meta name="author" content="Pedro Tavares">
@@ -15,7 +15,7 @@
     <meta name="og:locale" property="og:locale" content="en_US">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="A blog, from @ordepdev.">
-    <meta name="twitter:image:alt" content="Blog about software">
+    <meta name="twitter:image:alt" content="Home">
     <meta name="twitter:site" content="@ordepdev">
     <meta name="twitter:creator" content="@ordepdev">
     <meta name="HandheldFriendly" content="True">
@@ -29,160 +29,412 @@
     <meta name="msapplication-navbutton-color" content="#f5f5f5">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="msapplication-starturl" content="/">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,700|Source+Code+Pro" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/tailwind.css"/>
+<link rel="stylesheet" type="text/css" href="/assets/css/tailwind_custom.css"/>
+    <script>
+    /**
+     * Implements a tri-state theme switch (i.e. light/dark mode) allowing an
+     * explicit setting of one or the other, or inheriting the operating system's
+     * default and styling accordingly.
+     *
+     * The reason this is in a template file as opposed to a separate JavaScript is
+     * so that it's parsed inline with the HTML body and given a chance to run
+     * before the page is rendered, thereby avoiding the common pitfall of briefly
+     * "flashing" the wrong theme when the page initially loads. Under this
+     * framework, there's one initial call to `setThemeFromLocalStorage()` inline,
+     * so the theme always appears correct on first render.
+     */
+
+    const LOCAL_STORAGE_KEY_THEME = 'theme';
+
+    const THEME_VALUE_AUTO = 'auto';
+    const THEME_VALUE_DARK = 'dark';
+    const THEME_VALUE_LIGHT = 'light';
+
+    const THEME_CLASS_DARK = 'dark';           // activates dark mode styling
+    const THEME_CLASS_DARK_OVERRIDE = 'dark_override';  // slides toggle to dark mode
+    const THEME_CLASS_LIGHT = 'light';          // here for consistency, but has no real effect
+    const THEME_CLASS_LIGHT_OVERRIDE = 'light_override'; // slides toggle to light mode
+
+    const THEME_CLASS_ALL = Object.freeze([
+        THEME_CLASS_DARK,
+        THEME_CLASS_DARK_OVERRIDE,
+        THEME_CLASS_LIGHT,
+        THEME_CLASS_LIGHT_OVERRIDE,
+    ])
+
+    function setDocumentClasses(...classes) {
+        THEME_CLASS_ALL.forEach((themeClass) => {
+            if (classes.includes(themeClass)) {
+                document.documentElement.classList.add(themeClass)
+            } else {
+                document.documentElement.classList.remove(themeClass)
+            }
+        })
+    }
+
+    // Sets light or dark mode based on a preference from local storage, or if none
+    // is set there, sets based on preference from `prefers-color-scheme` CSS.
+    function setThemeFromLocalStorageOrMediaPreference() {
+        const theme = localStorage.getItem(LOCAL_STORAGE_KEY_THEME) || THEME_VALUE_AUTO
+
+        switch (theme) {
+            case THEME_VALUE_AUTO:
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    setDocumentClasses(THEME_CLASS_DARK)
+                } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                    setDocumentClasses(THEME_CLASS_LIGHT)
+                }
+                break
+
+            case THEME_VALUE_DARK:
+                setDocumentClasses(THEME_CLASS_DARK, THEME_CLASS_DARK_OVERRIDE)
+                break
+
+            case THEME_VALUE_LIGHT:
+                setDocumentClasses(THEME_CLASS_LIGHT, THEME_CLASS_LIGHT_OVERRIDE)
+                break
+        }
+
+        console.log(`theme is: ${theme}`)
+
+        document.querySelectorAll(`.theme_toggle input[value='${theme}']`).forEach((toggle) => {
+            console.log(`set toggle`)
+            toggle.checked = true;
+        })
+    }
+
+    // See comment above, but this call must be made inline to avoid briefly
+    // flashing the wrong theme on initial page load.
+    setThemeFromLocalStorageOrMediaPreference()
+
+    // Runs on initial page load. Add change listeners to light/dark toggles that
+    // set a local storage key and trigger a theme change.
+    window.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.theme_toggle input').forEach((toggle) => {
+            toggle.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    if (e.target.value == THEME_VALUE_AUTO) {
+                        localStorage.removeItem(LOCAL_STORAGE_KEY_THEME)
+                    } else {
+                        localStorage.setItem(LOCAL_STORAGE_KEY_THEME, e.target.value)
+                    }
+                }
+
+                setThemeFromLocalStorageOrMediaPreference()
+            }, false)
+        })
+
+        // We already our theme "early" to avoid a flash that would occur if we only
+        // set it here on content loaded, but set it one more time so that we set
+        // the theme toggle to the appropriate value. It's not loaded yet when we
+        // set the theme the first time.
+        setThemeFromLocalStorageOrMediaPreference()
+    })
+
+    // Listen for local storage changes on our theme key. This allows one tab to be
+    // notified if the theme is changed in another and update itself accordingly.
+    window.addEventListener("storage", (e) => {
+        if (e.key == LOCAL_STORAGE_KEY_THEME) {
+            setThemeFromLocalStorageOrMediaPreference()
+        }
+    })
+
+    // Watch for OS-level changes in preference for light/dark mode. This will
+    // trigger for example if a user explicitly changes their OS-level light/dark
+    // configuration, or on sunrise/sunset if they have it set to automatic.
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        setThemeFromLocalStorageOrMediaPreference()
+    })
+
+</script>
+
+
 </head>
-<body class="home-template">
-    <div class="container">
-      <header>
-  <div id="ordepdev">
-    <h1><a href="/">ordep<span class="b">dev</span></a></h1>
-  </div>
-
-  <ul>
-    <li><a href="https://twitter.com/ordepdev"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-    <li><a href="https://github.com/ordepdev"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-    <li><a href="mailto:pedrotavares.dev@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
-    <li><a href="/feed.xml"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-  </ul>
-
-  <ul>
-    <li><a href="/">home</a></li>
-    <li><a href="/about">about</a></li>
-    <li><a href="/talks">talks</a></li>
-    <li><a href="/readings">readings</a></li>
-  </ul>
-</header>
-
-      <main id="content" class="content" role="main">
-    <ul class="list-posts">
-        
-            <li>
-                <span>August 17, 2021</span>
-                <a href="/posts/my-favorite-papers">My favorite papers</a>
-            </li>
-        
-            <li>
-                <span>August 09, 2021</span>
-                <a href="/posts/stop-fighting">Stop fighting</a>
-            </li>
-        
-            <li>
-                <span>March 29, 2021</span>
-                <a href="/posts/being-on-call">Being on-call</a>
-            </li>
-        
-            <li>
-                <span>January 13, 2021</span>
-                <a href="/posts/standups">Standups</a>
-            </li>
-        
-            <li>
-                <span>October 30, 2019</span>
-                <a href="/posts/tales-from-running-kafka-streams-in-production">Tales from running Kafka Streams in Production</a>
-            </li>
-        
-            <li>
-                <span>September 19, 2019</span>
-                <a href="/posts/papers-love-and-meetup">Papers, Love, and Meetup</a>
-            </li>
-        
-            <li>
-                <span>February 20, 2019</span>
-                <a href="/posts/diving-into-merkle-trees">Diving into Merkle Trees</a>
-            </li>
-        
-            <li>
-                <span>July 02, 2018</span>
-                <a href="/posts/papers-we-love">Half a year of Papers We Love @ Porto</a>
-            </li>
-        
-            <li>
-                <span>May 07, 2018</span>
-                <a href="/posts/what-you-should-know-about-database-storage-and-retrieval">What you should know about database storage and retrieval.</a>
-            </li>
-        
-            <li>
-                <span>January 14, 2018</span>
-                <a href="/posts/code-coverage">Don't be fooled by 100% code coverage.</a>
-            </li>
-        
-            <li>
-                <span>December 26, 2017</span>
-                <a href="/posts/test-driven-developers">Test-Driven Developers: Building a testing culture.</a>
-            </li>
-        
-            <li>
-                <span>August 02, 2017</span>
-                <a href="/posts/microservices-you-have-to-be-this-tall">Microservices? You have to be this tall!</a>
-            </li>
-        
-            <li>
-                <span>July 22, 2017</span>
-                <a href="/posts/boost-your-confidence-with-consumer-driven-contracts">Boost your confidence with Consumer-Driven Contracts</a>
-            </li>
-        
-            <li>
-                <span>July 13, 2017</span>
-                <a href="/posts/things-i-learned-at-devoxx-poland-2017">Things I learned at Devoxx Poland 2017</a>
-            </li>
-        
-            <li>
-                <span>July 01, 2017</span>
-                <a href="/posts/custom-collectors-for-better-performance">Custom collectors for better performance</a>
-            </li>
-        
-            <li>
-                <span>June 06, 2017</span>
-                <a href="/posts/handling-multi-module-releases">Handling multi-module releases</a>
-            </li>
-        
-            <li>
-                <span>May 19, 2016</span>
-                <a href="/posts/size-of-an-object-in-java">Size of an Object in Java</a>
-            </li>
-        
-            <li>
-                <span>May 19, 2016</span>
-                <a href="/posts/order-of-growth-classifications">Order-of-growth classifications</a>
-            </li>
-        
-            <li>
-                <span>May 12, 2016</span>
-                <a href="/posts/immutability-and-defensive-copying">Immutability and defensive copying</a>
-            </li>
-        
-            <li>
-                <span>May 11, 2016</span>
-                <a href="/posts/equality">Equality: a == b ?</a>
-            </li>
-        
-            <li>
-                <span>February 16, 2015</span>
-                <a href="/posts/a-note-on-testing-private-methods">A note on testing private methods</a>
-            </li>
-        
-            <li>
-                <span>November 19, 2014</span>
-                <a href="/posts/first-publish-to-npm">First publish to NPM</a>
-            </li>
-        
-    </ul>
-</main>
-
+<body class="antialiased bg-rosePineDawn-base bg-no-repeat bg-gradient-to-br from-rosePineDawn-base to-rosePineDawn-base dark:rosePine-overlay dark:from-rosePine-surface dark:to-rosePine-base min-h-screen">
+<div>
+    <div class="flex flex-col md:flex-row
+            font-sans font-semibold text-xs
+            py-4 md:py-6">
+    <div class="flex justify-center
+                py-1 md:pl-6  md:pr-4 
+                md:w-36">
+        <a class="font-extrabold nav_item text-rosePineDawn-text hover:text-black text-xs tracking-tighter dark:text-rosePine-text dark:hover:text-rosePine-iris"
+           href="/">ordep.dev</a>
     </div>
+    <div class="flex justify-center
+                flex-1
+                px-4 py-1">
+        <ul class="flex tracking-normal md:tracking-wider uppercase">
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-rosePineDawn-text hover:text-black dark:text-rosePine-text dark:hover:text-rosePine-iris"
+                   href="/posts">Writing</a>
+            </li>
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-rosePineDawn-text hover:text-black dark:text-rosePine-text dark:hover:text-rosePine-iris"
+                   href="/readings">Reading</a>
+            </li>
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-rosePineDawn-text hover:text-black dark:text-rosePine-text dark:hover:text-rosePine-iris"
+                   href="/talks">Talks</a>
+            </li>
+            <!--
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-black hover:text-slate-500 dark:text-slate-200 dark:hover:text-slate-400" href="/now">Now</a>
+            </li>
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-black hover:text-slate-500 dark:text-slate-200 dark:hover:text-slate-400" href="/uses">Uses</a>
+            </li>
+            -->
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-rosePineDawn-text hover:text-black dark:text-rosePine-text dark:hover:text-rosePine-iris"
+                   href="/about">About</a>
+            </li>
+        </ul>
+    </div>
+    <!--
+    Based originally on [1], but the only remaining parts are the tri-state
+    radio and a few Tailwind themes. All styles, JavaScript, copy, and icons
+    have been heavily customized.
 
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-55713436-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    [1] https://codepen.io/colinaut/pen/dyNpdOV
+-->
+<div class="flex justify-center
+                py-1 md:pl-4 md:pr-6
+                md:w-36">
+    <div class="relative theme_toggle">
+        <!-- Gets a Z-index so it's on top of the slider track, which makes the slider track clickable. -->
+        <div class="relative flex items-center h-4 z-10">
+            <label class="w-16 h-6 pr-4 relative flex items-center justify-end">
+                <input value="light" name="theme_toggle_state" type="radio"
+                       class="opacity-0 absolute block w-full h-full inset-0 cursor-pointer"/>
+                <span class="transition-opacity opacity-50 cursor-pointer">
+                <!-- Light 🌙 🌕 -->
+                <span class="h-4 w-4 block">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#a)" fill="#000000">
+                            <path d="M12 0a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0V1a1 1 0 0 1 1-1ZM4.929 3.515a1 1 0 0 0-1.414 1.414l2.828 2.828a1 1 0 0 0 1.414-1.414L4.93 3.515ZM1 11a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2H1ZM18 12a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-4a1 1 0 0 1-1-1ZM17.657 16.243a1 1 0 0 0-1.414 1.414l2.828 2.828a1 1 0 1 0 1.414-1.414l-2.828-2.828ZM7.757 17.657a1 1 0 1 0-1.414-1.414L3.515 19.07a1 1 0 1 0 1.414 1.414l2.828-2.828ZM20.485 4.929a1 1 0 0 0-1.414-1.414l-2.828 2.828a1 1 0 1 0 1.414 1.414l2.828-2.828ZM13 19a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0v-4ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"/>
+                        </g>
+                        <defs>
+                            <clipPath id="a">
+                                <path fill="#ffffff" d="M0 0h24v24H0z"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </span>
+            </span>
+            </label>
+            <label class="w-6 h-6 relative">
+                <input value="auto" name="theme_toggle_state" type="radio" checked
+                       class="opacity-0 absolute block w-full h-full inset-0 cursor-pointer"/>
+                <span class="absolute hidden text-[0.5rem] text-proseBody font-bold tracking-tighter -top-2.5 left-1/2 transform -translate-x-1/2 opacity-50 transition-opacity cursor-pointer uppercase dark:text-proseInvertBody md:block">Auto</span>
+            </label>
+            <label class="w-16 h-6 pl-4 relative flex items-center">
+                <input value="dark" name="theme_toggle_state" type="radio"
+                       class="opacity-0 absolute block w-full h-full inset-0 cursor-pointer"/>
+                <span class="font-bold opacity-50 transition-opacity cursor-pointer">
+                <span class="h-4 w-4 block">
+                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.719 1.8A8.759 8.759 0 1 1 1.8 13.719c3.335 1.867 7.633 1.387 10.469-1.449 2.837-2.837 3.318-7.134 1.45-10.47z"/>
+                    </svg>
+                </span>
+                    <!-- 🌑 ☼ Dark -->
+            </span>
+            </label>
+        </div>
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
+            <div class="track w-12 h-4 bg-white border border-slate-200 rounded-lg shadow-inner dark:bg-[#2e3440] dark:border-slate-700"></div>
+            <div class="track_dot bg-[#f3f2e6] border-slate-300 transition-all duration-300 ease-in-out absolute top-0 left-4 w-4 h-4 border rounded-lg dark:bg-proseInvertBody dark:border-black"></div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+
+
+    
+<div class="border-b px-12 py-20 dark:border-b-rosePine-highlightMed ">
+    <div class="mx-auto
+        prose prose-lg dark:prose-invert
+        prose-a:border-b prose-a:border-proseLinks dark:prose-a:border-proseInvertLinks prose-a:font-bold prose-a:font-sans prose-a:no-underline
+        ">
+        <p class="font-semibold leading-snug max-w-[725px] mx-auto
+                  prose-a:border-b-4 prose-a:border-proseLinks dark:prose-a:border-proseInvertLinks
+                  text-left text-[2.5rem]
+                  tracking-tight
+                  ">
+            👋🏼 I'm <a href="https://twitter.com/ordepdev" rel="me">@ordepdev</a>.
+        </p>
+        <p class="font-semibold leading-snug max-w-[725px] mx-auto
+                  prose-a:border-b-4 prose-a:border-proseLinks dark:prose-a:border-proseInvertLinks
+                  text-left text-[2.5rem]
+                  tracking-tight
+                  ">
+            I like distributed systems, databases, and programming languages.
+        </p>
+        <p class="font-medium leading-relaxed max-w-[725px] mx-auto text-[1rem] prose-a:border-proseLinks dark:prose-a:border-proseInvertLinks">
+This website is where I share my <a href="/posts">articles</a>, <a href="/posts">thoughts</a>, and current <a href="/readings">readings</a>. I'm reviving my online presence. Although I stopped <a href="/posts">writing</a> and giving <a href="/talks">talks</a> in 2021, I plan to write as often as possible from now on.
+       </p>
+    </div>
+</div>
+
+<div class="border-b px-12 py-20 dark:dark:border-b-rosePine-highlightMed md:px-20 lg:px-28">
+    <div class="hyphens-auto max-w-none
+        prose prose-md dark:prose-invert
+        prose-a:border-b prose-a:border-proseLinks dark:prose-a:border-proseInvertLinks prose-a:font-sans prose-a:leading-tight prose-a:no-underline prose-a:text-[0.92rem]
+        prose-li:my-[1.2em] prose-li:pl-0.5
+        prose-strong:font-sans
+        prose-ul:font-serif prose-ul:leading-normal prose-ul:pl-5
+        ">
+        <div class="flex flex-col gap-4 justify-center md:flex-row md:gap-10 lg:gap-16">
+            <div class="flex-1 flex-grow pb-12 md:pb-0 lg:max-w-[21rem]">
+                <p class="font-serif mt-0 text-[0.9rem]">Once in a while, I write longer articles that might be worth sharing on Hacker News. Mostly about distributed systems, and engineering challenges.</p>
+                <ul class="mb-0">
+                    
+                    
+                        <li class="last:mb-0">
+                            <a href="/posts/my-favorite-papers">My favorite papers</a>
+                            <span class="font-sans italic pl-0.5 text-rosePineDawn-subtle text-[0.7rem] dark:text-rosePine-subtle">August 17, 2021</span>
+                            <p class="font-sans mt-2 mb-0 text-[0.82rem]">You'll find a curated list of great computer science papers that I've enjoyed reading and re-reading over the past years.</p>
+                        </li>
+                    
+                        <li class="last:mb-0">
+                            <a href="/posts/tales-from-running-kafka-streams-in-production">Tales from running Kafka Streams in Production</a>
+                            <span class="font-sans italic pl-0.5 text-rosePineDawn-subtle text-[0.7rem] dark:text-rosePine-subtle">October 30, 2019</span>
+                            <p class="font-sans mt-2 mb-0 text-[0.82rem]">After a full year of using Kafka Streams in Production on top of Kubernetes, I've documented the incidents we had over the year.</p>
+                        </li>
+                    
+                        <li class="last:mb-0">
+                            <a href="/posts/diving-into-merkle-trees">Diving into Merkle Trees</a>
+                            <span class="font-sans italic pl-0.5 text-rosePineDawn-subtle text-[0.7rem] dark:text-rosePine-subtle">February 20, 2019</span>
+                            <p class="font-sans mt-2 mb-0 text-[0.82rem]">Introduced in 1979 by Ralph C. Merkle, the Merkle Tree is a data structure used for efficiently summarizing and verifying the integrity of large sets of data.</p>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="flex-1 flex-grow pb-12 md:pb-0 lg:max-w-[21rem]">
+                <p class="font-serif mt-0 text-[0.9rem]">You'll find mostly shorter posts that capture specific insights or experiences. Each one focuses on a single idea worth sharing.</p>
+                <ul class="mb-0">
+                    
+                    
+                        <li class="last:mb-0">
+                            <a href="/posts/stop-fighting">Stop fighting</a>
+                            <span class="font-sans italic pl-0.5 text-rosePineDawn-subtle text-[0.7rem] dark:text-rosePine-subtle">August 09, 2021</span>
+                            <p class="font-sans mt-2 mb-0 text-[0.82rem]">When your vision for technical change keeps hitting walls, consider whether continuing the fight serves you better than finding a workplace that shares your values.</p>
+                        </li>
+                    
+                        <li class="last:mb-0">
+                            <a href="/posts/being-on-call">Being on-call</a>
+                            <span class="font-sans italic pl-0.5 text-rosePineDawn-subtle text-[0.7rem] dark:text-rosePine-subtle">March 29, 2021</span>
+                            <p class="font-sans mt-2 mb-0 text-[0.82rem]">A guide to why developers should own their production code, what to expect, and how to excel at incident response.</p>
+                        </li>
+                    
+                        <li class="last:mb-0">
+                            <a href="/posts/standups">Standups</a>
+                            <span class="font-sans italic pl-0.5 text-rosePineDawn-subtle text-[0.7rem] dark:text-rosePine-subtle">January 13, 2021</span>
+                            <p class="font-sans mt-2 mb-0 text-[0.82rem]">Transform your standups: Stop status reporting, start collaborating. Make meetings matter through meaningful team interactions and written updates.</p>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="flex-1 flex-grow lg:max-w-[21rem]">
+                <p class="font-serif mt-0 text-[0.9rem]">In the meantime, I make time to read some <a href="/readings">books</a>. Some tech, some not, mostly non-fiction. No fancy reviews, just honest takes.</p>
+                <ul class="mb-0">
+                    
+                        <li class="last:mb-0">
+                            <a href="https://www.goodreads.com/book/show/214246307-o-ano-zero-da-nova-europa">O Ano Zero da Nova Europa</a>
+                            <span class="font-sans italic pl-0.5 text-rosePineDawn-subtle text-[0.7rem] dark:text-rosePine-subtle">February 08, 2025</span>
+      <p class="font-sans mt-2 mb-0 text-[0.82rem]">Bernardo Pires de Lima, 2024</p>
+                                <div class="basis-[80px] flex-grow-0 flex-shrink-0 text-proseBody text-xs dark:text-proseInvertBody">
+                            <p class="font-sans mt-2 mb-0">
+     
+                                    ★&nbsp;★&nbsp;★&nbsp;
+                                 </p>
+                                </div>
+                        </li>
+                    
+                        <li class="last:mb-0">
+                            <a href="https://www.goodreads.com/book/show/41753650-the-beauty-of-everyday-things">The Beauty of Everyday Things</a>
+                            <span class="font-sans italic pl-0.5 text-rosePineDawn-subtle text-[0.7rem] dark:text-rosePine-subtle">February 06, 2025</span>
+      <p class="font-sans mt-2 mb-0 text-[0.82rem]">Soetsu Yanagi, 2017</p>
+                                <div class="basis-[80px] flex-grow-0 flex-shrink-0 text-proseBody text-xs dark:text-proseInvertBody">
+                            <p class="font-sans mt-2 mb-0">
+     
+                                    ★&nbsp;★&nbsp;★&nbsp;
+                                 </p>
+                                </div>
+                        </li>
+                    
+                        <li class="last:mb-0">
+                            <a href="https://www.goodreads.com/book/show/30258472-putinl-ndia">Putinlândia</a>
+                            <span class="font-sans italic pl-0.5 text-rosePineDawn-subtle text-[0.7rem] dark:text-rosePine-subtle">January 31, 2025</span>
+      <p class="font-sans mt-2 mb-0 text-[0.82rem]">Bernardo Pires de Lima, 2022</p>
+                                <div class="basis-[80px] flex-grow-0 flex-shrink-0 text-proseBody text-xs dark:text-proseInvertBody">
+                            <p class="font-sans mt-2 mb-0">
+     
+                                    ★&nbsp;★&nbsp;★&nbsp;
+                                 </p>
+                                </div>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-55713436-1']);
+    _gaq.push(['_trackPageview']);
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+<script type="module">
+    import {codeToHtml} from 'https://esm.sh/shiki@1.0.0'
+
+    const htmlEscapes = new Map([
+        ['&amp;', '&'],
+        ['&lt;', '<'],
+        ['&gt;', '>'],
+    ]);
+
+    function unescapeHTMLEntities(str) {
+        for (const [escaped, unescaped] of htmlEscapes) {
+            str = str.replaceAll(escaped, unescaped)
+        }
+        return str
+    }
+
+    await Promise.all(Array.from(document.querySelectorAll("div.highlighter-rouge")).map((block) => {
+        const languageClass = Array.from(block.classList)
+            .find(className => className.startsWith('language-'));
+        const language = languageClass ? languageClass.replace('language-', '') : 'js';
+        const codeBlock = block.querySelector("pre.highlight");
+
+        return (async () => {
+            const code = unescapeHTMLEntities(codeBlock.textContent);
+            codeBlock.parentElement.outerHTML = await codeToHtml(code, {
+                lang: language,
+                themes: {
+                    dark: 'rose-pine-moon',
+                    light: 'rose-pine'
+                }
+            });
+        })()
+    }))
+</script>
+
+
 </body>
 </html>

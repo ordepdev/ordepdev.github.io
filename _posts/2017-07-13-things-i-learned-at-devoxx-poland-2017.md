@@ -1,15 +1,16 @@
 ---
 layout: post
-title:  "Things I learned at Devoxx Poland 2017"
-date:   2017-07-13
-categories: conferences
+title: "Things I learned at Devoxx Poland 2017"
+date: 2017-07-13
+categories: [ conferences ]
 ---
 
 On 20-24 June I attended Devoxx Poland in Krakow. It was my first time on a big conference and it was totally worth it.
 
 It is the biggest Java conference in Poland, during three days, with 2500 developers from 20 countries and 144 speakers.
 
-It took place from in the ICE Conference Center, which is located directly by the Vistula river, with beautiful view over the Wawel Royal Castle.
+It took place from in the ICE Conference Center, which is located directly by the Vistula river, with beautiful view
+over the Wawel Royal Castle.
 
 ![devoxx-view](https://goo.gl/4pHKQE "devoxx-view")
 
@@ -31,8 +32,7 @@ It took place from in the ICE Conference Center, which is located directly by th
 
 * Migrating to Microservice Databases: From Relational Monolith to Distributed Data *by Edson Yanaga*
 
-
-## Things I learned 
+## Things I learned
 
 * JDD: Jesus Driven Development - "Please lord, let my code compile."
 
@@ -46,9 +46,11 @@ It took place from in the ICE Conference Center, which is located directly by th
 
 * Blue-Green Deployments are a nightmare with shared databases.
 
-* Real-time snapshots are better than traditional databases; at some point of time, our entities may have invalid state; with an event log, we have all entity mutations saved.
+* Real-time snapshots are better than traditional databases; at some point of time, our entities may have invalid state;
+  with an event log, we have all entity mutations saved.
 
-* Since an event log is immutable, a mutation mistake will be persisted forever; it will be necessary to create events to rollback those mistakes.
+* Since an event log is immutable, a mutation mistake will be persisted forever; it will be necessary to create events
+  to rollback those mistakes.
 
 * Kafka Streams: Data Storage + Query Engine = *Shared Database* with immutable state.
 
@@ -58,7 +60,8 @@ It took place from in the ICE Conference Center, which is located directly by th
 
 * Jmeter does not scale; use Gatling instead.
 
-* Always prefer Method References over Lambdas; they are faster because there is no need to create a virtual method to encapsulate the lambda expression.
+* Always prefer Method References over Lambdas; they are faster because there is no need to create a virtual method to
+  encapsulate the lambda expression.
 
 * Mixing Internal & External Iteration: Don't. Use streams for the whole iteration.
 
@@ -76,4 +79,5 @@ DECIDE WHICH TALK TO GO NEXT!
 
 ## Conclusion
 
-This whole experience was awesome. The organization, venue, and speakers were amazing and Devoxx is already my favorite conference. Really looking forward to comeback to Poland next year!
+This whole experience was awesome. The organization, venue, and speakers were amazing and Devoxx is already my favorite
+conference. Really looking forward to comeback to Poland next year!

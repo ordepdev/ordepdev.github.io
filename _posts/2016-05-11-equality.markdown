@@ -1,17 +1,20 @@
 ---
 layout: post
-title:  "Equality: a == b ?"
-date:   2016-05-11
-categories: [programming,java]
+title: "Equality: a == b ?"
+date: 2016-05-11
+categories: [ programming, java ]
 ---
 
 a == b; what does it means?
 
-a and b are reference variables of the same type and if we test equality between these two variables we are testing whether they have the same reference.
+a and b are reference variables of the same type and if we test equality between these two variables we are testing
+whether they have the same reference.
 
-Some programing languages gives us implementations for standard types like integers and strings. In Java we can test the equality of two Strings, a and b, with a.equals(b).
+Some programing languages gives us implementations for standard types like integers and strings. In Java we can test the
+equality of two Strings, a and b, with a.equals(b).
 
-When we want to test equality on our own types like Person, we need to override equals(). In order to correctly override the equals() method we must follow a few rules; the relation between the objects must be:
+When we want to test equality on our own types like Person, we need to override equals(). In order to correctly override
+the equals() method we must follow a few rules; the relation between the objects must be:
 
 * **Reflexive**: a.equals(a) is true.
 * **Symmetric**: a.equals(b) is true if and only if b.equals(a).

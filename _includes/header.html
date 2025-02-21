@@ -1,19 +1,42 @@
-<header>
-  <div id="ordepdev">
-    <h1><a href="/">ordep<span class="b">dev</span></a></h1>
-  </div>
+<div class="flex flex-col md:flex-row
+            font-sans font-semibold text-xs
+            py-4 md:py-6">
+    <div class="flex justify-center
+                py-1 md:pl-6  md:pr-4 
+                md:w-36">
+        <a class="font-extrabold nav_item text-rosePineDawn-text hover:text-black text-xs tracking-tighter dark:text-rosePine-text dark:hover:text-rosePine-iris"
+           href="/">ordep.dev</a>
+    </div>
+    <div class="flex justify-center
+                flex-1
+                px-4 py-1">
+        <ul class="flex tracking-normal md:tracking-wider uppercase">
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-rosePineDawn-text hover:text-black dark:text-rosePine-text dark:hover:text-rosePine-iris"
+                   href="/posts">Writing</a>
+            </li>
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-rosePineDawn-text hover:text-black dark:text-rosePine-text dark:hover:text-rosePine-iris"
+                   href="/readings">Reading</a>
+            </li>
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-rosePineDawn-text hover:text-black dark:text-rosePine-text dark:hover:text-rosePine-iris"
+                   href="/talks">Talks</a>
+            </li>
+            <!--
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-black hover:text-slate-500 dark:text-slate-200 dark:hover:text-slate-400" href="/now">Now</a>
+            </li>
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-black hover:text-slate-500 dark:text-slate-200 dark:hover:text-slate-400" href="/uses">Uses</a>
+            </li>
+            -->
+            <li class="mr-2 md:mr-4">
+                <a class="nav_item block text-rosePineDawn-text hover:text-black dark:text-rosePine-text dark:hover:text-rosePine-iris"
+                   href="/about">About</a>
+            </li>
+        </ul>
+    </div>
+    {% include dark-mode-toggle.html %}
+</div>
 
-  <ul>
-    <li><a href="https://twitter.com/ordepdev"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-    <li><a href="https://github.com/ordepdev"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-    <li><a href="mailto:pedrotavares.dev@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
-    <li><a href="/feed.xml"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-  </ul>
-
-  <ul>
-    <li><a href="/">home</a></li>
-    <li><a href="/about">about</a></li>
-    <li><a href="/talks">talks</a></li>
-    <li><a href="/readings">readings</a></li>
-  </ul>
-</header>

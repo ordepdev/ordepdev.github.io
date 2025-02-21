@@ -1,25 +1,27 @@
 ---
-layout: post
+layout: article
 title: "What you should know about database storage and retrieval."
 date: 2018-05-07
 categories: [databases, data structures, papers]
+toc: true
 ---
 
-This post is a transcript of the talk I gave at [Papers We Love @ Porto](https://www.meetup.com/Papers-We-Love-Porto/events/248728411/).
+This post is a transcript of the talk I gave
+at [Papers We Love @ Porto](https://www.meetup.com/Papers-We-Love-Porto/events/248728411/).
 
 ## Log-Structured File
 
-In 1991, Mendel Rosenblum and John K. Ousterhout  introduced a new technique 
+In 1991, Mendel Rosenblum and John K. Ousterhout introduced a new technique
 for disk storage management called _log-structured file system_.
 
 > A log-structured file system writes all modifications to disk sequentially
-in a log-like structure, thereby speeding up both file writing and crash
-recovery.
+> in a log-like structure, thereby speeding up both file writing and crash
+> recovery.
 
 ![log-structured-file](/assets/images/log-structured-file.png)
 
-The idea of the log-structured file system is to collect large amounts of 
-new data in a file cache in main memory, then write the data to disk in a 
+The idea of the log-structured file system is to collect large amounts of
+new data in a file cache in main memory, then write the data to disk in a
 single large I/0.
 
 ## How do we avoid running out of space?
@@ -73,14 +75,14 @@ in memory.
 ![bitcask-paper](/assets/images/bitcask-paper.png)
 
 > When a write occurs, the keydir is atomically updated with the location of
-the newest data. The old data is still present on disk, but any new reads will
-use the latest version available in the keydir.
+> the newest data. The old data is still present on disk, but any new reads will
+> use the latest version available in the keydir.
 
-Although, the in-memory hash map strategy has some limitations. As we saw from 
-the Bitcask example, all keys must fit in the in-memory hash map, so this 
-indexing strategy is not suitable for a very large number of keys and since 
-the keys are not sorted, scanning over a range of keys it’s not efficient — 
-it would be necessary to look up each key individually in the in-memory 
+Although, the in-memory hash map strategy has some limitations. As we saw from
+the Bitcask example, all keys must fit in the in-memory hash map, so this
+indexing strategy is not suitable for a very large number of keys and since
+the keys are not sorted, scanning over a range of keys it’s not efficient —
+it would be necessary to look up each key individually in the in-memory
 hash maps.
 
 ## Sorted-String Tables
@@ -92,11 +94,11 @@ sorted by key.
 ![bigtable-paper](/assets/images/bigtable-paper.png)
 
 > An SSTable provides a persistent, ordered immutable map from keys to values,
-where both keys and values are arbitrary byte strings.
+> where both keys and values are arbitrary byte strings.
 
 > A lookup can be performed by first finding the appropriate block with a
-binary search in the in-memory index, and then reading the appropriate block
-from disk.
+> binary search in the in-memory index, and then reading the appropriate block
+> from disk.
 
 ![sparse-in-memory-index](/assets/images/sparse-in-memory-index.png)
 
@@ -137,76 +139,76 @@ over an extended period.
 ![lsm-tree-paper](/assets/images/lsm-tree-paper.png)
 
 > The LSM-tree uses an algorithm that defers and batches index changes, cascading
-the changes from a memory-based component through one or more disk components in
-an efficient manner reminiscent of merge sort.
+> the changes from a memory-based component through one or more disk components in
+> an efficient manner reminiscent of merge sort.
 
 ## What about performance?
 
 The algorithm can be slow when looking for keys that do not exist in the database.
 Before we can make sure that the key does not exist, we first we need to check
-the memtable and the segments all the way back to the oldest. The solution is 
-to introduce another data structure: the _Bloom Filter_ - a memory-efficient 
+the memtable and the segments all the way back to the oldest. The solution is
+to introduce another data structure: the _Bloom Filter_ - a memory-efficient
 data structure for approximating the contents of a set.
 
-> A Bloom filter allows us to ask whether an SSTable might contain any data 
-for a specified row/column pair. For certain applications, the small amount 
-of tablet server memory used for storing Bloom filters drastically reduces 
-the number of disk seeks required for read operations. Our use of Bloom 
-filters also avoids disk accesses formost lookups of non-existent rows 
-or columns.
+> A Bloom filter allows us to ask whether an SSTable might contain any data
+> for a specified row/column pair. For certain applications, the small amount
+> of tablet server memory used for storing Bloom filters drastically reduces
+> the number of disk seeks required for read operations. Our use of Bloom
+> filters also avoids disk accesses formost lookups of non-existent rows
+> or columns.
 
-Basically, the _Bloom Filter_ can tell us if a key does not exist in the 
-database, saving many unnecessary disk reads for non-existent keys. However, 
-because the _Bloom Filter_ is a probabilistic function, it can result in 
+Basically, the _Bloom Filter_ can tell us if a key does not exist in the
+database, saving many unnecessary disk reads for non-existent keys. However,
+because the _Bloom Filter_ is a probabilistic function, it can result in
 false positives.
 
 ## B-Trees
 
 In 1970, a paper on _Organization and Maintenance of Large Ordered Indices_,
-introduced the concept of _B-Trees_ that less than 10 years have become, _de 
+introduced the concept of _B-Trees_ that less than 10 years have become, _de
 facto_, a standard for file organization. They still remain the standard
-index implementation in almost all relational databases, and many non 
+index implementation in almost all relational databases, and many non
 relational databases use them too as well.
 
 ![b-trees-papers](/assets/images/b-trees-papers.png)
 
-> The index is organized in pages of a fixed size capable of holding up to 
-2k keys, but pages need only be partially filled. 
+> The index is organized in pages of a fixed size capable of holding up to
+> 2k keys, but pages need only be partially filled.
 
-Basically, _B-trees_ break the database down into fixed-size pages, and 
+Basically, _B-trees_ break the database down into fixed-size pages, and
 read or write one page at a time!
 
 ![b-trees](/assets/images/b-trees.png)
 
-Each page can be identified using an address that allows one page to refer 
-another page. One of those pages is designated as the _root_ of the _B-tree_ and 
-whenever we  want to look up a key in the index, we start from there and traverse
+Each page can be identified using an address that allows one page to refer
+another page. One of those pages is designated as the _root_ of the _B-tree_ and
+whenever we want to look up a key in the index, we start from there and traverse
 the tree recursively down to the leaves.
 
-> The retrieval algorithm is simple logically, but to program it for a computer 
-one would use an efficient technique, e.g., a binary search, to scan a page.
+> The retrieval algorithm is simple logically, but to program it for a computer
+> one would use an efficient technique, e.g., a binary search, to scan a page.
 
 ![b-trees-animation](/assets/images/b-trees-animation.gif)
 
 In order to add a new key, we need to find the page within the key range
-and split into two pages if there’s no space to accommodate it. This is 
+and split into two pages if there’s no space to accommodate it. This is
 the only way in which the height of the tree can increase.
 
 ## What about resilience?
 
-If we need to split a page because an insertion caused it to be overfull, 
-we need to write the two pages that were split, and also overwrite their 
-parent page to update the references to the two child pages. Overwritten 
-several pages at once it's a dangerous operation that can result in a 
+If we need to split a page because an insertion caused it to be overfull,
+we need to write the two pages that were split, and also overwrite their
+parent page to update the references to the two child pages. Overwritten
+several pages at once it's a dangerous operation that can result in a
 corrupted _index_ if the database crashes.
 
 The solution to tackle this problem is to introduce an additional structure -
 the _Write-Ahead Log_ (WAL); where all modifications will be written before it
-can be applied to the tree itself. If the database crashes, the WAL  will be
+can be applied to the tree itself. If the database crashes, the WAL will be
 used to restore the _tree_ back to a consistent state.
 
 But writing all modifications to the WAL introduces other problem - _write
-amplification_; when one write to the database results in multiple writes 
+amplification_; when one write to the database results in multiple writes
 to disk which has a direct performance cost.
 
 ## Wrapping up!
@@ -216,19 +218,19 @@ some conclusions:
 
 * _B-Trees_ are _mutable_ and allow in-place updates;
 * _LSM-Trees_ are _immutable_ and require complete file rewrites;
-* Writes are slower on _B-Trees_ since they must write every piece of data at 
-least twice;
-* Reads are slower on _LSM-Trees_ since they have to check the _memtable_, 
-_bloom filter_, and possibly multiple _SSTables_  with different sizes;
+* Writes are slower on _B-Trees_ since they must write every piece of data at
+  least twice;
+* Reads are slower on _LSM-Trees_ since they have to check the _memtable_,
+  _bloom filter_, and possibly multiple _SSTables_  with different sizes;
 * _LSM-Trees_ are able to sustain higher write throughput due to lower _write
-amplification_ and sequential writes, but they can consume lots of resources
-on merging and compaction processes, especially if the throughput is very high
-and it's size is getting bigger.
+  amplification_ and sequential writes, but they can consume lots of resources
+  on merging and compaction processes, especially if the throughput is very high
+  and it's size is getting bigger.
 
 ## What's next?
 
-> There is no quick and easy rule for determining which type of storage engine 
-is better for your use case, so it is worth testing empirically.
+> There is no quick and easy rule for determining which type of storage engine
+> is better for your use case, so it is worth testing empirically.
 
 You should read papers, and this list may help you with that:
 

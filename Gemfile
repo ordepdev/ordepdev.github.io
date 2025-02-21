@@ -1,10 +1,11 @@
 source "https://rubygems.org"
 
 gem "jekyll"
-gem "minima"
 
 group :jekyll_plugins do
    gem "jekyll-feed"
+   gem 'jekyll-toc'
+   gem 'jekyll-commonmark-ghpages'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

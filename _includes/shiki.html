@@ -1,0 +1,35 @@
+<script type="module">
+    import {codeToHtml} from 'https://esm.sh/shiki@1.0.0'
+
+    const htmlEscapes = new Map([
+        ['&amp;', '&'],
+        ['&lt;', '<'],
+        ['&gt;', '>'],
+    ]);
+
+    function unescapeHTMLEntities(str) {
+        for (const [escaped, unescaped] of htmlEscapes) {
+            str = str.replaceAll(escaped, unescaped)
+        }
+        return str
+    }
+
+    await Promise.all(Array.from(document.querySelectorAll("div.highlighter-rouge")).map((block) => {
+        const languageClass = Array.from(block.classList)
+            .find(className => className.startsWith('language-'));
+        const language = languageClass ? languageClass.replace('language-', '') : 'js';
+        const codeBlock = block.querySelector("pre.highlight");
+
+        return (async () => {
+            const code = unescapeHTMLEntities(codeBlock.textContent);
+            codeBlock.parentElement.outerHTML = await codeToHtml(code, {
+                lang: language,
+                themes: {
+                    dark: 'rose-pine-moon',
+                    light: 'rose-pine'
+                }
+            });
+        })()
+    }))
+</script>
+

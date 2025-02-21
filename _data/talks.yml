@@ -1,0 +1,42 @@
+- title: "Diving into Merkle Trees"
+  abstract: "Introduced by Ralph C. Merkle, the Merkle Tree is a data structure used for efficiently summarizing and verifying the integrity of large sets of data. Due to its unique content validating and performance qualities, they are especially useful in distributed, peer-to-peer systems where the same data should exist in multiple places. Let's learn how to detect inconsistencies between trees and reduce the amount of transferred data enabling peer-to-peer file sharing by building our own tree with Elixir."
+  year: 2019
+  slides: "https://speakerdeck.com/ordepdev/diving-into-merkle-trees-2ef81708-c226-4aed-84bf-e7784c2e9c92"
+  where: [ "Lambda Days", "ScaleConf Colombia", "Tech in Porto 2019" ]
+  recordings: [ "https://www.youtube.com/watch?v=AEtXHTGEweg", "https://www.youtube.com/watch?v=MWLcRZUo9Mc" ]
+
+- title: "Harvest, Yield, and Scalable Tolerant Systems"
+  abstract: "Let's sit together and discuss about one of the most misunderstood concept in distributed systems, introduced by Eric A. Brewer in the paper Harvest, Yield, and Scalable Tolerant Systems, the CAP Theorem."
+  year: 2018
+  slides: "https://speakerdeck.com/ordepdev/harvest-yield-and-scalable-tolerant-systems"
+  where: [ "PWL @ Porto" ]
+
+- title: "Things you should know about Database Storage and Retrieval"
+  abstract: "In order to select the storage engine that is appropriate for your application, you need to have a rough idea of what the storage engine is doing under the hood. In this talk, we’ll discuss and examine some core data structures such as Hash Indexes, SSTables, LSM-Trees, and B-Trees, that are used in the traditional relational databases and NoSQL databases."
+  year: 2018
+  slides: "https://speakerdeck.com/ordepdev/things-you-should-know-about-database-storage-and-retrieval"
+  where: [ "PWL @ Porto", "Tech in Porto 2018", "Pixels Camp 2019" ]
+  recordings: [ "https://www.youtube.com/watch?v=czyUG2Tp-3s" ]
+
+- title: "Building a Testing Culture"
+  abstract: "We live surrounded by bad practices, stress, and fear of missing a delivery timeline. We all work or worked, on projects with those characteristics. If we don't enforce a shared culture of testing, no matter what, the quality of the software that we produce will suffer. With this talk/topic, I want to share the problems and solutions that will enable us to create a shared testing culture across our team and company."
+  year: 2017
+  slides: "https://speakerdeck.com/ordepdev/building-a-testing-culture"
+  where: [ "Porto Codes", "Comunidade NetPonto", "Porto Testers Meetup" ]
+  recordings: [ "https://www.youtube.com/watch?v=VrlQw4lSims" ]
+
+- title: "Boost your confidence with Consumer-Driven Contracts"
+  abstract: "We need to ensure that when we deploy a new service into production, our changes won't break any consumer; We can do this kind of testing without the need of a real consumer by using consumer-driven contracts. In this talk, I will show you how to implement consumer-driven contracts and we'll move TDD to the level of software architecture."
+  year: 2017
+  slides: "https://speakerdeck.com/ordepdev/consumer-driven-contracts"
+  where: [ "Pixels Camp 2017" ]
+
+- title: "Optionals in Java"
+  year: 2017
+  slides: "https://speakerdeck.com/ordepdev/optional"
+  where: [ "Porto Codes" ]
+
+- title: "Microservices? You have to be this tall."
+  year: 2017
+  slides: "https://speakerdeck.com/ordepdev/microservices-you-have-to"
+  where: [ "DevOps Porto #7" ]

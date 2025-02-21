@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "A note on testing private methods"
-date:   2015-02-16
-categories: programming,csharp
+title: "A note on testing private methods"
+date: 2015-02-16
+categories: [ programming, csharp ]
 ---
 
-In a normal situation your public methods consume the private ones and when you're testing, 
+In a normal situation your public methods consume the private ones and when you're testing,
 if you're testing, you only test the public methods.
 
 In Unit Testing, this assumption is totally right. You're testing a Unit, and if you think Unit as a class

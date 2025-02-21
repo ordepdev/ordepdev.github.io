@@ -1,0 +1,117 @@
+---
+layout: default
+disqus: false
+archive: false
+---
+
+<div class="mb-12 mt-0 px-4 md:mb-24 md:mt-16">
+    <div class="container max-w-[950px] mx-auto">
+        <h1 class="font-semibold font-sans leading-none my-8 text-center text-6xl text-proseLinks tracking-tighter dark:text-proseInvertLinks md:font-normal md:text-8xl">
+            {{ page.title }}
+        </h1>
+    </div>
+</div>
+
+<div class="container max-w-[900px] mx-auto mt-8 px-4 xl:max-w-[1125px]">
+    <div class="md:flex">
+        <div class="basis-[170px] flex-grow-0 flex-shrink-0 hidden md:block"> <!-- needed for sticky -->
+            <div class="leading-normal text-xs tracking-tighter sticky text-center text-proseBody top-5 dark:text-proseInvertBody">
+                <div class="border-b px-4 pb-4 dark:border-rosePine-highlightMed">
+                    <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Article</div>
+                    <div>
+                        <a href="{{ page.url }}">
+                            <span class="mx-0.5 opacity-60">🔗</span> {{ page.title }}
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-b px-4 py-4 dark:border-rosePine-highlightMed">
+                    <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Published</div>
+                    <div class="font-normal">{{ page.date | date:"%B %d, %Y" }}</div>
+                </div>
+
+                <div class="italic px-4 py-4 dark:border-rosePine-highlightMed">
+                    <p class="mb-2">I'm on X at <a href="https://twitter.com/ordepdev"
+                                                   class="font-bold text-proseLinks dark:text-proseInvertLinks">@ordepdev</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pb-8 md:border-l md:flex-grow md:min-w-0 dark:border-rosePine-highlightMed md:pl-8 xl:pr-8">
+            {% if page.toc %}
+            <div class="
+              border-b border-l dark:border-rosePine-highlightMed
+              hidden md:block xl:hidden
+              float-right
+              max-w-[190px]
+              ml-4
+              mb-3
+              lg:-mr-[60px]
+              pl-3
+              pb-5
+              pt-3
+              prose prose-sm dark:prose-invert
+              prose-li:my-2
+              prose-ol:prose-li:list-[lower-alpha] prose-ol:prose-li:my-2
+              prose-a:prose-li:prose-li:font-normal prose-li:prose-li:my-1 prose-li:prose-li:text-[0.65rem]
+              prose-a:no-underline
+              prose-ol:prose-li:prose-li:list-[lower-roman]
+              prose-li:prose-li:prose-li:text-[0.6rem]
+              text-xs
+              ">
+                {% toc %}
+            </div>
+            {% endif %}
+
+            <div class="hyphens-auto
+                max-w-none
+                prose prose-lg dark:prose-invert
+                prose-a:border-b prose-a:border-slate-500 prose-a:font-sans prose-a:no-underline
+                prose-blockquote:font-normal prose-blockquote:text-rosePineDawn-subtle dark:prose-blockquote:text-rosePineDawn-subtle
+                hover:prose-a:border-b-slate-200
+                prose-code:prose-a:text-sm prose-code:prose-p:text-sm
+                prose-img:w-full
+                prose-h1:font-bold prose-h1:text-base
+                prose-h2:text-base prose-h2:mb-1 prose-a:prose-h2:border-b-0 prose-a:prose-h2:font-bold
+                prose-h3:text-sm prose-h3:mb-1 prose-a:prose-h3:border-b-0 prose-a:prose-h3:font-bold
+                prose-h4:text-sm prose-h4:mb-1 prose-a:prose-h4:border-b-0 prose-a:prose-h4:font-bold
+                prose-hr:my-10 prose-hr:md:-mx-[2rem] prose-hr:md:w-[calc(100%+4rem)] dark:prose-hr:border-rosePine-highlightMed
+                prose-p:font-serif
+                prose-p:prose-blockquote:font-sans
+                prose-pre:leading-[1.15rem] prose-pre:text-[0.9rem]
+                prose-strong:font-sans dark:prose-strong:text-slate-100
+                prose-ol:font-serif
+                prose-ul:font-serif
+                ">
+                {{ content }}
+            </div>
+        </div>
+        <div class="basis-[190px] border-l flex-grow-0 flex-shrink-0 hidden dark:border-rosePine-highlightMed xl:block">
+            {% if page.toc %}
+            <!--
+                IMPORTANT: The TOC is duplicated above so that it can be part of
+                the flexbox at large sizes, but inlined at contents at smaller
+                ones. Make changes in both places.
+            -->
+            <div class="
+                mb-3
+                pl-3
+                pb-5
+                prose prose-sm dark:prose-invert
+                prose-li:my-2
+                prose-ol:prose-li:list-[lower-alpha] prose-ol:prose-li:my-2
+                prose-a:prose-li:prose-li:font-normal prose-li:prose-li:my-1 prose-li:prose-li:text-[0.65rem]
+                prose-a:no-underline
+                prose-ol:prose-li:prose-li:list-[lower-roman]
+                prose-li:prose-li:prose-li:text-[0.6rem]
+                sticky top-5
+                text-xs
+            ">
+                {% toc %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+

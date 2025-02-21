@@ -1,8 +1,10 @@
 ---
-layout: post
+layout: article
 title: "Diving into Merkle Trees"
+description: "Introduced in 1979 by Ralph C. Merkle, the Merkle Tree is a data structure used for efficiently summarizing and verifying the integrity of large sets of data."
 date: 2019-02-20
 categories: [papers, computer-science, data-structures]
+toc: true
 ---
 
 > This is a transcript of my talk on Diving into Merkle Trees that I will give
@@ -17,9 +19,9 @@ large sets of data_ enabling users to verify the authenticity of their received
 responses.
 
 > "The general idea in the new system is to use an
-infinite tree of one-time signatures. [...] Each node of the tree performs three
-functions: (1) it authenticates the left sub-node (2) it authenticates the right
-sub-node (3) it signs a single message."
+> infinite tree of one-time signatures. [...] Each node of the tree performs three
+> functions: (1) it authenticates the left sub-node (2) it authenticates the right
+> sub-node (3) it signs a single message."
 
 ![tree](/assets/images/tree.png)
 
@@ -46,8 +48,8 @@ that take inputs and provide unique outputs such as MD5, SHA-3, or SHA-256.
 ![one-way-hashing-functions](/assets/images/one-way-hashing-functions.png)
 
 > A one-way function _F_ is a function that is
-easy to compute, but difficult to invert. Given _x_ and _F_, it is easy to
-compute _y=F(x)_, but given _y_ and _F_, it is effectively impossible to compute
+> easy to compute, but difficult to invert. Given _x_ and _F_, it is easy to
+> compute _y=F(x)_, but given _y_ and _F_, it is effectively impossible to compute
 _x_.
 
 One-way hashing functions are especially useful within Merkle Trees for two
@@ -69,12 +71,12 @@ functions, for their security proofs. The beauty of Lamport scheme was that this
 signature was only relying on the security of these one-way functions!
 
 > One time signatures are practical between a single pair
-of users who are willing to exchange the large amount of data necessary but they
-are not practical for most applications without further refinements.
+> of users who are willing to exchange the large amount of data necessary but they
+> are not practical for most applications without further refinements.
 
 > If 1000 messages are to be signed before new public
-authentication data is needed, over 20,000,000 bits or 2.5 megabytes must be
-stored as public information.
+> authentication data is needed, over 20,000,000 bits or 2.5 megabytes must be
+> stored as public information.
 
 If _B_ had to keep 2.5 megabytes of data for 1000 other users, _B_ would have to
 store 2.5 gigabytes of data. With further increases in the number of users, or
@@ -125,7 +127,7 @@ in Elixir.
 ## Building a Merkle-Tree
 
 In order to build a Merkle Tree, we need to define three new types: `Leaf`,
-`Node`, and the `MerkleTree` itself.  Let's start by defining `Leaf` -- it
+`Node`, and the `MerkleTree` itself. Let's start by defining `Leaf` -- it
 should contain the `hash` and the `value` of a given data block.
 
 ```elixir
@@ -259,7 +261,7 @@ defmodule MerkleTree.Node do
 end
 ```
 
-That's basically what `new` is doing before calling `build(nodes)`.  Once we
+That's basically what `new` is doing before calling `build(nodes)`. Once we
 have the `Node` _hash_ value, we're ready to create a new `Node` with `hash`,
 `left`, and `right`. As an example, by calling the function above with these two
 _leaves_:
@@ -406,14 +408,14 @@ tree.
 
 In this example, we need to provide a _proof_ that the data block `L1` exists in
 the tree. Since we already know the _hash value_ of `L1`, we’ll need the hash
-value of `L2` in order to compute `P1`.  Now that we are able to compute `P1` we
+value of `L2` in order to compute `P1`. Now that we are able to compute `P1` we
 finally need to get `P2` to compute `R`. In this specific case the Merkle _audit
 proof_ is a list of nodes `[H2, P2]`.
 
 > The use of tree authentication is now fairly clear. A given user
-A transmits R to another user B. A then transmits the authentication path for
-Yi. B knows R, the root of the authentication tree, by prior arrangement. B can
-then authenticate Yi, and can accept any Ynth from A as genuine.
+> A transmits R to another user B. A then transmits the authentication path for
+> Yi. B knows R, the root of the authentication tree, by prior arrangement. B can
+> then authenticate Yi, and can accept any Ynth from A as genuine.
 
 ## How they are useful?
 
@@ -459,7 +461,7 @@ given file.
 ![peer-to-peer-01](/assets/images/peer-to-peer-01.png)
 
 Since we can fetch single parts of a tree, **reducing the amount of transferred
-data**, we then fetch chunks of data from untrusted sources. 
+data**, we then fetch chunks of data from untrusted sources.
 
 ![peer-to-peer-02](/assets/images/peer-to-peer-02.png)
 
@@ -516,6 +518,6 @@ Have fun!
 * [A Certified Digital Signature](http://www.merkle.com/papers/Certified1979.pdf)
 * [A Digital Signature Based on a Conventional Encryption Function](http://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkle.pdf)
 * [Providing Authentication and Integrity in Outsourced Databases using Merkle
-Hash Tree’s](http://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkleodb.pdf)
+  Hash Tree’s](http://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkleodb.pdf)
 * [Manual repair: Anti-entropy repair](https://docs.datastax.com/en/cassandra/3.0/cassandra/operations/opsRepairNodesManualRepair.html)
 * [Active Anti-Entropy](http://docs.basho.com/riak/kv/2.2.3/learn/concepts/active-anti-entropy/)

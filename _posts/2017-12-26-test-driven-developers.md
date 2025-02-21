@@ -2,15 +2,15 @@
 layout: post
 title: "Test-Driven Developers: Building a testing culture."
 date: 2017-12-26
-categories: [testing, culture]
+categories: [ testing, culture ]
 ---
 
 ## First of all, why testing?
 
 > Testing takes time, just like structural analysis takes time. Both activities
-ensure the quality of the end product. It’s time for software developers to take
-up the mantle of responsibility for what they produce. Testing alone isn’t
-sufficient, but it is necessary. Testing is the engineering rigor of software development. -- Neal Ford
+> ensure the quality of the end product. It’s time for software developers to take
+> up the mantle of responsibility for what they produce. Testing alone isn’t
+> sufficient, but it is necessary. Testing is the engineering rigor of software development. -- Neal Ford
 
 Software engineering is much more than coding. It is "an engineering discipline
 that is concerned with all aspects of software production". As professional
@@ -30,17 +30,17 @@ types of software projects that most of us end up working on during our career.
 
 How can we build projects without any kind of automated tests? Are we talking
 about lack of professionalism, lack of skills or knowledge, or are we talking
-about a work culture based on pressure where there is no time to test software? 
-It can be just one of them or can be all of them. It's a really hard question 
+about a work culture based on pressure where there is no time to test software?
+It can be just one of them or can be all of them. It's a really hard question
 to answer.
 
 The point here is that we're talking about a team without testing culture, that
-are able to deliver features without any kind of testing effort to support the 
+are able to deliver features without any kind of testing effort to support the
 development phase, neither to assure a certain level of software quality.
 
 ### 2. Projects with wrongly designed tests
 
-Testing is hard. There are several pitfalls in testing that often leads to false 
+Testing is hard. There are several pitfalls in testing that often leads to false
 positives, and in its turn leads to having a low number of developers running
 the test suites. I will focus on two specific pitfalls: coupling and performance.
 
@@ -53,7 +53,7 @@ implementations and failing tests, we start to develop uncertainty and doubt
 against our test suite.
 
 Another pitfall in testing, that is caused by having a bad design, is when we
-don't run the test suite because of the length of time they may take. If we are 
+don't run the test suite because of the length of time they may take. If we are
 working against a deadline, naturally, people will start cutting corners. And
 by cutting corners, it means releasing without running the test suite. One
 viable solution is to split the test suite into two or more profiles. I tend to
@@ -62,7 +62,7 @@ tests when I'm writing code, and if the feedback is immediate, I'll start to
 develop a reliable relationship with my test suite.
 
 We must treat testing code as we treat production code. If we have wrongly
-designed test suites that are slow to run and provide false positives, we're 
+designed test suites that are slow to run and provide false positives, we're
 just wasting our time.
 
 ## Types of Testing
@@ -107,7 +107,8 @@ changing any line of code. In these situations what was the contribution to the 
 The optimal workflow is to write a test that can reproduce the reported bug.
 We should start with a broader test scenario. Is the test green? Start
 narrowing the scenario until the bug is found. With this approach, we make sure
-that every change that we make to the source code is covered by a test that was failing. If we can't reproduce the bug, at least at the end of the day, the
+that every change that we make to the source code is covered by a test that was failing. If we can't reproduce the bug,
+at least at the end of the day, the
 codebase is covered with more real-life scenarios.
 
 ## It's our job to build a testing culture. But how?
@@ -151,13 +152,13 @@ read, understand and evolve.
 
 If we want to build a solid testing culture on our team, we must share the same
 values, the same practices, and the same tools. I'm not talking about code
-formatting. That topic should be covered by a static analysis tool and style 
+formatting. That topic should be covered by a static analysis tool and style
 checking policy shared across all team projects.
 
 Every software engineer has its own habits of writing and designing code,
 and also has their favorite tooling. Writing testing code is no exception.
 Some people like too use fluent assertions, others not so much. The key point
-here is to, as a team, reach a consensus and choose the appropriate tools for 
+here is to, as a team, reach a consensus and choose the appropriate tools for
 the job and guarantee that everyone is on board happy to use them.
 
 Regarding coding practices, we should use the same ones we use for production

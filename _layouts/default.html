@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html class="light light_override">
 <head>
     <meta charset="utf-8">
-    <title>{{ page.title }}</title>
+    <title>{{ page.title }} - ordep.dev</title>
     <meta name="keywords" content="blog,developer,elixir,papers,ordepdev">
     <meta name="description" content="{{page.meta_description}}">
     <meta name="Description" content="{{page.meta_description}}">
-    <meta name="og:title" property="og:title" content="{{page.title}}">
+    <meta name="og:title" property="og:title" content="{{page.title}} - ordep.dev">
     <meta name="og:description" property="og:description" content="{{page.meta_description}}">
     <meta name="og:image" property="og:image" content="{{page.image}}">
     <meta name="author" content="Pedro Tavares">
@@ -29,26 +29,16 @@
     <meta name="msapplication-navbutton-color" content="#f5f5f5">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="msapplication-starturl" content="/">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,700|Source+Code+Pro" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    {% include tailwind.html %}
+    {% include dark-mode-toggle-script.html %}
 </head>
-<body class="{% if page.post_class %}{{page.post_class}}{% else %}home-template{% endif %}">
-    <div class="container">
-      {% include header.html %}
-      {{ content }}
-    </div>
+<body class="antialiased bg-rosePineDawn-base bg-no-repeat bg-gradient-to-br from-rosePineDawn-base to-rosePineDawn-base dark:rosePine-overlay dark:from-rosePine-surface dark:to-rosePine-base min-h-screen">
+<div>
+    {% include header.html %}
+    {{ content }}
+</div>
 
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-55713436-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
+{% include analytics.html %}
+{% include shiki.html %}
 </body>
 </html>

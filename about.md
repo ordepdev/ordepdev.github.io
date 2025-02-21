@@ -3,23 +3,33 @@ layout: page
 title: About
 permalink: /about/
 ---
+<div class="max-w-[120px]">
+    <img src="/assets/images/me.jpeg" alt="Myself" class="lg:rounded-lg ">
+</div>
 
-I'm a programmer that lives in the beautiful Porto, Portugal.
+I'm a software engineer living in the beautiful city of [Porto](https://en.wikipedia.org/wiki/Porto), Portugal.
 
-I like to dive into distributed systems and functional programming.
+I am strongly interested in distributed systems, databases, programming languages, and stream processing.
 
-I also love giving technical talks. Some of them were recorded and you can watch me fail multiple times.
+I have over ten years of experience in the industry, focusing on distributed systems, the JVM, and the BEAM.
 
-I consider myself an avid book read and (sometimes) I like to read scientific papers.
-Before COVID-19 I used to run the Porto's chapter of Papers We Love (still planning to get back to it).
+Currently, I work as a Senior Software Engineer (IV) at [PagerDuty](https://pagerduty.com), primarily on the Ingestion
+Platform and as part of the Java Core Team. Before a significant reorganization, I was a technical lead
+on [Operations Console](https://support.pagerduty.com/main/docs/operations-console), a real-time incident dashboard.
 
-Currently, I work at Rows, the next generation spreadsheet, as a backend engineer.
+I am an avid reader and enjoy exploring computer science papers. Before the COVID-19 pandemic, I led the Porto chapter
+of [Papers We Love](https://paperswelove.org/chapter/porto).
 
-Previously, I worked at Talkdesk, a contact center for innovative enterprise, bootstraping
-the data platform team and getting my hands dirty with Elixir and Scala. I had a short stay
-at Farfetch, an online fashion retail platform that sells products from over 700 boutiques
-and brands from around the world. Also worked at Jumia Services, the leading e-commerce
-fulfillment and delivery in Africa.
+I have given several talks and had the opportunity to speak
+in [Poland](https://www.youtube.com/watch?v=AEtXHTGEweg&pp=ugMICgJlbhABGAHKBQ9vcmRlcGRldiBwZWRybyA%3D)
+and [Colombia](https://www.youtube.com/watch?v=MWLcRZUo9Mc&pp=ugMICgJlbhABGAHKBQ9vcmRlcGRldiBwZWRybyA%3D).
 
-I might have dropped out from a Master's Degree on Software Engineering at Faculdade de
-Engenharia da Universidade do Porto.
+Additionally, I have worked at companies such
+as [Rows](https://rows.com), [Talkdesk](https://www.talkdesk.com), [Farfetch](https://www.farfetch.com),
+and [Jumia](https://group.jumia.com).
+
+Although I started a [Master's program in Software Engineering](https://fe.up.pt/estudar/mesw/?lang=en) at the Faculdade
+de Engenharia da Universidade do Porto, I ultimately decided to drop out. (Take my advice: don't do it!)
+
+Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/ordepdev/), [Twitter](https://twitter.com/ordepdev),
+or over [email](mailto:pedrotavares.dev@gmail.com).

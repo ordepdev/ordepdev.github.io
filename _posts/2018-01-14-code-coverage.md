@@ -6,12 +6,12 @@ categories: [testing, quality, culture]
 ---
 
 > A program with high test coverage, measured as a percentage, has had more of its
-source code executed during testing which suggests it has a lower chance of containing
-undetected software bugs compared to a program with low test coverage.
+> source code executed during testing which suggests it has a lower chance of containing
+> undetected software bugs compared to a program with low test coverage.
 
 > "Let's make it clear, then: don't set goals for code coverage. You may think that
-it could make your code base better, but asking developers to reach a certain code
-coverage goal will only make your code worse."
+> it could make your code base better, but asking developers to reach a certain code
+> coverage goal will only make your code worse."
 >
 > &mdash; <cite>Mark Seemann</cite>
 
@@ -85,7 +85,7 @@ code? When testing, the hardest question is when to stop. For some, a shiny
 100% code coverage is the answer to that question. It is important to look
 for other quality factors than code coverage. Check if the test case is useful,
 and is intended to find failures in the system. If you're looking only to code
-coverage as a quality criteria, the test bellow would do the job. 
+coverage as a quality criteria, the test bellow would do the job.
 
 ```java
 @Test
@@ -95,8 +95,8 @@ public void divide_with_valid_arguments() {
 ```
 
 > "I don't know if they did code coverage analysis on this project, but of
-course you can do this and have 100% code coverage - which is one reason
-why you have to be careful on interpreting code coverage data."
+> course you can do this and have 100% code coverage - which is one reason
+> why you have to be careful on interpreting code coverage data."
 >
 > &mdash; <cite>Martin Fowler</cite>
 
@@ -112,6 +112,7 @@ A nice technique to evaluate the different test inputs is to perform an
 *equivalence class partitioning*, where we divide all possible inputs into
 classes such that there is a finite number of input equivalence classes. Once,
 they're set, we may assume that:
+
 * the program behaves analogously for inputs in the same class;
 * one test with a representative value from a class is sufficient;
 * if the representative detects a defect, then other class members would detect the same defect.
@@ -151,8 +152,8 @@ code coverage.
 ## Summary
 
 > "Designing your initial test suite to achieve 100% coverage is an even worse
-idea. It's a sure way to create a test suite weak at finding those all-important
-faults of omission."
+> idea. It's a sure way to create a test suite weak at finding those all-important
+> faults of omission."
 >
 > &mdash; <cite>Brian Marick</cite>
 
@@ -163,6 +164,7 @@ scenarios, and don't stop when you reach that shiny 100% mark.
 ---
 
 More readings on the topic.
+
 - [How to Misuse Code Coverage](http://www.exampler.com/testing-com/writings/coverage.pdf)
 - [Code coverage is a useless target measure](http://blog.ploeh.dk/2015/11/16/code-coverage-is-a-useless-target-measure/)
 - [Are there any formalized/mathematical theories of software testing?](https://softwareengineering.stackexchange.com/questions/216301/are-there-any-formalized-mathematical-theories-of-software-testing)

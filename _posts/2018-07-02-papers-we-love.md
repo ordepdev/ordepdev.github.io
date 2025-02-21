@@ -2,13 +2,13 @@
 layout: post
 title: "Half a year of Papers We Love @ Porto"
 date: 2018-07-02
-categories: [papers, tech, events]
+categories: [ papers, tech, events ]
 ---
 
 ## How it all started
 
 Back to September 2017. Porto's tech scene was booming, still, it was lacking
-tech events backed by theoretical computer science. 
+tech events backed by theoretical computer science.
 
 At that time, I was
 following [@papers_we_love](https://twitter.com/papers_we_love) and started slowly
@@ -36,16 +36,19 @@ Distributed Systems Professor from Minho University and Co-creator of CRDTs.
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 Carlos introduced me to [Alvaro Videla](https://twitter.com/old_sound) and
-after a few emails, we managed to schedule the very first session of [@pwlporto](https://twitter.com/@pwlporto). We had dinner on the night before and talked about the gap
+after a few emails, we managed to schedule the very first session of [@pwlporto](https://twitter.com/@pwlporto). We had
+dinner on the night before and talked about the gap
 between industry and academia and how this group could help with that. It was really
 nice to meet and chat with Carlos and Alvaro!
 
 <blockquote class="twitter-tweet" data-cards="hidden" data-lang="en"><p lang="en" dir="ltr">Great news! Alvaro Videla (<a href="https://twitter.com/old_sound?ref_src=twsrc%5Etfw">@old_sound</a>) will be presenting  Harmful GOTOs, Premature Optimizations and Programming Myths are The Root of All Evil on February 22nd at the very first <a href="https://twitter.com/papers_we_love?ref_src=twsrc%5Etfw">@papers_we_love</a> <a href="https://twitter.com/hashtag/Porto?src=hash&amp;ref_src=twsrc%5Etfw">#Porto</a> - we&#39;re excited, you should be too!<br><br>RSVP: <a href="https://t.co/IsqTLNRJUI">https://t.co/IsqTLNRJUI</a></p>&mdash; Papers We Love @ Porto (@pwlporto) <a href="https://twitter.com/pwlporto/status/964938414528266240?ref_src=twsrc%5Etfw">February 17, 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Alvaro introduced some of the myths in our industry with the objective of promoting a culture of reading more books, academic papers and related material
+Alvaro introduced some of the myths in our industry with the objective of promoting a culture of reading more books,
+academic papers and related material
 that refers to the history of our field and programming in general. It was the
-best start that we could have, thanks to [Alvaro Videla](https://twitter.com/old_sound) and [Carlos Baquero](https://twitter.com/@xmal)!
+best start that we could have, thanks to [Alvaro Videla](https://twitter.com/old_sound)
+and [Carlos Baquero](https://twitter.com/@xmal)!
 
 We had 15 attendees at the very first edition of Papers We Love. I remember that we
 were making bets on how many people would attend. Only one person sharing and
@@ -72,7 +75,8 @@ knowledge. This wouldn’t be possible without them!
 
 > All Aboard the Natural Language Processing Train
 
-From the depts of intuition to practice, [José Marcelino](https://www.linkedin.com/in/josemarcelino1) guided us through the valley
+From the depts of intuition to practice, [José Marcelino](https://www.linkedin.com/in/josemarcelino1) guided us through
+the valley
 of Natural Language Processing field. Sequence labeling tasks, such as
 Part-of-Speech Tagging or Named Entity Recognition, represents a crucial
 step to understand language.
@@ -95,7 +99,8 @@ concurrent clients in modern distributed data stores.
 > Things you should know about Database Storage and Retrieval
 
 It was a hard month. Everyone I've invited was busy, so I had to step up
-and give a talk :) We discussed and examined some core data structures such as Hash Indexes, SSTables, LSM-Trees, and B-Trees, that are used in the traditional relational databases and NoSQL databases.
+and give a talk :) We discussed and examined some core data structures such as Hash Indexes, SSTables, LSM-Trees, and
+B-Trees, that are used in the traditional relational databases and NoSQL databases.
 
 > Knee Deep Into P2P
 

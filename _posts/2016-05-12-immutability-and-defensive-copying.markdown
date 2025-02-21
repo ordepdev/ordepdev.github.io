@@ -1,13 +1,14 @@
 ---
 layout: post
-title:  "Immutability and defensive copying"
-date:   2016-05-12
-categories: [programming,java]
+title: "Immutability and defensive copying"
+date: 2016-05-12
+categories: [ programming, java ]
 ---
 
 immutable data type; has the property that the value of an object never changes once constructed.
 
-In Java, we can enforce immutability with the *final* modifier. When declaring a variable as final, we are promising to assign it a value only once.
+In Java, we can enforce immutability with the *final* modifier. When declaring a variable as final, we are promising to
+assign it a value only once.
 
 What's the point of immutable types?
 
@@ -15,14 +16,18 @@ What's the point of immutable types?
 * prevents accidental changes.
 * makes programs easier to debug.
 
-Generally, immutable types are easier to use and harder to misuse than mutable types because the scope of code that can change their values is far smaller. It is easier to debug code that uses immutable types because it is easier to guarantee that variables in client code that uses them remain in a consistent state. When using mutable types, we are always concerned about where and when their values change.
+Generally, immutable types are easier to use and harder to misuse than mutable types because the scope of code that can
+change their values is far smaller. It is easier to debug code that uses immutable types because it is easier to
+guarantee that variables in client code that uses them remain in a consistent state. When using mutable types, we are
+always concerned about where and when their values change.
 
 There are a few *manageable* downsides of immutability:
 
 * a new object must be created for every value.
 * *final* doesn't guarantees immutability on reference types.
 
-If an instance variable of a reference type has the *final* modifier, the reference will never change but the value of the object itself *can* change.
+If an instance variable of a reference type has the *final* modifier, the reference will never change but the value of
+the object itself *can* change.
 
 We'll take this class as an example:
 
@@ -54,13 +59,22 @@ Person person = new Person("John", "Doe", children);
 Person child1 = new Person("Jack", "Doe", Arrays.asList());
 Person child2 = new Person("Jane", "Doe", Arrays.asList());
 
-children.add(child1);
-children.add(child2);
+children.
 
-System.out.println(person.getChildren().size()) // => 2.
+add(child1);
+children.
+
+add(child2);
+
+System.out.
+
+println(person.getChildren().
+
+size()) // => 2.
 ```
 
-The instance *children* is private and also final, but ```List<Person>``` is mutable because the client holds a reference to the data.
+The instance *children* is private and also final, but ```List<Person>``` is mutable because the client holds a
+reference to the data.
 
 How can we fix this? With *defensive copying*.
 
@@ -75,8 +89,13 @@ public List<Person> getChildren() {
   return new ArrayList<>(children);
 }
 
-System.out.println(person.getChildren().size()) // => 0.
+System.out.
+
+println(person.getChildren().
+
+size()) // => 0.
 ```
 
-Note that we only need to do a defensive copy if the object is mutable. The Strings firstName and lastName are immutable by default so there is no need to do a defensive copy.
+Note that we only need to do a defensive copy if the object is mutable. The Strings firstName and lastName are immutable
+by default so there is no need to do a defensive copy.
 

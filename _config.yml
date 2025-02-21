@@ -1,18 +1,22 @@
 title: Blog about software
 email: pedrotavares.dev@gmail.com
 description: >
-  I’m a passionate Software Engineer with interests around automated workflows,
-  microservices, test-driven development, design patterns, and databases. Currently,
-  I work at Jumia Services, the leading e-commerce fulfillment and delivery in Africa.
-  If you can’t find me building software, I bet you’ll find me playing videogames or
-  surfing waves in Portugal’s Northern Coast.
+  I am a seasoned software engineer with a passion for creating innovative and 
+  intuitive technology solutions. With over 10 years of experience in the industry, 
+  I have a deep understanding of the software development life cycle and a track record 
+  of delivering high-quality products on time and within budget. If you're looking for a 
+  results-driven software developer with expertise around distributed systems, JVM and the 
+  BEAM please feel free to connect!
 baseurl: "/"
 url: "https://ordep.dev"
 permalink: /posts/:title
 twitter_username: ordepdev
-github_username:  ordepdev
-
+github_username: ordepdev
 markdown: kramdown
-theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-toc
+toc:
+  ordered_list: true
+collections:
+  - now
