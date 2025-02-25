@@ -21,8 +21,9 @@ I need to stop living in my own bubble. While this isn't meant to be a New Year'
 
 It all starts with this post, and I've set specific goals:
 
-- Writing at least one post every two weeks
 - Attending tech meetups monthly
+- Engaging with online communities
+- Writing at least one post every two weeks
 - Sharing learnings on my blog, Twitter, and LinkedIn
 - Submitting at least one conference talk proposal this year
 - Restarting our local Papers We Love chapter with monthly meetings
