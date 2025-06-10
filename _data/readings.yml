@@ -46,13 +46,21 @@
   read_at: 2025-04-04
   link: https://www.goodreads.com/book/show/o-agente-estrangeiro
 
+- title: "Nós"
+  authors: [ "Yevgeny Zamyatin" ]
+  pages: 290
+  published_year: 1924
+  rating: 2
+  read_at: 2025-03-18
+  link: https://www.goodreads.com/book/show/20647867-n-s
+
 - title: "Slaughterhouse-Five"
   authors: [ "Kurt Vonnegut Jr." ]
   pages: 285
   published_year: 1969
   rating: 4
   read_at: 2025-03-26
-  link: https://www.goodreads.com/book/show/slaughterhouse-five
+  link: https://www.goodreads.com/book/show/8123395-slaughterhouse-five
 
 - title: "Deep Work"
   authors: [ "Cal Newport" ]
@@ -78,6 +86,22 @@
   read_at: 2025-02-08
   link: https://www.goodreads.com/book/show/214246307-o-ano-zero-da-nova-europa
 
+- title: "O Poder da Geografia"
+  authors: [ "Tim Marshall" ]
+  pages: 
+  published_year: 
+  rating: 5
+  read_at: 2025-01-07
+  link: https://www.goodreads.com/book/show/59416442-o-poder-da-geografia
+
+- title: "Same as Ever"
+  authors: [ "Morgan Housel" ]
+  pages: 240
+  published_year: 2023
+  rating: 5
+  read_at: 2025-01-05
+  link: https://www.goodreads.com/book/show/125116554-same-as-ever
+
 - title: "The Beauty of Everyday Things"
   authors: [ "Soetsu Yanagi" ]
   pages: 316
@@ -85,6 +109,14 @@
   rating: 3
   read_at: 2025-02-06
   link: https://www.goodreads.com/book/show/41753650-the-beauty-of-everyday-things
+
+- title: "The Staff Engineer's Path"
+  authors: [ "Tanya Reilly" ]
+  pages: 335
+  published_year: 2022
+  rating: 5
+  read_at: 2024-12-01
+  link: https://www.goodreads.com/book/show/61058107-the-staff-engineer-s-path
 
 - title: "Putinlândia"
   authors: [ "Bernardo Pires de Lima" ]
@@ -109,3 +141,115 @@
   rating: 3
   read_at: 2025-01-24
   link: https://www.goodreads.com/book/show/60461149-a-mais-breve-hist-ria-da-r-ssia---dos-eslavos-a-putin
+
+- title: "A Philosophy of Software Design"
+  authors: [ "John Ousterhout" ]
+  pages: 190
+  published_year: 2018
+  rating: 5
+  read_at: 2023-01-05
+  link: https://www.goodreads.com/book/show/39996759-a-philosophy-of-software-design
+
+- title: "Não Foi por Falta de Aviso / Ainda o Apanhamos!"
+  authors: [ "Rui Tavares" ]
+  pages: 240
+  published_year: 2024
+  rating: 3
+  read_at: 2024-01-05
+  link: https://www.goodreads.com/book/show/207075982-n-o-foi-por-falta-de-aviso-ainda-o-apanhamos
+
+- title: "Why Does The Stock Market Go Up?"
+  authors: [ "Brian Feroldi" ]
+  pages: 294
+  published_year: 2022
+  rating: 3
+  read_at: 2024-01-05
+  link: https://www.goodreads.com/book/show/60110829-why-does-the-stock-market-go-up
+
+- title: "Just Keep Buying"
+  authors: [ "Nick Maggiulli" ]
+  pages: 296
+  published_year: 2022
+  rating: 4
+  read_at: 2024-01-05
+  link: https://www.goodreads.com/book/show/59046778-just-keep-buying
+
+- title: "Prisioneiros da Geografia"
+  authors: [ "Tim Marshall" ]
+  pages: 255
+  published_year: 2015
+  rating: 5
+  read_at: 2024-01-05
+  link: https://www.goodreads.com/book/show/prisioneiros-da-geografia
+
+- title: "Never Split the Difference"
+  authors: [ "Chris Voss" ]
+  pages: 274
+  published_year: 2016
+  rating: 5
+  read_at: 2021-12-01
+  link: https://www.goodreads.com/book/show/26156469-never-split-the-difference
+
+- title: "Zero to One"
+  authors: [ "Peter Thiel" ]
+  pages: 195
+  published_year: 2014
+  rating: 5
+  read_at: 2021-11-11
+  link: https://www.goodreads.com/book/show/18050143-zero-to-one
+
+- title: "1984"
+  authors: [ "George Orwell" ]
+  pages: 298
+  published_year: 2013
+  rating: 5
+  read_at: 2021-10-14
+  link: https://www.goodreads.com/book/show/40961427-1984
+
+- title: "The Little Book of Common Sense Investing"
+  authors: [ "John C. Bogle" ]
+  pages: 216
+  published_year: 2007
+  rating: 5
+  read_at: 2021-09-15
+  link: https://www.goodreads.com/book/show/171127.The_Little_Book_of_Common_Sense_Investing
+
+- title: "You're Not Listening"
+  authors: [ "Kate Murphy" ]
+  pages: 278
+  published_year: 2020
+  rating: 5
+  read_at: 2021-05-04
+  link: https://www.goodreads.com/book/show/45892276-you-re-not-listening
+
+- title: "Algorithms to Live By"
+  authors: [ "Brian Christian" ]
+  pages: 368
+  published_year: 2016
+  rating: 5
+  read_at: 2020-12-31
+  link: https://www.goodreads.com/book/show/25666050-algorithms-to-live-by
+
+- title: "Designing Data-Intensive Applications"
+  authors: [ "Martin Kleppmann" ]
+  pages: 614
+  published_year: 2017
+  rating: 5
+  read_at: 2020-01-04
+  link: https://www.goodreads.com/book/show/23466395-designing-data-intensive-applications
+
+- title: "Weapons of Math Destruction"
+  authors: [ "Cathy O'Neil" ]
+  pages: 259
+  published_year: 2016
+  rating: 5
+  read_at: 2018-04-30
+  link: https://www.goodreads.com/book/show/28186015-weapons-of-math-destruction
+
+- title: "Building Microservices"
+  authors: [ "Sam Newman" ]
+  pages: 473
+  published_year: 2015
+  rating: 5
+  read_at: 2017-09-19
+  link: https://www.goodreads.com/book/show/22512931-building-microservices
