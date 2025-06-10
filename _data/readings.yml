@@ -1,3 +1,75 @@
+- title: "Brevíssima História de Portugal"
+  authors: [ "A.H. de Oliveira Marques" ]
+  pages: 248
+  published_year: 2018
+  rating: 3
+  read_at: 2025-05-30
+  link: https://www.goodreads.com/book/show/38218250
+
+- title: "Guerra e Paz – Volume I"
+  authors: [ "Leo Tolstoy" ]
+  pages: 744
+  published_year: 1867
+  rating: 5
+  read_at: 2025-05-20
+  link: https://www.goodreads.com/book/show/75559919
+
+- title: "Who Rules the World?"
+  authors: [ "Noam Chomsky" ]
+  pages: 307
+  published_year: 2014
+  rating: 4
+  read_at: 2025-04-23
+  link: https://www.goodreads.com/book/show/who-rules-the-world
+
+- title: "Antes do 25 de Abril: Era Proibido"
+  authors: [ "António Costa Santos" ]
+  pages: 208
+  published_year: 2024
+  rating: 5
+  read_at: 2025-04-21
+  link: https://www.goodreads.com/book/show/209467219
+
+- title: "Admirável Mundo Novo"
+  authors: [ "Aldous Huxley" ]
+  pages: 320
+  published_year: 1932
+  rating: 4
+  read_at: 2025-04-15
+  link: https://www.goodreads.com/book/show/admiravel-mundo-novo
+
+- title: "O Agente Estrangeiro"
+  authors: [ "Brad Thor" ]
+  pages: 376
+  published_year: 2016
+  rating: 5
+  read_at: 2025-04-04
+  link: https://www.goodreads.com/book/show/o-agente-estrangeiro
+
+- title: "Slaughterhouse-Five"
+  authors: [ "Kurt Vonnegut Jr." ]
+  pages: 285
+  published_year: 1969
+  rating: 4
+  read_at: 2025-03-26
+  link: https://www.goodreads.com/book/show/slaughterhouse-five
+
+- title: "Deep Work"
+  authors: [ "Cal Newport" ]
+  pages: 296
+  published_year: 2016
+  rating: 3
+  read_at: 2025-03-15
+  link: https://www.goodreads.com/book/show/deep-work
+
+- title: "Writing for Developers"
+  authors: [ "Piotr Sarna" ]
+  pages: 376
+  published_year: 2025
+  rating: 4
+  read_at: 2025-03-14
+  link: https://www.goodreads.com/book/show/writing-for-developers
+
 - title: "O Ano Zero da Nova Europa"
   authors: [ "Bernardo Pires de Lima" ]
   pages: 208
