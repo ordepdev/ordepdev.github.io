@@ -14,10 +14,13 @@
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta property="og:site_name" content="ordep.dev">
     <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="{% if page.image %}{{ site.url }}{{ page.image }}{% else %}{{ site.url }}/assets/images/profile.jpg{% endif %}">
+    <meta property="og:image" content="{% if page.image %}{{ site.url }}{{ page.image }}{% else %}{{ site.url }}/assets/images/me.jpeg{% endif %}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="{% if page.title %}{{ page.title }}{% else %}ordep.dev{% endif %}">
+    {% if page.date %}
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+    {% endif %}
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -25,7 +28,7 @@
     <meta name="twitter:creator" content="@ordepdev">
     <meta name="twitter:title" content="{% if page.title %}{{ page.title }} - ordep.dev{% else %}ordep.dev{% endif %}">
     <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% elsif page.meta_description %}{{ page.meta_description }}{% else %}A blog about software engineering, papers, and technology by Pedro Tavares{% endif %}">
-    <meta name="twitter:image" content="{% if page.image %}{{ site.url }}{{ page.image }}{% else %}{{ site.url }}/assets/images/profile.jpg{% endif %}">
+    <meta name="twitter:image" content="{% if page.image %}{{ site.url }}{{ page.image }}{% else %}{{ site.url }}/assets/images/me.jpeg{% endif %}">
     <meta name="twitter:image:alt" content="{% if page.title %}{{ page.title }}{% else %}ordep.dev{% endif %}">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
