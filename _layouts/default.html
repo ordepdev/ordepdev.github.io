@@ -4,20 +4,29 @@
     <meta charset="utf-8">
     <title>{{ page.title }} - ordep.dev</title>
     <meta name="keywords" content="blog,developer,elixir,papers,ordepdev">
-    <meta name="description" content="{{page.meta_description}}">
-    <meta name="Description" content="{{page.meta_description}}">
-    <meta name="og:title" property="og:title" content="{{page.title}} - ordep.dev">
-    <meta name="og:description" property="og:description" content="{{page.meta_description}}">
-    <meta name="og:image" property="og:image" content="{{page.image}}">
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% elsif page.meta_description %}{{ page.meta_description }}{% else %}A blog about software engineering, papers, and technology by Pedro Tavares{% endif %}">
     <meta name="author" content="Pedro Tavares">
-    <meta name="twitter:image" content="https://ordep.dev{{page.image}}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} - ordep.dev{% else %}ordep.dev{% endif %}">
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% elsif page.meta_description %}{{ page.meta_description }}{% else %}A blog about software engineering, papers, and technology by Pedro Tavares{% endif %}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:site_name" content="ordep.dev">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="{% if page.image %}{{ site.url }}{{ page.image }}{% else %}{{ site.url }}/assets/images/profile.jpg{% endif %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{% if page.title %}{{ page.title }}{% else %}ordep.dev{% endif %}">
+    
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="og:locale" property="og:locale" content="en_US">
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="A blog, from @ordepdev.">
-    <meta name="twitter:image:alt" content="{{page.title}}">
     <meta name="twitter:site" content="@ordepdev">
     <meta name="twitter:creator" content="@ordepdev">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }} - ordep.dev{% else %}ordep.dev{% endif %}">
+    <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% elsif page.meta_description %}{{ page.meta_description }}{% else %}A blog about software engineering, papers, and technology by Pedro Tavares{% endif %}">
+    <meta name="twitter:image" content="{% if page.image %}{{ site.url }}{{ page.image }}{% else %}{{ site.url }}/assets/images/profile.jpg{% endif %}">
+    <meta name="twitter:image:alt" content="{% if page.title %}{{ page.title }}{% else %}ordep.dev{% endif %}">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
