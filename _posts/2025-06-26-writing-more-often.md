@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Writing More Often"
+description: A few practical ways I’m trying to write more often, based on habit-building, lowered expectations, and doing something every day. A follow-up on why I want to write more (again).
 date: 2025-06-26
 ---
 
