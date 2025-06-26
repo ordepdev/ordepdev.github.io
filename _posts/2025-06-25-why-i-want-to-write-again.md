@@ -5,7 +5,7 @@ description: "Writing is a skill. Start small, write often, share what you know,
 date: 2025-06-25
 ---
 
-[I used to write more](/posts/reviving-my-online-presence). Then I stopped.
+I used to write more. [Then I stopped](/posts/reviving-my-online-presence).
 
 Not because I had nothing to say, but because I fell into the usual excuses: no time, not good enough, not worth it. Drafts piled up and never got published. Eventually, not writing became the default.
 
