@@ -112,7 +112,7 @@ async function main() {
       if (data.title && data.description) {
         const date = path.basename(file, path.extname(file)).substring(0, 10);
         const imageBuffer = await generateImage(data.title, data.description, date, profileImageBuffer);
-        const outputFilePath = path.join(outputDir, `${path.parse(file).name}.png`);
+        const outputFilePath = path.join(outputDir, `${path.parse(file).name.substring(11)}.png`);
         await fs.writeFile(outputFilePath, imageBuffer);
         console.log(`Generated image for ${file}`);
       } else {
