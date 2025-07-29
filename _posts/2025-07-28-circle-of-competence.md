@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "My Circle of Competence"
+title: "On the Edge of Competence"
 description: "Understanding and maintaining your circle of competence is crucial for software engineers. This post explores how self-awareness, continuous learning, and avoiding overconfidence lead to sharper decisions and greater impact."
 date: 2025-07-28
 ---
