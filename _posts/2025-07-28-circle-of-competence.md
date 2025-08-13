@@ -3,6 +3,9 @@ layout: post
 title: "On the Edge of Competence"
 description: "Understanding and maintaining your circle of competence is crucial for software engineers. This post explores how self-awareness, continuous learning, and avoiding overconfidence lead to sharper decisions and greater impact."
 date: 2025-07-28
+links:
+  - name: /r/programming
+    link: https://www.reddit.com/r/programming/comments/1mc6mse/on_the_edge_of_competence/
 ---
 
 Sometimes I catch myself second-guessing a critical technical decision or feeling overwhelmed on a project I don’t fully understand. That’s usually a sign that I’m operating beyond my **circle of competence**.

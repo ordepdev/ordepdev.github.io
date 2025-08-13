@@ -30,6 +30,19 @@ archive: false
                     <div class="font-normal">{{ page.date | date:"%B %d, %Y" }}</div>
                 </div>
 
+                {% if page.links %}
+                <div class="border-b px-4 py-4 dark:border-rosePine-highlightMed">
+                    See comments and reactions on
+                    {% for item in page.links %}
+                    <div class="font-normal">
+                        <strong>
+                          <a href="{{ item.link }}" class="text-proseLinks dark:text-proseInvertLinks" target="_blank">{{ item.name }}</a>
+                        </strong>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
                 {% if page.categories.size > 0 %}
                 <div class="border-b px-4 py-4 dark:border-rosePine-highlightMed">
                     <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Tags</div>

@@ -3,6 +3,11 @@ layout: post
 title: "Writing Code Was Never The Bottleneck"
 description: LLMs make it easier to write code, but understanding, reviewing, and maintaining it still takes time, trust, and good judgment.
 date: 2025-06-30
+links:
+  - name: "Hacker News"
+    link: "https://news.ycombinator.com/item?id=44429789"
+  - name: "/r/programming"
+    link: "https://reddit.com/r/programming/comments/1lomhlq/writing_code_was_never_the_bottleneck/"
 ---
 For years, I’ve felt that writing lines of code *was never* the bottleneck in software engineering.
 
