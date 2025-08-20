@@ -110,7 +110,8 @@ async function main() {
       const { data } = matter(fileContent);
 
       if (data.title && data.description) {
-        const date = path.basename(file, path.extname(file)).substring(0, 10);
+        const date = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" })
+          .format(new Date(path.basename(file, path.extname(file)).substring(0, 10)));
         const imageBuffer = await generateImage(data.title, data.description, date, profileImageBuffer);
         const outputFilePath = path.join(outputDir, `${path.parse(file).name.substring(11)}.png`);
         await fs.writeFile(outputFilePath, imageBuffer);
