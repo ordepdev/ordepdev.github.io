@@ -17,7 +17,7 @@ At the time, I knew the system was busy retrying because of contention, but I di
 
 Most engineers are familiar with **deadlocks**: threads get stuck waiting on each other, and nothing moves forward. Easy to detect, easy to understand. A **livelock**, however, is sneakier. The book defines it like this:
 
-> “Two or more threads actively prevent each other from making progress… When the system is livelocked rather than deadlocked, there is some way to schedule the threads so that the system can make progress (but also some way to schedule them so that there is no progress).”
+> “Two or more threads actively prevent each other from making progress by taking steps that subvert steps taken by other threads… When the system is livelocked rather than deadlocked, there is some way to schedule the threads so that the system can make progress (but also some way to schedule them so that there is no progress).”
 
 The key insight is that a **livelock isn’t about threads being stuck waiting**, it’s about threads working so hard they keep undoing each other’s progress. Everything looks **busy and alive** on the outside. But inside, **things move very slowly**.
 
@@ -46,11 +46,9 @@ A simplified example of what happened:
 1. Thread A commits successfully, bumping Record X to version 2
 1. Thread B tries to commit, sees the version mismatch, aborts, and immediately retries
 
-Now multiply this by dozens of threads and many records. The system didn’t grind to a complete halt. Some transactions did succeed, but as the load increased, **throughput tanked**, and adding more threads only made things worse.
+Now multiply this by dozens of threads and many records, and you get a storm of constant retries. The system never fully stopped, but as the load increased, **throughput tanked**, and adding more threads only made the conflicts worse.
 
-Each thread was “working,” but most of that work was **wasted**. Threads were **canceling out each other’s progress**, precisely as described in the book:
-
-> “There is some way to schedule the threads so that the system can make progress (but also some way to schedule them so that there is no progress).”
+Each thread was “working,” but most of that work was **wasted**. Threads were **canceling out each other’s progress**, precisely as described in the book.
 
 ---
 
