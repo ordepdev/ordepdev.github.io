@@ -1,15 +1,15 @@
 ---
 layout: post
-title: "When more threads make things worse"
-description: "Optimistic locking retries under contention can cause livelocks: threads appear to work, but their efforts repeatedly block each other."
+title: “When more threads make things worse”
+description: “Optimistic locking retries under contention can cause livelocks: threads appear to work, but their efforts repeatedly block each other.”
 date: 2025-09-10
 ---
 
-I was catching up on the *Mutual Exclusion* chapter from [*The Art of Multiprocessor Programming*](https://eatonphil.com/2025-art-of-multiprocessor-programming.html), and while reading through the discussion thread, it became clear that there aren’t many practical, real-world examples of **livelocks** being shared.
+I was catching up on the *Mutual Exclusion* chapter from [*The Art of Multiprocessor Programming*](https://eatonphil.com/2025-art-of-multiprocessor-programming.html), and while reading through the discussion thread, it became clear to me that there weren’t many practical, real-world examples of **livelocks** being shared.
 
-This reminded me of a messy situation in production: a flawed implementation of **optimistic locking** combined with multiple threads consuming Kafka batches. It became a perfect recipe for threads actively preventing each other from making progress, while still appearing to **“do work.”**
+This reminded me of a messy situation in production: a flawed implementation of **optimistic locking** combined with multiple threads consuming Kafka batches. It became a perfect scenario for threads actively preventing each other from making progress, while still appearing to **“do work.”**
 
-At the time, it was clear that the retries were happening because of contention, but I didn’t know that this scenario could be classified as a **livelock**.
+At the time, I knew the system was busy retrying because of contention, but I didn’t realize that this was an example of a **livelock**.
 
 ---
 
@@ -31,7 +31,7 @@ The system processed messages from Kafka in parallel. Multiple threads consumed 
 - When a thread tried to update a record, it checked the version at commit time  
 - If the version had changed, the transaction would **abort and retry immediately**
 
-This approach works fine under low contention. But a design change introduced a problem: new Kafka partitions were keyed differently from the database target table’s primary key.
+This approach works fine under low contention, but a design change introduced a problem: new Kafka partitions were keyed differently from the database target table’s primary key.
 
 Suddenly, multiple independent threads were consuming messages that **targeted the same database records**, causing a lot of contention and **triggering repeated retries**.
 
@@ -39,17 +39,16 @@ Suddenly, multiple independent threads were consuming messages that **targeted t
 
 ## The Retry Loop
 
-A simplified example illustrates what happened:
+A simplified example of what happened:
 
 1. Thread A reads Record X (version 1)
 1. Thread B also reads Record X (version 1)
 1. Thread A commits successfully, bumping Record X to version 2
 1. Thread B tries to commit, sees the version mismatch, aborts, and immediately retries
 
+Now multiply this by dozens of threads and many records. The system didn’t grind to a complete halt. Some transactions did succeed, but as the load increased, **throughput tanked**, and adding more threads only made things worse.
 
-Now multiply this by dozens of threads and many records. The system didn’t grind to a complete halt. Some transactions did succeed, but as the load increased, **throughput collapsed**. Adding more threads only made things worse.
-
-Each thread was “working,” but most of that work was **wasted**. Threads were **canceling out each other’s progress**, exactly as described in the book:
+Each thread was “working,” but most of that work was **wasted**. Threads were **canceling out each other’s progress**, precisely as described in the book:
 
 > “There is some way to schedule the threads so that the system can make progress (but also some way to schedule them so that there is no progress).”
 
@@ -73,12 +72,10 @@ When I shared this example online, someone replied with a perspective that perfe
 
 > “It’s a valid example. Generally, you have to degrade concurrency to escape the trap. For example, there’s an old concept called an ‘escalating lock manager’ that tries to prevent this. A different approach I’ve used more recently is to always include both a priority indicator and a retry count on each transaction. These hints allow the transaction manager to automatically degrade concurrency when it detects this scenario—for example, delaying other commits in the presence of a serial offender.”
 
-This emphasizes the point: whether implementing back-off, introducing priority hints, or using more advanced transaction management techniques, the key to escaping a livelock is **controlled degradation of concurrency**. If every thread continues to fight at full speed, the system remains trapped in a **cycle of unproductive work**.
+Whether implementing back-off, introducing priority hints, or using more advanced transaction management techniques, the key to escaping a livelock is **controlled degradation of concurrency**. If every thread continues to fight at full speed, the system remains trapped in a **cycle of unproductive work**.
 
 ---
 
 ## Final Thoughts
 
-Before reading *The Art of Multiprocessor Programming* and engaging online, it wouldn’t have been clear to call this a **livelock**. The retry loop wasn’t infinite, and progress was happening, just very slowly.
-
-Now it’s clear: a livelock isn’t about frozen threads. It’s about a system stuck in a **cycle of unproductive work**, where the only way forward is to **slow down and coordinate**, rather than throwing more concurrency at the problem.
+Before reading *The Art of Multiprocessor Programming* and engaging online, it wouldn’t have been clear to call this a **livelock**. The retry loop wasn’t infinite, and progress was happening, just very slowly. Now it’s clear to me, this example fits the livelock description, and the only way to *escape the trap* is to **degrade concurrency**, rather than throwing more concurrency at the problem.
