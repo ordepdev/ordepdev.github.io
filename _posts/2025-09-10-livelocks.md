@@ -1,7 +1,7 @@
 ---
 layout: post
-title: “When more threads make things worse”
-description: “Optimistic locking retries under contention can cause livelocks: threads appear to work, but their efforts repeatedly block each other.”
+title: "When more threads make things worse"
+description: "Optimistic locking retries under contention can cause livelocks: threads appear to work, but their efforts repeatedly block each other."
 date: 2025-09-10
 ---
 
