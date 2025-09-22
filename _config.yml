@@ -1,12 +1,6 @@
-title: Thoughts from @ordepdev
+title: Pedro Tavares (ordep.dev)
 email: pedrotavares.dev@gmail.com
-description: >
-  I am a seasoned software engineer with a passion for creating innovative and 
-  intuitive technology solutions. With over 10 years of experience in the industry, 
-  I have a deep understanding of the software development life cycle and a track record 
-  of delivering high-quality products on time and within budget. If you're looking for a 
-  results-driven software developer with expertise around distributed systems, JVM and the 
-  BEAM please feel free to connect!
+description: Thoughts from @ordepdev
 baseurl: "/"
 url: "https://ordep.dev"
 permalink: /posts/:title
